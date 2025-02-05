@@ -10,6 +10,7 @@ interface ButtonProps {
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top" | "none";
   color?: "light" | "dark";
+  fullWidth?: boolean;
 }
 
 function Button({
@@ -19,6 +20,7 @@ function Button({
   href = "#",
   target,
   color = "light",
+  fullWidth = false,
 }: ButtonProps) {
   return (
     <Link
@@ -27,6 +29,7 @@ function Button({
       className={clsx(
         "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5  relative cursor-pointer overflow-visible rounded-full shadow-none whitespace-nowrap font-medium hover:shadow-[0px_0px_0px_5px] hover:shadow-[#B8B8B8]/20 tracking-normal",
         {
+          "!w-full": fullWidth,
           "px-2 w-9 h-9": size === "sm",
           "px-4 h-[50px]": size === "md",
           "bg-[#f1f5f9] text-black hover:bg-[#f8fafc]": color === "light",

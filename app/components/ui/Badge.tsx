@@ -9,6 +9,7 @@ interface BadgeProps {
   color?: "default" | "green" | "blue";
   animate?: "ping" | "spin";
   classNames?: {
+    body?: string;
     icon?: string;
   };
 }
@@ -31,6 +32,7 @@ function Badge({
     <div
       className={clsx(
         "flex items-center justify-center px-2.5 h-8 text-xs font-medium uppercase rounded-full font-secondary tracking-normal gap-1",
+        classNames.body,
         {
           "bg-[#edeff0] text-[#4a4d55]": color === "default",
           "bg-[#bff6b6] text-[#307f4a]": color === "green",

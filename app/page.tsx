@@ -4,8 +4,112 @@ import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import Tooltip from "./components/ui/Tooltip";
 
 export default function Home() {
+  const stacks = [
+    {
+      name: "JavaScript",
+      icon: "proicons:javascript",
+      color: "#f7df1e",
+    },
+    {
+      name: "TypeScript",
+      icon: "proicons:typescript",
+      color: "#3178c6",
+    },
+    {
+      name: "NextJS",
+      icon: "ri:nextjs-line",
+      color: "#000000",
+    },
+    {
+      name: "Vercel",
+      icon: "ri:vercel-fill",
+      color: "#000000",
+    },
+    {
+      name: "React",
+      icon: "ri:reactjs-line",
+      color: "#00d8ff",
+    },
+    {
+      name: "Node.js",
+      icon: "ri:nodejs-line",
+      color: "#6cc24a",
+    },
+    {
+      name: "Unity",
+      icon: "mdi:unity",
+      color: "#222c37",
+    },
+    {
+      name: "C#",
+      icon: "devicon-plain:csharp",
+      color: "#9B4993",
+    },
+    {
+      name: "HTML",
+      icon: "proicons:html",
+      color: "#e34f26",
+    },
+    {
+      name: "CSS",
+      icon: "proicons:css",
+      color: "#2191EB",
+    },
+    {
+      name: "Git",
+      icon: "mdi:git",
+      color: "#E94E31",
+    },
+    {
+      name: "GitHub",
+      icon: "proicons:github",
+      color: "#333",
+    },
+    {
+      name: "DigitalOcean",
+      icon: "mdi:digital-ocean",
+      color: "#008bcf",
+    },
+    {
+      name: "Cloudflare",
+      icon: "devicon-plain:cloudflare",
+      color: "#f38020",
+    },
+    {
+      name: "jQuery",
+      icon: "mdi:jquery",
+      color: "#0769ad",
+    },
+    {
+      name: "Postman",
+      icon: "devicon-plain:postman",
+      color: "#ef5b25",
+    },
+    {
+      name: "MySQL",
+      icon: "cib:mysql",
+      color: "#00758f",
+    },
+    {
+      name: "MongoDB",
+      icon: "cib:mongodb",
+      color: "#589636",
+    },
+    {
+      name: "PostgreSQL",
+      icon: "cib:postgresql",
+      color: "#31648C",
+    },
+    {
+      name: "Nginx",
+      icon: "cib:nginx",
+      color: "#009736",
+    },
+  ];
+
   return (
     <div className="grid grid-cols-12 grid-rows-6 gap-x-4 gap-y-9">
       <Card classNames={{ body: "col-span-10 row-span-2 h-[450px]" }}>
@@ -95,16 +199,29 @@ export default function Home() {
           </div>
         </Card>
       ))}
-      <Card classNames={{ body: "col-span-9 row-span-1" }}>
+      <Card classNames={{ body: "col-span-9 row-span-1 gap-6" }}>
         <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leding-none">
           Explore my stack
           <span className="text-[#647586] text-base font-medium">
             Let&apos;s see my useful tools while cooking
           </span>
         </div>
-        <div className="grid grid-cols-10 gap-5">
-          
+        <div className="w-full grid grid-cols-10 gap-5">
+          {stacks.map((item, i) => (
+            <div
+              key={i}
+              className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"
+              style={{ backgroundColor: item.color }}
+            >
+              <Tooltip content={item.name}>
+                <Icon icon={item.icon} width="32" height="32" />
+              </Tooltip>
+            </div>
+          ))}
         </div>
+        <Button fullWidth href="#">
+          See All
+        </Button>
       </Card>
     </div>
   );
