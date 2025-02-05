@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Badge from "./Badge";
@@ -13,8 +13,14 @@ interface TooltipProps {
 export default function Tooltip({ children, content }: TooltipProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
 
   const animationFrameRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   const handleMouseMove = (event: React.MouseEvent) => {
     if (animationFrameRef.current) {
@@ -33,7 +39,7 @@ export default function Tooltip({ children, content }: TooltipProps) {
       onMouseMove={handleMouseMove}
     >
       {children}
-      {createPortal(
+      {mounted && createPortal(
         <AnimatePresence>
           {tooltipVisible && mousePos.x && mousePos.y && (
             <motion.div
