@@ -9,8 +9,13 @@ import MusicCard from "./components/MusicCard";
 import RotatingBadge from "./components/RotatingBadge";
 import StackCard from "./components/StackCard";
 import SocialCards from "./components/SocialCards";
+import { ImageService } from "@/lib/services/image.service";
+import { Image as ImageProps } from "@/types/Image";
 
 async function page() {
+  const imageService = new ImageService();
+  const images: ImageProps[] = await imageService.findMany();
+
   return (
     <div className="flex flex-col gap-9">
       <div className="grid grid-cols-12 gap-4 h-[450px]">
@@ -51,7 +56,7 @@ async function page() {
           </div>
           <Image
             className="absolute bottom-0 right-0 w-auto h-full drop-shadow-[-47px_13px_38px_rgba(125,135,145,0.25)]"
-            src="/images/bio.png"
+            src="https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/images/bio-X305byll77OEmEUCxlWNOKiG1u0dfs.png"
             alt="İlker Balcılar"
             width={750}
             height={500}
@@ -144,7 +149,7 @@ async function page() {
       </div>
       <div className="grid grid-cols-12 gap-4">
         <Card classNames={{ body: "col-span-3 p-0" }}>
-          <VerticalSlider />
+          <VerticalSlider images={images.map((item) => item.url)} />
         </Card>
         <Card classNames={{ body: "col-span-9 gap-6" }}>
           <div className="w-full flex justify-between items-start">

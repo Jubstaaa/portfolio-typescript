@@ -7,15 +7,11 @@ import { cn } from "@/app/utils/cn";
 
 type Direction = "Up" | "Down";
 
-const images = [
-  "/images/image1.jpg",
-  "/images/image2.jpg",
-  "/images/image3.jpg",
-  "/images/image4.jpg",
-  "/images/image5.jpg",
-];
+interface VerticalCarouselProps {
+  images: string[];
+}
 
-const VerticalCarousel: React.FC = () => {
+const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const totalPages: number = images.length;
   const autoScrollInterval = 3000;

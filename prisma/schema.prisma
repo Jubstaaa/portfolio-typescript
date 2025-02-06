@@ -25,3 +25,8 @@ model Social {
   order    Int?    @default(0)
 }
 
+model Image {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  url   String
+  order Int?   @default(0)
+}
