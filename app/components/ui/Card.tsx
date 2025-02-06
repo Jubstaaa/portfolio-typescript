@@ -29,7 +29,7 @@ function Card<C extends ElementType = "div">({
   const Component = as || "div";
 
   const classes = clsx(
-    "flex flex-col items-start justify-between flex-1 p-[30px] relative overflow-hidden rounded-large bg-white border border-[#e2e8f0]",
+    "flex flex-col items-start justify-between p-[30px] relative overflow-hidden rounded-large bg-white border border-[#e2e8f0]",
     classNames.body
   );
 

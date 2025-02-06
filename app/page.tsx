@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Tooltip from "./components/ui/Tooltip";
 import VerticalSlider from "./components/ui/VerticalCarousel";
+import MusicCard from "./components/ui/MusicCard";
 
 export default function Home() {
   const stacks = [
@@ -113,8 +114,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-9">
-      <div className="grid grid-cols-12 grid-rows-2 gap-4">
-        <Card classNames={{ body: "col-span-10 row-span-2 h-[450px]" }}>
+      <div className="grid grid-cols-12 gap-4 h-[450px]">
+        <Card classNames={{ body: "col-span-10" }}>
           <div className="w-full flex justify-between items-start">
             <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
               Jack Ashford
@@ -157,8 +158,12 @@ export default function Home() {
             height={500}
           />
         </Card>
-        <Card classNames={{ body: "col-span-2 row-span-1" }}>test1</Card>
-        <Card classNames={{ body: "col-span-2 row-span-1" }}>test2</Card>
+        <div className="flex flex-col gap-4 col-span-2">
+          <Card classNames={{ body: "!p-4 gap-3 justify-start" }}>
+            <MusicCard />
+          </Card>
+          <Card>Test2</Card>
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
         {Array.from({ length: 2 }, (_, i) => (
@@ -301,6 +306,8 @@ export default function Home() {
           <div className="flex gap-2 items-stretch overflow-auto h-full">
             {Array.from({ length: 3 }, (_, i) => (
               <Card
+                as={Link}
+                href={"#"}
                 key={i}
                 classNames={{
                   body: "w-[250px] !p-6 justify-end",

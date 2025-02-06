@@ -40,7 +40,7 @@ function Header() {
         {menus.map((menu, i) => (
           <Link
             key={i}
-            className="flex items-center p-4 leading-none hover:text-[#475569]"
+            className="flex items-center p-4 leading-none hover:text-[#475569] active:opacity-50"
             href={menu.href}
           >
             {menu.name}
