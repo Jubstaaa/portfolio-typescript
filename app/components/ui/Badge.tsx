@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import clsx from "clsx";
+import { cn } from "@/app/utils/cn";
 
 interface BadgeProps {
   icon?: string;
@@ -30,7 +30,7 @@ function Badge({
 
   return (
     <div
-      className={clsx(
+      className={cn(
         "flex items-center justify-center px-2.5 h-8 text-xs font-medium uppercase rounded-full font-secondary tracking-normal gap-1",
         classNames.body,
         {
@@ -43,7 +43,7 @@ function Badge({
       <div className="relative ">
         {icon && (
           <Icon
-            className={clsx(classNames.icon, {
+            className={cn(classNames.icon, {
               "text-black": color === "default",
               "text-[#3fc96d]": color === "green",
               "text-[#0EA5E9]": color === "blue",
@@ -56,7 +56,7 @@ function Badge({
         )}
         {icon && animate === "ping" && (
           <Icon
-            className={clsx("absolute w-full h-full inset-0 animate-ping", {
+            className={cn("absolute w-full h-full inset-0 animate-ping", {
               "text-black": color === "default",
               "text-[#3fc96d]": color === "green",
               "text-[#0EA5E9]": color === "blue",

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import Button from "./Button";
 import Image from "next/image";
-import clsx from "clsx";
+import Card from "./Card";
+import { cn } from "@/app/utils/cn";
 
 interface ExternalUrls {
   spotify: string;
@@ -92,91 +93,94 @@ export default function MusicCard() {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  if (!currentlyPlaying) {
-    return null;
-  }
-
   return (
-    <>
-      <div className="w-full flex items-center gap-2">
-        <Link
-          href={"#"}
-          className="w-8 h-8 bg-[#1DB954] rounded-full flex items-center justify-center"
-        >
-          <Icon
-            icon="mdi:spotify"
-            className="text-white"
-            width="20"
-            height="20"
-          />
-        </Link>
-        <span className="text-sm text-[#647586]">
-          {" "}
-          {currentlyPlaying?.is_playing ? "Now Playing" : "Recently Played"}
-        </span>
-        <Icon
-          icon="mdi:circle"
-          width={12}
-          height={12}
-          className={clsx({
-            "text-[#3fc96d]": currentlyPlaying?.is_playing,
-            "text-[#EF4444]": !currentlyPlaying?.is_playing,
-          })}
-        />
-      </div>
-      <Link
-        href={album.external_urls.spotify}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full rounded-md overflow-hidden"
-      >
-        <Image
-          src={albumImageUrl}
-          alt={`${albumName} Cover`}
-          width={200}
-          height={200}
-          className="w-full h-auto object-cover"
-        />
-      </Link>
-      <div className="w-full flex items-center gap-1 justify-between">
-        <div className="flex flex-col">
+    <Card
+      loading={!currentlyPlaying}
+      classNames={{ body: "!p-4 justify-start gap-3" }}
+    >
+      {currentlyPlaying && (
+        <>
+          <div className="w-full flex items-center gap-2">
+            <Link
+              href={"#"}
+              className="w-8 h-8 bg-[#1DB954] rounded-full flex items-center justify-center"
+            >
+              <Icon
+                icon="mdi:spotify"
+                className="text-white"
+                width="20"
+                height="20"
+              />
+            </Link>
+            <span className="text-sm text-[#647586]">
+              {" "}
+              {currentlyPlaying?.is_playing ? "Now Playing" : "Recently Played"}
+            </span>
+            <Icon
+              icon="mdi:circle"
+              width={12}
+              height={12}
+              className={cn({
+                "text-[#3fc96d]": currentlyPlaying?.is_playing,
+                "text-[#EF4444]": !currentlyPlaying?.is_playing,
+              })}
+            />
+          </div>
           <Link
-            href={trackUrl}
+            href={album.external_urls.spotify}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-sm line-clamp-1"
+            className="w-full rounded-md overflow-hidden border border-divider"
           >
-            {trackName}
+            <Image
+              src={albumImageUrl}
+              alt={`${albumName} Cover`}
+              width={200}
+              height={200}
+              className="w-full h-auto object-cover"
+            />
           </Link>
-          <Link
-            href={artists[0].external_urls.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-[#647586] line-clamp-1"
-          >
-            {artistName}
-          </Link>
-        </div>
-        <Button
-          disabled
-          size="sm"
-          icon={currentlyPlaying?.is_playing ? "mdi:pause" : "mdi:play"}
-        />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <div className="flex items-center justify-between">
-          <p className="text-xs">{formatTime(progress)}</p>
-          <p className="text-xs">{formatTime(duration_ms)}</p>
-        </div>
-        <div className="w-full bg-gray-100 rounded-full h-1">
-          <div
-            className="bg-[#1DB954] h-full rounded-full"
-            style={{
-              width: `${(progress / duration_ms) * 100}%`,
-            }}
-          />
-        </div>
-      </div>
-    </>
+          <div className="w-full flex items-center gap-1 justify-between">
+            <div className="flex flex-col">
+              <Link
+                href={trackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-sm line-clamp-1"
+              >
+                {trackName}
+              </Link>
+              <Link
+                href={artists[0].external_urls.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[#647586] line-clamp-1"
+              >
+                {artistName}
+              </Link>
+            </div>
+            <Button
+              disabled
+              size="sm"
+              icon={currentlyPlaying?.is_playing ? "mdi:pause" : "mdi:play"}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <div className="flex items-center justify-between">
+              <p className="text-xs">{formatTime(progress)}</p>
+              <p className="text-xs">{formatTime(duration_ms)}</p>
+            </div>
+            <div className="w-full bg-gray-100 rounded-full h-1">
+              <div
+                className="bg-[#1DB954] h-full rounded-full"
+                style={{
+                  width: `${(progress / duration_ms) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
+    </Card>
   );
 }

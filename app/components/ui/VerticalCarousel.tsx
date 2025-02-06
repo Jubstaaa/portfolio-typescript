@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion, PanInfo } from "framer-motion";
-import clsx from "clsx";
 import Image from "next/image";
+import { cn } from "@/app/utils/cn";
 
 type Direction = "Up" | "Down";
 
@@ -78,7 +78,7 @@ const VerticalCarousel: React.FC = () => {
           <div
             key={index}
             onClick={() => handleDotClick(index)}
-            className={clsx(
+            className={cn(
               "w-[7px] h-[7px] bg-white rounded-full cursor-pointer transition-all duration-300",
               {
                 "opacity-100 scale-125": index === currentPage,

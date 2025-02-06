@@ -115,7 +115,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-9">
       <div className="grid grid-cols-12 gap-4 h-[450px]">
-        <Card classNames={{ body: "col-span-10" }}>
+        <Card classNames={{ body: "col-span-10 h-[450px]" }}>
           <div className="w-full flex justify-between items-start">
             <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
               Jack Ashford
@@ -159,9 +159,7 @@ export default function Home() {
           />
         </Card>
         <div className="flex flex-col gap-4 col-span-2">
-          <Card classNames={{ body: "!p-4 gap-3 justify-start" }}>
-            <MusicCard />
-          </Card>
+          <MusicCard />
           <Card>Test2</Card>
         </div>
       </div>

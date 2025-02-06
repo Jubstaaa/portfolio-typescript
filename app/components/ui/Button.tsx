@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { Icon } from "@iconify/react";
-import clsx from "clsx";
+import { cn } from "@/app/utils/cn";
 
 interface ButtonProps {
   icon?: string;
@@ -27,15 +27,15 @@ function Button({
   onClick,
   disabled = false,
 }: ButtonProps) {
-  const className = clsx(
+  const className = cn(
     "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible rounded-full shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-200",
     {
       "cursor-pointer hover:shadow-[0px_0px_0px_5px] hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
         !disabled,
       "!w-full": fullWidth,
-      "px-2 w-8 h-8 text-xs hover:!shadow-[0px_0px_0px_3px]":
+      "px-2 h-8 text-xs hover:!shadow-[0px_0px_0px_3px]":
         size === "xs" && !disabled,
-      "px-2 w-9 h-9": size === "sm",
+      "px-2 h-9": size === "sm",
       "px-4 h-[50px]": size === "md",
       "bg-[#f1f5f9] text-black hover:bg-[#f8fafc]":
         color === "light" && !disabled,
