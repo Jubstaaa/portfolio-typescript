@@ -41,7 +41,7 @@ export default function RotatingBadge() {
   }, [innerControls, middleControls, outerControls]);
 
   return (
-    <div className="relative w-full h-auto aspect-square rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-500 shadow-2xl p-4 overflow-hidden">
+    <div className="relative w-full h-full aspect-square rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-500 shadow-2xl p-4 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.1)_1px,_transparent_1px)] opacity-10" />
       <div className="absolute inset-0 bg-noise opacity-5 mix-blend-overlay"></div>{" "}
       <motion.div

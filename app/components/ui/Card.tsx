@@ -33,7 +33,7 @@ function Card<C extends ElementType = "div">({
   const classes = cn(
     "flex flex-col items-start justify-between p-[30px] relative overflow-hidden rounded-large bg-white border border-[#e2e8f0] h-[180px] max-h-[180px]",
     {
-      "!max-h-[500px] h-fit": !loading,
+      "!max-h-[99999px] h-full": !loading,
       "animate-pulse": loading,
     },
     classNames.body

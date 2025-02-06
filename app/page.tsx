@@ -4,124 +4,22 @@ import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import Tooltip from "./components/ui/Tooltip";
-import VerticalSlider from "./components/ui/VerticalCarousel";
-import MusicCard from "./components/ui/MusicCard";
-import RotatingBadge from "./components/ui/RotatingBadge";
+import VerticalSlider from "./components/VerticalCarousel";
+import MusicCard from "./components/MusicCard";
+import RotatingBadge from "./components/RotatingBadge";
+import StackCard from "./components/StackCard";
+import SocialCards from "./components/SocialCards";
 
-export default function Home() {
-  const stacks = [
-    {
-      name: "JavaScript",
-      icon: "proicons:javascript",
-      color: "#f7df1e",
-    },
-    {
-      name: "TypeScript",
-      icon: "proicons:typescript",
-      color: "#3178c6",
-    },
-    {
-      name: "NextJS",
-      icon: "ri:nextjs-line",
-      color: "#000000",
-    },
-    {
-      name: "Vercel",
-      icon: "ri:vercel-fill",
-      color: "#000000",
-    },
-    {
-      name: "React",
-      icon: "ri:reactjs-line",
-      color: "#00d8ff",
-    },
-    {
-      name: "Node.js",
-      icon: "ri:nodejs-line",
-      color: "#6cc24a",
-    },
-    {
-      name: "Unity",
-      icon: "mdi:unity",
-      color: "#222c37",
-    },
-    {
-      name: "C#",
-      icon: "devicon-plain:csharp",
-      color: "#9B4993",
-    },
-    {
-      name: "HTML",
-      icon: "proicons:html",
-      color: "#e34f26",
-    },
-    {
-      name: "CSS",
-      icon: "proicons:css",
-      color: "#2191EB",
-    },
-    {
-      name: "Git",
-      icon: "mdi:git",
-      color: "#E94E31",
-    },
-    {
-      name: "GitHub",
-      icon: "proicons:github",
-      color: "#333",
-    },
-    {
-      name: "DigitalOcean",
-      icon: "mdi:digital-ocean",
-      color: "#008bcf",
-    },
-    {
-      name: "Cloudflare",
-      icon: "devicon-plain:cloudflare",
-      color: "#f38020",
-    },
-    {
-      name: "jQuery",
-      icon: "mdi:jquery",
-      color: "#0769ad",
-    },
-    {
-      name: "Postman",
-      icon: "devicon-plain:postman",
-      color: "#ef5b25",
-    },
-    {
-      name: "MySQL",
-      icon: "cib:mysql",
-      color: "#00758f",
-    },
-    {
-      name: "MongoDB",
-      icon: "cib:mongodb",
-      color: "#589636",
-    },
-    {
-      name: "PostgreSQL",
-      icon: "cib:postgresql",
-      color: "#31648C",
-    },
-    {
-      name: "Nginx",
-      icon: "cib:nginx",
-      color: "#009736",
-    },
-  ];
-
+async function page() {
   return (
     <div className="flex flex-col gap-9">
       <div className="grid grid-cols-12 gap-4 h-[450px]">
         <Card classNames={{ body: "col-span-10 h-[450px]" }}>
           <div className="w-full flex justify-between items-start">
             <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
-              Jack Ashford
+              İlker Balcılar
               <span className="text-[#647586] text-base font-medium tracking-normal">
-                California, US
+                İstanbul, TR
               </span>
             </div>
             <Badge animate="ping" iconSize="sm" color="green" icon="mdi:circle">
@@ -212,53 +110,8 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-12 gap-4">
         <div className="flex flex-col gap-4 col-span-9">
-          <Card classNames={{ body: "gap-6" }}>
-            <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
-              Explore my stack
-              <span className="text-[#647586] text-base font-medium tracking-normal">
-                Let&apos;s see my useful tools while cooking
-              </span>
-            </div>
-            <div className="w-full grid grid-cols-10 gap-5">
-              {stacks.map((item, i) => (
-                <div
-                  key={i}
-                  className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <Tooltip content={item.name}>
-                    <Icon icon={item.icon} width="32" height="32" />
-                  </Tooltip>
-                </div>
-              ))}
-            </div>
-            <Button fullWidth href="#">
-              See All
-            </Button>
-          </Card>
-          <div className="grid grid-cols-3 gap-4">
-            {Array.from({ length: 3 }, (_, i) => (
-              <Card key={i} classNames={{ body: "p-4 h-[220px]" }}>
-                <div className="flex flex-col gap-5 justify-between">
-                  <div
-                    className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"
-                    style={{ backgroundColor: "#00d8ff" }}
-                  >
-                    <Icon icon={"ri:reactjs-line"} width="32" height="32" />
-                  </div>
-                  <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
-                    Explore my stack
-                    <span className="text-[#647586] text-sm font-medium">
-                      @johndoe
-                    </span>
-                  </div>
-                </div>
-                <Button size="xs" color="gray" href="#">
-                  Follow
-                </Button>
-              </Card>
-            ))}
-          </div>
+          <StackCard />
+          <SocialCards />
         </div>
         <div className="h-full col-span-3">
           <Card as={Link} classNames={{ body: "h-full group" }} href={"#"}>
@@ -333,3 +186,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default page;

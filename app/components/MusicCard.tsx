@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Button from "./Button";
+import Button from "./ui/Button";
 import Image from "next/image";
-import Card from "./Card";
+import Card from "./ui/Card";
 
 interface ExternalUrls {
   spotify: string;
@@ -110,7 +110,7 @@ export default function MusicCard() {
                 alt={`${albumName} Cover`}
                 width={200}
                 height={200}
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover object-center"
               />
             )}
           </Link>

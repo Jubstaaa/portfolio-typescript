@@ -1,34 +1,12 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import Button from "./ui/Button";
+import { SocialService } from "@/lib/services/social.service";
+import { Social } from "@/types/Social";
 
-function Footer() {
-  const socials = [
-    {
-      icon: "mdi:github",
-      href: "#",
-    },
-    {
-      icon: "mdi:linkedin",
-      href: "#",
-    },
-    {
-      icon: "mdi:reddit",
-      href: "#",
-    },
-    {
-      icon: "mdi:twitter",
-      href: "#",
-    },
-    {
-      icon: "mdi:instagram",
-      href: "#",
-    },
-    {
-      icon: "mdi:spotify",
-      href: "#",
-    },
-  ];
+async function Footer() {
+  const socialService = new SocialService();
+  const socials: Social[] = await socialService.findMany();
 
   return (
     <div className="flex flex-row flex-nowrap items-center content-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px]">
@@ -42,8 +20,14 @@ function Footer() {
         </span>
       </div>
       <div className="flex items-center gap-1.5">
-        {socials.map((item, i) => (
-          <Button key={i} size="sm" {...item} />
+        {socials.map((item) => (
+          <Button
+            key={item.id}
+            size="sm"
+            icon={item.icon}
+            href={item.url}
+            target="_blank"
+          />
         ))}
       </div>
     </div>
