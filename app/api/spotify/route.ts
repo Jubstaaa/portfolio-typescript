@@ -133,6 +133,7 @@ export async function GET(): Promise<NextResponse> {
     }
 
     const trackData: CurrentlyPlayingResponse = await trackResponse.json();
+    console.log(trackData);
     return NextResponse.json({ ...trackData, ...trackData.item });
   } catch (error) {
     const errorMessage =

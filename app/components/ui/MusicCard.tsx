@@ -1,11 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import Button from "./Button";
 import Image from "next/image";
 import Card from "./Card";
-import { cn } from "@/app/utils/cn";
 
 interface ExternalUrls {
   spotify: string;
@@ -73,7 +71,7 @@ export default function MusicCard() {
   const {
     album = {
       name: "Unknown Album",
-      images: [{ url: "default-album-image-url.jpg" }],
+      images: [{ url: null }],
       external_urls: { spotify: "#" },
     },
     artists = [{ name: "Unknown Artist", external_urls: { spotify: "#" } }],
@@ -84,7 +82,7 @@ export default function MusicCard() {
 
   const artistName = artists[0]?.name || "Unknown Artist";
   const albumName = album.name || "Unknown Album";
-  const albumImageUrl = album.images[0]?.url || "default-album-image-url.jpg";
+  const albumImageUrl = album.images[0]?.url;
 
   const formatTime = (ms: number): string => {
     if (isNaN(ms)) return "0:00";
@@ -96,49 +94,25 @@ export default function MusicCard() {
   return (
     <Card
       loading={!currentlyPlaying}
-      classNames={{ body: "!p-4 justify-start gap-3" }}
+      classNames={{ body: "p-4 justify-start gap-3 bg-[#bff6b6]" }}
     >
       {currentlyPlaying && (
         <>
-          <div className="w-full flex items-center gap-2">
-            <Link
-              href={"#"}
-              className="w-8 h-8 bg-[#1DB954] rounded-full flex items-center justify-center"
-            >
-              <Icon
-                icon="mdi:spotify"
-                className="text-white"
-                width="20"
-                height="20"
-              />
-            </Link>
-            <span className="text-sm text-[#647586]">
-              {" "}
-              {currentlyPlaying?.is_playing ? "Now Playing" : "Recently Played"}
-            </span>
-            <Icon
-              icon="mdi:circle"
-              width={12}
-              height={12}
-              className={cn({
-                "text-[#3fc96d]": currentlyPlaying?.is_playing,
-                "text-[#EF4444]": !currentlyPlaying?.is_playing,
-              })}
-            />
-          </div>
           <Link
             href={album.external_urls.spotify}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full rounded-md overflow-hidden border border-divider"
+            className="w-full rounded-md overflow-hidden border border-divider !font-primary"
           >
-            <Image
-              src={albumImageUrl}
-              alt={`${albumName} Cover`}
-              width={200}
-              height={200}
-              className="w-full h-auto object-cover"
-            />
+            {albumImageUrl && (
+              <Image
+                src={albumImageUrl}
+                alt={`${albumName} Cover`}
+                width={200}
+                height={200}
+                className="w-full h-auto object-cover"
+              />
+            )}
           </Link>
           <div className="w-full flex items-center gap-1 justify-between">
             <div className="flex flex-col">
@@ -146,7 +120,7 @@ export default function MusicCard() {
                 href={trackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-sm line-clamp-1"
+                className="font-medium text-sm line-clamp-1 !font-primary"
               >
                 {trackName}
               </Link>
@@ -154,7 +128,7 @@ export default function MusicCard() {
                 href={artists[0].external_urls.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-[#647586] line-clamp-1"
+                className="text-xs text-[#647586] line-clamp-1 !font-primary"
               >
                 {artistName}
               </Link>
@@ -172,7 +146,7 @@ export default function MusicCard() {
             </div>
             <div className="w-full bg-gray-100 rounded-full h-1">
               <div
-                className="bg-[#1DB954] h-full rounded-full"
+                className="bg-primary h-full rounded-full"
                 style={{
                   width: `${(progress / duration_ms) * 100}%`,
                 }}

@@ -32,8 +32,8 @@ function Button({
     {
       "cursor-pointer hover:shadow-[0px_0px_0px_5px] hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
         !disabled,
-      "!w-full": fullWidth,
-      "px-2 h-8 text-xs hover:!shadow-[0px_0px_0px_3px]":
+      "w-full": fullWidth,
+      "px-2 h-8 text-xs hover:shadow-[0px_0px_0px_3px]":
         size === "xs" && !disabled,
       "px-2 h-9": size === "sm",
       "px-4 h-[50px]": size === "md",

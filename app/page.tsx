@@ -7,6 +7,7 @@ import Link from "next/link";
 import Tooltip from "./components/ui/Tooltip";
 import VerticalSlider from "./components/ui/VerticalCarousel";
 import MusicCard from "./components/ui/MusicCard";
+import RotatingBadge from "./components/ui/RotatingBadge";
 
 export default function Home() {
   const stacks = [
@@ -158,9 +159,11 @@ export default function Home() {
             height={500}
           />
         </Card>
-        <div className="flex flex-col gap-4 col-span-2">
+        <div className="flex flex-col gap-4 col-span-2 h-[450px]">
           <MusicCard />
-          <Card>Test2</Card>
+          <Card classNames={{ body: "p-0" }}>
+            <RotatingBadge />
+          </Card>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
@@ -169,7 +172,7 @@ export default function Home() {
             key={i}
             as={Link}
             href={"#"}
-            classNames={{ body: "h-[400px] !p-0 group" }}
+            classNames={{ body: "h-[400px] p-0 group" }}
           >
             <div className="flex flex-col p-4 pt-6 gap-4 group-hover:pl-6">
               <div className="flex items-center gap-4">
@@ -235,7 +238,7 @@ export default function Home() {
           </Card>
           <div className="grid grid-cols-3 gap-4">
             {Array.from({ length: 3 }, (_, i) => (
-              <Card key={i} classNames={{ body: "!p-4 h-[220px]" }}>
+              <Card key={i} classNames={{ body: "p-4 h-[220px]" }}>
                 <div className="flex flex-col gap-5 justify-between">
                   <div
                     className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"
@@ -287,7 +290,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-4">
-        <Card classNames={{ body: "col-span-3 !p-0" }}>
+        <Card classNames={{ body: "col-span-3 p-0" }}>
           <VerticalSlider />
         </Card>
         <Card classNames={{ body: "col-span-9 gap-6" }}>
@@ -308,7 +311,7 @@ export default function Home() {
                 href={"#"}
                 key={i}
                 classNames={{
-                  body: "w-[250px] !p-6 justify-end",
+                  body: "w-[250px] p-6 justify-end",
                 }}
               >
                 <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none text-white relative z-50">
