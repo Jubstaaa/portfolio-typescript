@@ -7,7 +7,12 @@ import { Social } from "@/types/Social";
 
 async function SocialCards() {
   const socialService = new SocialService();
-  const socials: Social[] = await socialService.findMany({ take: 3 });
+  const socials: Social[] = await socialService.findMany({
+    take: 3,
+    orderBy: {
+      order: "asc",
+    },
+  });
 
   return (
     <div className="grid grid-cols-3 gap-4">
@@ -23,7 +28,7 @@ async function SocialCards() {
             <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
               {item.name}
               <span className="text-[#647586] text-sm font-medium">
-                @{item.username}
+                {item.username}
               </span>
             </div>
           </div>

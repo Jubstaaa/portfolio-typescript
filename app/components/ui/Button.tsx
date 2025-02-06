@@ -14,6 +14,9 @@ interface ButtonProps {
   fullWidth?: boolean;
   onClick?: () => void;
   disabled?: boolean;
+  classNames?: {
+    body?: string;
+  };
 }
 
 function Button({
@@ -26,9 +29,11 @@ function Button({
   fullWidth = false,
   onClick,
   disabled = false,
+  classNames = {},
 }: ButtonProps) {
   const className = cn(
     "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible rounded-full shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-200",
+    classNames.body,
     {
       "cursor-pointer hover:shadow-[0px_0px_0px_5px] hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
         !disabled,

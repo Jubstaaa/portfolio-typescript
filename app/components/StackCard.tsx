@@ -8,7 +8,7 @@ import Button from "./ui/Button";
 
 async function StackCard() {
   const stackService = new StackService();
-  const stacks: Stack[] = await stackService.findMany();
+  const stacks: Stack[] = await stackService.findMany({ take: 20 });
 
   return (
     <Card classNames={{ body: "gap-6" }}>
@@ -20,15 +20,14 @@ async function StackCard() {
       </div>
       <div className="w-full grid grid-cols-10 gap-5">
         {stacks.map((item) => (
-          <div
+          <Tooltip
             key={item.id}
+            content={item.name}
             className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"
             style={{ backgroundColor: item.color }}
           >
-            <Tooltip content={item.name}>
-              <Icon icon={item.icon} width="32" height="32" />
-            </Tooltip>
-          </div>
+            <Icon icon={item.icon} width="32" height="32" />
+          </Tooltip>
         ))}
       </div>
       <Button fullWidth href="#">

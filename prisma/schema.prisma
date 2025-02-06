@@ -8,11 +8,13 @@ datasource db {
 }
 
 model Stack {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  icon  String
-  color String
-  order Int?   @default(0)
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  icon        String
+  color       String
+  description String
+  url         String?
+  order       Int?    @default(0)
 }
 
 model Social {
@@ -29,4 +31,51 @@ model Image {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   url   String
   order Int?   @default(0)
+}
+
+model User {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  email       String       @unique
+  bio         String
+  title       String
+  location    String
+  image       String?
+  isAvailable Boolean
+  skills      Skill[]
+  experiences Experience[]
+  educations  Education[]
+}
+
+model Skill {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  userId String @map("user_id") @db.ObjectId
+  User   User   @relation(fields: [userId], references: [id])
+}
+
+model Experience {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  title       String
+  location    String
+  startDate   DateTime
+  endDate     DateTime?
+  description String?
+  logo        String?
+  userId      String    @map("user_id") @db.ObjectId
+  User        User      @relation(fields: [userId], references: [id])
+}
+
+model Education {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  department  String
+  location    String
+  startDate   DateTime
+  endDate     DateTime
+  description String?
+  logo        String?
+  userId      String   @map("user_id") @db.ObjectId
+  User        User     @relation(fields: [userId], references: [id])
 }

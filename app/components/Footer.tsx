@@ -6,7 +6,11 @@ import { Social } from "@/types/Social";
 
 async function Footer() {
   const socialService = new SocialService();
-  const socials: Social[] = await socialService.findMany();
+  const socials: Social[] = await socialService.findMany({
+    orderBy: {
+      order: "asc",
+    },
+  });
 
   return (
     <div className="flex flex-row flex-nowrap items-center content-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px]">
@@ -27,6 +31,7 @@ async function Footer() {
             icon={item.icon}
             href={item.url}
             target="_blank"
+            color="dark"
           />
         ))}
       </div>

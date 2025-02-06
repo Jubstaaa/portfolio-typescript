@@ -6,6 +6,10 @@
   @apply transition-all duration-500;
 }
 
+html {
+  @apply scroll-smooth;
+}
+
 body {
   @apply font-primary bg-[#f1f5f9] text-primary tracking-tighter;
 }

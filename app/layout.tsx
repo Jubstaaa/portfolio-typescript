@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
         <main className="container py-9 flex flex-col gap-12">
           <Header />
-          <section>{children}</section>
+          <section className="max-w-6xl mx-auto">{children}</section>
           <Footer />
         </main>
       </body>

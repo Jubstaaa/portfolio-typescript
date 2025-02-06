@@ -1,39 +1,41 @@
-import { BaseModel } from "./BaseModel"
+import { BaseModel } from "./BaseModel";
 
 export interface Stack extends BaseModel {
-  name: string
-  icon: string
-  color: string
+  name: string;
+  icon: string;
+  color: string;
+  description: string;
+  url?: string | null;
 }
 
 export interface StackCreateInput {
-  name: string
-  icon: string
-  color: string
+  name: string;
+  icon: string;
+  color: string;
 }
 
 export interface StackUpdateInput {
-  name?: string
-  icon?: string
-  color?: string
+  name?: string;
+  icon?: string;
+  color?: string;
 }
 
 export interface StackWhereInput {
-  id?: string
-  name?: string
-  icon?: string
-  color?: string
+  id?: string;
+  name?: string;
+  icon?: string;
+  color?: string;
 }
 
 export interface StackOrderByInput {
-  id?: 'asc' | 'desc'
-  name?: 'asc' | 'desc'
-  icon?: 'asc' | 'desc'
-  color?: 'asc' | 'desc'
+  id?: "asc" | "desc";
+  name?: "asc" | "desc";
+  icon?: "asc" | "desc";
+  color?: "asc" | "desc";
 }
 
 export interface ApiResponse<T> {
-  data: T
-  success: boolean
-  error?: string
+  data: T;
+  success: boolean;
+  error?: string;
 }

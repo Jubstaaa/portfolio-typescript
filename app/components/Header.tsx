@@ -7,11 +7,11 @@ function Header() {
   const menus = [
     {
       name: "Home",
-      href: "#",
+      href: "/",
     },
     {
       name: "Me",
-      href: "#",
+      href: "/me",
     },
     {
       name: "Portfolio",
@@ -23,7 +23,7 @@ function Header() {
     },
     {
       name: "Stack",
-      href: "#",
+      href: "/stack",
     },
     {
       name: "Blog",
@@ -33,9 +33,12 @@ function Header() {
 
   return (
     <div className="flex flex-row flex-nowrap items-center content-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px]">
-      <div className="flex gap-1.5 items-center text-2xl font-semibold font-primary text-[#0c0f12]">
+      <Link
+        href={"/"}
+        className="flex gap-1.5 items-center text-2xl font-semibold font-primary text-[#0c0f12]"
+      >
         <Icon icon="mdi:xml" width="32" height="32" /> İlker Balcılar
-      </div>
+      </Link>
       <div className="flex flex-row flex-nowrap items-center content-center justify-center flex-1 w-[1px] min-h-fit gap-0 overflow-visible p-0 relative font-medium text-[#1e293b]">
         {menus.map((menu, i) => (
           <Link
@@ -47,8 +50,8 @@ function Header() {
           </Link>
         ))}
       </div>
-      <Button color="dark" href="#" icon="f7:chevron-right">
-        Get Template
+      <Button color="dark" href="/me#contact" icon="f7:chevron-right">
+        Hire Me
       </Button>
     </div>
   );

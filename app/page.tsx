@@ -5,12 +5,11 @@ import Card from "./components/ui/Card";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import VerticalSlider from "./components/VerticalCarousel";
-import MusicCard from "./components/MusicCard";
-import RotatingBadge from "./components/RotatingBadge";
 import StackCard from "./components/StackCard";
 import SocialCards from "./components/SocialCards";
 import { ImageService } from "@/lib/services/image.service";
 import { Image as ImageProps } from "@/types/Image";
+import Hero from "./components/Hero";
 
 async function page() {
   const imageService = new ImageService();
@@ -18,57 +17,7 @@ async function page() {
 
   return (
     <div className="flex flex-col gap-9">
-      <div className="grid grid-cols-12 gap-4 h-[450px]">
-        <Card classNames={{ body: "col-span-10 h-[450px]" }}>
-          <div className="w-full flex justify-between items-start">
-            <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
-              İlker Balcılar
-              <span className="text-[#647586] text-base font-medium tracking-normal">
-                İstanbul, TR
-              </span>
-            </div>
-            <Badge animate="ping" iconSize="sm" color="green" icon="mdi:circle">
-              Available
-            </Badge>
-          </div>
-          <div className="flex flex-col gap-5 items-start">
-            <div className="flex gap-1.5 items-start">
-              <Badge animate="spin" color="blue" icon="mdi:react">
-                JavaScript Expert
-              </Badge>
-              <Badge>$100-150/HR</Badge>
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">
-                {" "}
-                Sizzle, Spice, and Design Great!
-              </p>
-              <p className="text-[#647586] text-sm font-medium tracking-normal">
-                Adding flavor to your product with designs{" "}
-              </p>
-              <p className="text-[#647586] text-sm font-medium tracking-normal">
-                that sizzle and entice.
-              </p>
-            </div>
-            <Button color="dark" href="#" icon="f7:chevron-right">
-              Contact Me
-            </Button>
-          </div>
-          <Image
-            className="absolute bottom-0 right-0 w-auto h-full drop-shadow-[-47px_13px_38px_rgba(125,135,145,0.25)]"
-            src="https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/images/bio-X305byll77OEmEUCxlWNOKiG1u0dfs.png"
-            alt="İlker Balcılar"
-            width={750}
-            height={500}
-          />
-        </Card>
-        <div className="flex flex-col gap-4 col-span-2 h-[450px]">
-          <MusicCard />
-          <Card classNames={{ body: "p-0" }}>
-            <RotatingBadge />
-          </Card>
-        </div>
-      </div>
+      <Hero />
       <div className="grid grid-cols-2 gap-4">
         {Array.from({ length: 2 }, (_, i) => (
           <Card
