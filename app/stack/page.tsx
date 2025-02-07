@@ -11,7 +11,7 @@ async function page() {
 
   return (
     <div className="flex flex-col gap-12">
-      <h1 className="text-[#333333] text-6xl font-semibold leading-20 text-center tracking-tighter">
+      <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
         Beneficial and potent apps and extensions that I utilize incessantly.
       </h1>
       <p className="uppercase text-[#647586] font-semibold text-center tracking-widest">
@@ -28,7 +28,7 @@ async function page() {
               <Icon icon={item.icon} width="32" height="32" />
             </div>
             <div className="flex flex-col gap-2.5">
-              <h3 className="text-[#333333] text-lg font-semibold">
+              <h3 className="text-primary text-lg font-semibold">
                 {item.name}
               </h3>
               <p className="text-[#647586] font-secondary">

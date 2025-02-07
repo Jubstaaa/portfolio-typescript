@@ -72,13 +72,13 @@ async function page() {
         </span>
       </div>
       <Card classNames={{ body: "p-6 gap-6" }}>
-        <h3 className="text-[22px] font-medium text-[#020617]">About</h3>
+        <h3 className="text-[22px] font-medium text-primary">About</h3>
         <p className="text-[#647586] text-base font-secondary tracking-normal leading-7">
           {user.bio}
         </p>
       </Card>
       <Card classNames={{ body: "p-6 gap-6" }}>
-        <h3 className="text-[22px] font-medium text-[#020617]">Skills</h3>
+        <h3 className="text-[22px] font-medium text-primary">Skills</h3>
         <div className="w-full grid grid-cols-3 gap-2.5">
           {user.skills.map((item) => (
             <Badge
@@ -93,7 +93,7 @@ async function page() {
         </div>
       </Card>
       <Card classNames={{ body: "p-6 gap-6 !max-h-[400px] overflow-auto" }}>
-        <h3 className="text-[22px] font-medium text-[#020617]">Experience</h3>
+        <h3 className="text-[22px] font-medium text-primary">Experience</h3>
         <div className="w-full flex flex-col gap-4">
           {user.experiences.map((item, index) => (
             <div
@@ -114,7 +114,7 @@ async function page() {
               )}
               <div className="w-full flex flex-col gap-2.5">
                 <div className="w-full flex flex-col gap-1.5">
-                  <p className="text-2xl font-semibold text-[#020617]">
+                  <p className="text-2xl font-semibold text-primary">
                     {item.title}
                   </p>
                   <div className="w-full flex justify-between items-center">
@@ -123,7 +123,7 @@ async function page() {
                         {item.location}
                       </span>
                       <div className="w-1.5 h-1.5 bg-[#64748b] rounded-full" />
-                      <span className="text-base text-[#020617] tracking-normal font-secondary">
+                      <span className="text-base text-primary tracking-normal font-secondary">
                         {item.name}
                       </span>
                     </div>
@@ -144,7 +144,7 @@ async function page() {
         </div>
       </Card>
       <Card classNames={{ body: "p-6 gap-6 !max-h-[400px] overflow-auto" }}>
-        <h3 className="text-[22px] font-medium text-[#020617]">Education</h3>
+        <h3 className="text-[22px] font-medium text-primary">Education</h3>
         <div className="w-full flex flex-col gap-4">
           {user.educations.map((item, index) => (
             <div
@@ -165,7 +165,7 @@ async function page() {
               )}
               <div className="w-full flex flex-col gap-2.5">
                 <div className="w-full flex flex-col gap-1.5">
-                  <p className="text-2xl font-semibold text-[#020617]">
+                  <p className="text-2xl font-semibold text-primary">
                     {item.department}
                   </p>
                   <div className="w-full flex justify-between items-center">
@@ -194,7 +194,7 @@ async function page() {
           ))}
         </div>
       </Card>
-      <h3 id="contact" className="text-[22px] font-medium text-[#020617]">
+      <h3 id="contact" className="text-[22px] font-medium text-primary">
         Social Media & Contact
       </h3>
       <div className="grid grid-cols-3 gap-2.5">

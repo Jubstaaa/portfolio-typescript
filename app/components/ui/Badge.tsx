@@ -49,7 +49,7 @@ function Badge({
         {icon && (
           <Icon
             className={cn(classNames.icon, {
-              "text-black": color === "default",
+              "text-primary": color === "default",
               "text-[#3fc96d]": color === "green",
               "text-[#0EA5E9]": color === "blue",
               "animate-[spin_3s_linear_infinite]": animate === "spin",
@@ -62,7 +62,7 @@ function Badge({
         {icon && animate === "ping" && (
           <Icon
             className={cn("absolute w-full h-full inset-0 animate-ping", {
-              "text-black": color === "default",
+              "text-primary": color === "default",
               "text-[#3fc96d]": color === "green",
               "text-[#0EA5E9]": color === "blue",
             })}

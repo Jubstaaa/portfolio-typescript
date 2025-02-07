@@ -32,25 +32,25 @@ function Button({
   classNames = {},
 }: ButtonProps) {
   const className = cn(
-    "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible rounded-full shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-200",
+    "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible rounded-full shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-500 duration-200",
     classNames.body,
     {
-      "cursor-pointer transition-all hover:shadow-[0px_0px_0px_5px] transition-all hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
+      "cursor-pointer transition-all duration-500 hover:shadow-[0px_0px_0px_5px] transition-all duration-500 hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
         !disabled,
       "w-full": fullWidth,
-      "px-2 h-8 text-xs transition-all hover:shadow-[0px_0px_0px_3px]":
+      "px-2 h-8 text-xs transition-all duration-500 hover:shadow-[0px_0px_0px_3px]":
         size === "xs" && !disabled,
       "px-2 h-9": size === "sm",
       "px-4 h-[50px]": size === "md",
-      "bg-[#f1f5f9] text-black transition-all hover:bg-[#f8fafc]":
+      "bg-[#f1f5f9] text-primary transition-all duration-500 hover:bg-[#f8fafc]":
         color === "light" && !disabled,
-      "bg-[#1e293b] text-white transition-all hover:bg-[#475569]":
+      "bg-primary text-white transition-all duration-500 hover:bg-[#475569]":
         color === "dark" && !disabled,
-      "bg-[#f4f4f4] text-black transition-all hover:bg-[#f4f4f4]":
+      "bg-[#f4f4f4] text-primary transition-all duration-500 hover:bg-[#f4f4f4]":
         color === "gray" && !disabled,
-      "bg-[#f1f5f9] text-black": color === "light" && disabled,
-      "bg-[#1e293b] text-white": color === "dark" && disabled,
-      "bg-[#f4f4f4] text-black": color === "gray" && disabled,
+      "bg-[#f1f5f9] text-primary": color === "light" && disabled,
+      "bg-primary text-white": color === "dark" && disabled,
+      "bg-[#f4f4f4] text-primary": color === "gray" && disabled,
     }
   );
 

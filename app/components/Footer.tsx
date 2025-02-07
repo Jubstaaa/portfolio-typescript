@@ -15,7 +15,7 @@ async function Footer() {
   return (
     <div className="flex flex-row flex-nowrap items-center content-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px]">
       <div className="flex items-center gap-5 h-[30px]">
-        <div className="flex gap-1.5 items-center text-2xl font-semibold font-primary text-[#0c0f12]">
+        <div className="flex gap-1.5 items-center text-2xl font-semibold font-primary text-primary">
           <Icon icon="mdi:xml" width="32" height="32" /> İlker Balcılar
         </div>
         <div className="h-full w-[1px] bg-[#e2e8e0]" />

@@ -3,6 +3,8 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollProgressBar from "./components/ui/ScrollProgressBar";
+import ScrollToTopButton from "./components/ui/ScrollToTopButton";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -34,6 +36,8 @@ export default function RootLayout({
           <section className="max-w-6xl mx-auto">{children}</section>
           <Footer />
         </main>
+        <ScrollProgressBar />
+        <ScrollToTopButton />
       </body>
     </html>
   );

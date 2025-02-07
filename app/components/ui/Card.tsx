@@ -74,7 +74,7 @@ function Card({
 
   if (href) {
     return (
-      <Link target={target} href={href} className="block">
+      <Link target={target} href={href} className="w-full h-full block">
         {MotionCard}
       </Link>
     );

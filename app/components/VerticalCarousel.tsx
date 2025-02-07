@@ -69,7 +69,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
       {...swipeHandlers}
       className="w-full h-[450px] overflow-hidden relative"
     >
-      <div className="absolute left-2.5 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1 p-1.5 bg-black/20 rounded-full">
+      <div className="absolute left-2.5 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1 p-1.5 bg-primary/20 rounded-full">
         {images.map((_, index) => (
           <div
             key={index}
