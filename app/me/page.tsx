@@ -10,7 +10,6 @@ import { SocialService } from "@/lib/services/social.service";
 import { Social } from "@/types/Social";
 import Button from "../components/ui/Button";
 import { Icon } from "@iconify/react";
-import Link from "next/link";
 
 async function page() {
   const userService = new UserService();
@@ -49,7 +48,7 @@ async function page() {
   );
 
   return (
-    <div className="flex flex-col gap-6 px-12">
+    <div className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
         <div className="flex gap-2.5 items-center">
           {user.image && (
@@ -246,7 +245,6 @@ async function page() {
         <div className="flex flex-col gap-2.5">
           {contactSocials.map((item) => (
             <Card
-              as={Link}
               classNames={{ body: "p-4 flex-row gap-2.5 justify-start" }}
               key={item.id}
               href={item.url}

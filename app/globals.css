@@ -2,10 +2,6 @@
 
 @config '../tailwind.config.ts';
 
-* {
-  @apply transition-all duration-500;
-}
-
 html {
   @apply scroll-smooth;
 }

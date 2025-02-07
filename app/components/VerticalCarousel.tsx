@@ -78,7 +78,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
               "w-[7px] h-[7px] bg-white rounded-full cursor-pointer transition-all duration-300",
               {
                 "opacity-100 scale-125": index === currentPage,
-                "opacity-50 hover:opacity-75 hover:scale-110":
+                "opacity-50 transition-all duration-500  hover:opacity-75 transition-all duration-500  hover:scale-110":
                   index !== currentPage,
               }
             )}
