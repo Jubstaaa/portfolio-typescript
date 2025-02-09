@@ -67,9 +67,10 @@ async function page() {
             </span>
           </div>
         </div>
-        <span className="font-secondary text-[#6666ff] font-medium tracking-normal">
+
+        <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
           {user.title}
-        </span>
+        </Badge>
       </div>
       <Card classNames={{ body: "p-6 gap-6" }}>
         <h3 className="text-[22px] font-medium text-primary">About</h3>

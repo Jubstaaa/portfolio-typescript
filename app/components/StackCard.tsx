@@ -30,7 +30,7 @@ async function StackCard() {
           </Tooltip>
         ))}
       </div>
-      <Button fullWidth href="#">
+      <Button fullWidth href="/stack">
         See All
       </Button>
     </Card>

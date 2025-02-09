@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
 @config '../tailwind.config.ts';
 
 html {
@@ -12,4 +13,8 @@ body {
 
 a {
   @apply font-secondary;
+}
+
+.gradient-radial {
+  @apply before:absolute before:inset-0 before:w-full before:h-full before:overflow-hidden before:z-10 before:flex-none before:bg-gradient-radial;
 }

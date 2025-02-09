@@ -14,6 +14,10 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(141.1% 68.3% at 48.3% 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 40.9134%, rgba(25, 26, 33, 0.5) 71.2063%, rgba(25, 26, 33, 0.8) 100%)",
+      },
       colors: {
         divider: "#E2E8F0",
         primary: "#191a22",

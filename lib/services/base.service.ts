@@ -6,6 +6,7 @@ type PrismaModelDelegate<
   T,
   WhereInput,
   OrderByInput,
+  WhereUniqueInput,
   IncludeInput = undefined
 > = {
   findMany: (params?: {
@@ -17,7 +18,7 @@ type PrismaModelDelegate<
   }) => Promise<T[]>;
 
   findUnique: (params: {
-    where: { id: string };
+    where: WhereUniqueInput;
     include?: IncludeInput;
   }) => Promise<T | null>;
 
@@ -42,6 +43,7 @@ export class BaseService<
   T,
   WhereInput,
   OrderByInput,
+  WhereUniqueInput,
   IncludeInput = undefined,
   ViewModel = T
 > {
@@ -50,12 +52,19 @@ export class BaseService<
     T,
     WhereInput,
     OrderByInput,
+    WhereUniqueInput,
     IncludeInput
   >;
   protected mapper?: (data: T) => ViewModel;
 
   constructor(
-    model: PrismaModelDelegate<T, WhereInput, OrderByInput, IncludeInput>,
+    model: PrismaModelDelegate<
+      T,
+      WhereInput,
+      OrderByInput,
+      WhereUniqueInput,
+      IncludeInput
+    >,
     mapper?: (data: T) => ViewModel
   ) {
     this.prisma = prisma;
@@ -84,7 +93,7 @@ export class BaseService<
   }
 
   async findUnique(params: {
-    where: { id: string };
+    where: WhereUniqueInput;
     include?: IncludeInput;
   }): Promise<ViewModel | null> {
     const data = await this.model.findUnique(params);

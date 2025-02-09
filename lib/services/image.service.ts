@@ -5,7 +5,8 @@ import { prisma } from "../prisma";
 export class ImageService extends BaseService<
   Image,
   Prisma.ImageWhereInput,
-  Prisma.ImageOrderByWithRelationInput
+  Prisma.ImageOrderByWithRelationInput,
+  Prisma.ImageWhereUniqueInput
 > {
   constructor() {
     super(prisma.image);

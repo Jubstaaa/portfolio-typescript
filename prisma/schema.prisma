@@ -64,7 +64,7 @@ model Experience {
   description String?
   logo        String?
   userId      String    @map("user_id") @db.ObjectId
-  User        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 }
 
 model Education {
@@ -77,5 +77,23 @@ model Education {
   description String?
   logo        String?
   userId      String   @map("user_id") @db.ObjectId
-  User        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Project {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  description       String?
+  slug              String          @unique
+  image             String?
+  content           String?
+  order             Int?            @default(0)
+  projectCategoryId String          @map("projectCategory_id") @db.ObjectId
+  projectCategory   ProjectCategory @relation(fields: [projectCategoryId], references: [id])
+}
+
+model ProjectCategory {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  project Project[]
 }

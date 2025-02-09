@@ -62,7 +62,10 @@ async function page() {
           <SocialCards />
         </div>
         <div className="h-full col-span-3">
-          <Card classNames={{ body: "h-full group" }} href={"#"}>
+          <Card
+            classNames={{ body: "h-full group gradient-radial" }}
+            href={"#"}
+          >
             <div className="h-full flex flex-col justify-between relative z-10">
               <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none text-white">
                 Take a look to my portfolio{" "}
@@ -105,13 +108,13 @@ async function page() {
             </div>
             <Button href="#">See All</Button>
           </div>
-          <div className="flex gap-2 items-stretch overflow-auto h-full">
+          <div className="flex gap-2 items-stretch overflow-x-auto overflow-y-hidden w-full h-full">
             {Array.from({ length: 3 }, (_, i) => (
               <Card
                 href={"#"}
                 key={i}
                 classNames={{
-                  body: "w-[250px] p-6 justify-end",
+                  body: "w-[250px] p-6 justify-end gradient-radial",
                 }}
               >
                 <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none text-white relative z-50">

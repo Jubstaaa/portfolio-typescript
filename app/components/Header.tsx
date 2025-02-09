@@ -15,7 +15,7 @@ function Header() {
     },
     {
       name: "Portfolio",
-      href: "#",
+      href: "/portfolio",
     },
     {
       name: "Stack",

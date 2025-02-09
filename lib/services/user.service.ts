@@ -19,6 +19,7 @@ export class UserService extends BaseService<
   User,
   Prisma.UserWhereInput,
   Prisma.UserOrderByWithRelationInput,
+  Prisma.UserWhereUniqueInput,
   Prisma.UserInclude,
   UserWithRelations
 > {
