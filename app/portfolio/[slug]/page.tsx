@@ -6,12 +6,48 @@ import Card from "@/app/components/ui/Card";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-async function page({ params }: { params: { slug: string } }) {
-  const projectService = new ProjectService();
+const projectService = new ProjectService();
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const slug = (await params).slug;
   const project: Project | null = await projectService.findUnique({
     where: {
-      slug: params.slug,
+      slug: slug,
+    },
+    include: {
+      projectCategory: true,
+    },
+  });
+
+  if (!project) {
+    notFound();
+  }
+
+  return {
+    title: project.name,
+    description: project.description,
+  };
+}
+
+export async function generateStaticParams() {
+  const projects: Project[] = await projectService.findMany();
+
+  return projects.map((item) => ({
+    slug: item.slug,
+  }));
+}
+
+async function page({ params }: { params: Promise<{ slug: string }> }) {
+  const slug = (await params).slug;
+  const project: Project | null = await projectService.findUnique({
+    where: {
+      slug: slug,
     },
     include: {
       projectCategory: true,

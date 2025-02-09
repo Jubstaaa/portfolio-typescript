@@ -64,7 +64,7 @@ async function page() {
         <div className="h-full col-span-3">
           <Card
             classNames={{ body: "h-full group gradient-radial" }}
-            href={"#"}
+            href={"/portfolio"}
           >
             <div className="h-full flex flex-col justify-between relative z-10">
               <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none text-white">
