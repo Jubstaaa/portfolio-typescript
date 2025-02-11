@@ -7,7 +7,8 @@ type PrismaModelDelegate<
   WhereInput,
   OrderByInput,
   WhereUniqueInput,
-  IncludeInput = undefined
+  IncludeInput = undefined,
+  SelectInput,
 > = {
   findMany: (params?: {
     skip?: number;
@@ -15,11 +16,13 @@ type PrismaModelDelegate<
     where?: WhereInput;
     orderBy?: OrderByInput;
     include?: IncludeInput;
+    select?: SelectInput;
   }) => Promise<T[]>;
 
   findUnique: (params: {
     where: WhereUniqueInput;
     include?: IncludeInput;
+    select?: SelectInput;
   }) => Promise<T | null>;
 
   create: (params: {
@@ -45,7 +48,8 @@ export class BaseService<
   OrderByInput,
   WhereUniqueInput,
   IncludeInput = undefined,
-  ViewModel = T
+  SelectInput,
+  ViewModel = T,
 > {
   protected prisma: PrismaClient;
   protected model: PrismaModelDelegate<
@@ -53,7 +57,8 @@ export class BaseService<
     WhereInput,
     OrderByInput,
     WhereUniqueInput,
-    IncludeInput
+    IncludeInput,
+    SelectInput
   >;
   protected mapper?: (data: T) => ViewModel;
 
@@ -63,7 +68,8 @@ export class BaseService<
       WhereInput,
       OrderByInput,
       WhereUniqueInput,
-      IncludeInput
+      IncludeInput,
+      SelectInput
     >,
     mapper?: (data: T) => ViewModel
   ) {
@@ -82,6 +88,7 @@ export class BaseService<
     where?: WhereInput;
     orderBy?: OrderByInput;
     include?: IncludeInput;
+    select?: SelectInput;
   }): Promise<ViewModel[]> {
     try {
       const data = await this.model.findMany(params);
@@ -95,6 +102,7 @@ export class BaseService<
   async findUnique(params: {
     where: WhereUniqueInput;
     include?: IncludeInput;
+    select?: SelectInput;
   }): Promise<ViewModel | null> {
     const data = await this.model.findUnique(params);
     return data ? this.mapData(data) : null;

@@ -1,7 +1,8 @@
-import { BaseModel } from "./BaseModel";
-import { ProjectCategory } from "./ProjectCategory";
+import { ProjectCategory } from "@prisma/client";
+import { GetProjectCategory } from "./ProjectCategory";
 
-export interface Project extends BaseModel {
+export interface GetProject {
+  id: string;
   name: string;
   description?: string | null;
   slug: string;

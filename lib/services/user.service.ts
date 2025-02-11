@@ -1,18 +1,27 @@
-import { User, Prisma, Skill, Education, Experience } from "@prisma/client";
+import { User, Prisma } from "@prisma/client";
+import {
+  User as PrismaUser,
+  Prisma,
+  Skill,
+  Education,
+  Experience,
+} from "@prisma/client";
 import { BaseService } from "./base.service";
 import { prisma } from "../prisma";
+import { GetUser, User } from "@/types/User";
+import { GetEducation } from "@/types/Education";
+type UserWithRelations = PrismaUser & {
+  skills?: Skill[];
+  experiences?: Experience[];
+  educations?: GetEducation[];
+};
 
-interface UserWithRelations extends User {
-  skills: Skill[];
-  experiences: Experience[];
-  educations: Education[];
-}
-
-const userMapper = (user: User): UserWithRelations => ({
+const userMapper = (user: UserWithRelations): GetUser => ({
   ...user,
-  skills: (user as UserWithRelations).skills || [],
-  experiences: (user as UserWithRelations).experiences || [],
-  educations: (user as UserWithRelations).educations || [],
+  name: user.firstName + " " + user.lastName,
+  skills: user.skills || [],
+  experiences: user.experiences || [],
+  educations: user.educations || [],
 });
 
 export class UserService extends BaseService<
@@ -21,9 +30,32 @@ export class UserService extends BaseService<
   Prisma.UserOrderByWithRelationInput,
   Prisma.UserWhereUniqueInput,
   Prisma.UserInclude,
-  UserWithRelations
+  Prisma.UserSelect,
+  GetUser
 > {
   constructor() {
     super(prisma.user, userMapper);
+  }
+
+  async findMany() {
+    try {
+      const data = await this.model.findMany({
+        select: {
+          firstName: true,
+          lastName: true,
+          experiences: true,
+          skills: true,
+          image: true,
+          location: true,
+          educations: true,
+          title: true,
+          bio: true,
+        },
+      });
+      return data.map((item) => userMapper(item));
+    } catch (error) {
+      console.error(`Error in findMany for model:`, error);
+      throw error;
+    }
   }
 }

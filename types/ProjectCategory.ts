@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface ProjectCategory extends BaseModel {
+export interface GetProjectCategory {
+  id: string;
   name: string;
 }
 

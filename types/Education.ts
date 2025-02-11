@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface Education extends BaseModel {
+export interface GetEducation {
+  id: string;
   name: string;
   department: string;
   location: string;

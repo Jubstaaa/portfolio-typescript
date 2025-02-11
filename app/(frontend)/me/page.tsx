@@ -5,7 +5,7 @@ import { User } from "@/types/User";
 import Card from "../components/ui/Card";
 import Badge from "../components/ui/Badge";
 import dayjs from "dayjs";
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn";
 import { SocialService } from "@/lib/services/social.service";
 import { Social } from "@/types/Social";
 import Button from "../components/ui/Button";
@@ -29,6 +29,7 @@ async function page() {
       },
     },
   });
+  console.log(users);
   const user = users[0];
 
   const socialService = new SocialService();

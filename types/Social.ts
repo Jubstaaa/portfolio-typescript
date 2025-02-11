@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface Social extends BaseModel {
+export interface GetSocial {
+  id: string;
   name: string;
   icon: string;
   color: string;

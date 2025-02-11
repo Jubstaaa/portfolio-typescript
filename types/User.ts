@@ -1,9 +1,9 @@
-import { BaseModel } from "./BaseModel";
-import { Education } from "./Education";
-import { Experience } from "./Experience";
-import { Skill } from "./Skill";
+import { GetEducation } from "./Education";
+import { GetExperience } from "./Experience";
+import { GetSkill } from "./Skill";
 
-export interface User extends BaseModel {
+export interface GetUser {
+  id: string;
   name: string;
   email: string;
   bio: string;
@@ -11,30 +11,7 @@ export interface User extends BaseModel {
   location: string;
   image?: string | null;
   isAvailable: boolean;
-  skills: Skill[];
-  experiences: Experience[];
-  educations: Education[];
-}
-
-export interface UserCreateInput {
-  url: string;
-}
-
-export interface UserUpdateInput {
-  url: string;
-}
-
-export interface UserWhereInput {
-  id?: string;
-  url: string;
-}
-
-export interface UserOrderByInput {
-  url: string;
-}
-
-export interface ApiResponse<T> {
-  data: T;
-  success: boolean;
-  error?: string;
+  skills: GetSkill[];
+  experiences: GetExperience[];
+  educations: GetEducation[];
 }

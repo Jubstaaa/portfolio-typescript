@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface Skill extends BaseModel {
+export interface GetSkill {
+  id: string;
   name: string;
 }
 

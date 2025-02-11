@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface Experience extends BaseModel {
+export interface GetExperience {
+  id: string;
   name: string;
   title: string;
   location: string;

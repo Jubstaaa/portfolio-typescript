@@ -1,6 +1,5 @@
-import { BaseModel } from "./BaseModel";
-
-export interface Image extends BaseModel {
+export interface Image {
+  id: string;
   url: string;
 }
 

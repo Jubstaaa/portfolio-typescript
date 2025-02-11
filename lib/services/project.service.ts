@@ -1,14 +1,15 @@
 import { Project, Prisma, ProjectCategory } from "@prisma/client";
 import { BaseService } from "./base.service";
 import { prisma } from "../prisma";
+import { GetProject } from "@/types/Project";
 
-interface ProjectWithRelations extends Project {
+type ProjectWithRelations = Project & {
   projectCategory: ProjectCategory;
-}
+};
 
-const projectMapper = (project: Project): ProjectWithRelations => ({
+const projectMapper = (project: ProjectWithRelations): GetProject => ({
   ...project,
-  projectCategory: (project as ProjectWithRelations).projectCategory || null,
+  projectCategory: project.projectCategory || null,
 });
 
 export class ProjectService extends BaseService<
@@ -17,7 +18,7 @@ export class ProjectService extends BaseService<
   Prisma.ProjectOrderByWithRelationInput,
   Prisma.ProjectWhereUniqueInput,
   Prisma.ProjectInclude,
-  ProjectWithRelations
+  GetProject
 > {
   constructor() {
     super(prisma.project, projectMapper);
