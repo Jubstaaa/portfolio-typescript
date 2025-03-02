@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 
 export default function ScrollProgressBar() {
-  const { scrollYProgress } = useScroll(); // Scroll ilerleme oranını alır
+  const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -12,7 +12,7 @@ export default function ScrollProgressBar() {
 
   return (
     <motion.div
-      style={{ scaleX }} // Scroll ilerleme oranına göre genişliği ayarlar
+      style={{ scaleX }}
       className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-50"
     />
   );

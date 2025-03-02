@@ -16,10 +16,10 @@ export const Media: CollectionConfig = {
     afterChange: [
       async ({ doc }) => {
         if (doc.filename) {
-          const baseUrl = "https://blob.vercel-storage.com/uploads/"; // Vercel Blob ana URL
+          const baseUrl = "https://blob.vercel-storage.com/uploads/";
           return {
             ...doc,
-            url: `${baseUrl}${doc.filename}`, // Tam URL'yi oluştur
+            url: `${baseUrl}${doc.filename}`,
           };
         }
         return doc;

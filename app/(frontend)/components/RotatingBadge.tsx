@@ -87,7 +87,7 @@ export default function RotatingBadge() {
           </defs>
           <text
             fill="white"
-            fontSize="30" // Increased font size
+            fontSize="30"
             fontWeight="bold"
             letterSpacing="1px"
           >

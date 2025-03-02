@@ -1,5 +1,3 @@
-// src/collections/Users.ts
-
 import { CollectionConfig } from "payload";
 
 export const Users: CollectionConfig = {

@@ -7,12 +7,8 @@ import { Icon } from "@iconify/react";
 function BreadCrumb() {
   const pathname = usePathname();
 
-  // URL'yi parçalayarak diziyi oluştur
   const pathSegments = pathname.split("/").filter(Boolean);
 
-  console.log(pathSegments.length);
-
-  // Eğer sadece 1 segment varsa (örneğin /blog veya /portfolio) Breadcrumbs gösterme
   if (pathSegments.length < 2) return null;
 
   return (
@@ -29,7 +25,7 @@ function BreadCrumb() {
                   : ""
               }
               key={index}
-              href={pathSegments.length - 1 === index ? "#" : `/${item}`} // Son öğe için linki kaldır
+              href={pathSegments.length - 1 === index ? "#" : `/${item}`} 
             >
               {slugToTitle(item)}
             </Link>
