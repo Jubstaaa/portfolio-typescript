@@ -1,9 +1,72 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = global as unknown as {
-  prisma: PrismaClient | undefined
-}
-
-export const prisma = globalForPrisma.prisma ?? new PrismaClient()
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+export const prisma = new PrismaClient().$extends({
+  result: {
+    user: {
+      name: {
+        needs: { firstName: true, lastName: true },
+        compute(user) {
+          return `${user.firstName} ${user.lastName}`;
+        },
+      },
+    },
+    media: {
+      url: {
+        needs: { filename: true },
+        compute(media) {
+          return `${process.env.VERCEL_BLOB_URL}/${media.filename}`;
+        },
+      },
+    },
+  },
+  query: {
+    experience: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { startDate: "desc" },
+        });
+      },
+    },
+    education: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { startDate: "desc" },
+        });
+      },
+    },
+    image: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { order: "asc" },
+        });
+      },
+    },
+    project: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { order: "asc" },
+        });
+      },
+    },
+    stack: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { order: "asc" },
+        });
+      },
+    },
+    social: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { order: "asc" },
+        });
+      },
+    },
+  },
+});

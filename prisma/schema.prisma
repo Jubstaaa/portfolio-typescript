@@ -32,42 +32,52 @@ model Social {
 }
 
 model Image {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  url   String
-  order Int?   @default(0)
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  order   Int?   @default(0)
+  mediaId String @db.ObjectId
+  media   Media  @relation(fields: [mediaId], references: [id])
 
   @@map("images")
 }
 
+model Media {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  filename   String
+  Project    Project[]
+  Image      Image[]
+  User       User[]
+  Experience Experience[]
+  Education  Education[]
+  Blog       Blog[]
+
+  @@map("media")
+}
+
 model User {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  version       Int          @default(0) @map("__v")
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  version       Int      @default(0) @map("__v")
   firstName     String
   lastName      String
-  email         String       @unique
+  email         String   @unique
   role          String
   salt          String
   hash          String
-  loginAttempts Int          @default(0)
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  loginAttempts Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
   bio           String
   title         String
   location      String
-  image         String?
   isAvailable   Boolean
-  skills        Skill[]
-  experiences   Experience[]
-  educations    Education[]
+  mediaId       String   @db.ObjectId
+  media         Media    @relation(fields: [mediaId], references: [id])
 
   @@map("users")
 }
 
 model Skill {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  userId String @map("user_id") @db.ObjectId
-  User   User   @relation(fields: [userId], references: [id])
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
 
   @@map("skills")
 }
@@ -80,9 +90,8 @@ model Experience {
   startDate   DateTime
   endDate     DateTime?
   description String?
-  logo        String?
-  userId      String    @map("user_id") @db.ObjectId
-  user        User      @relation(fields: [userId], references: [id])
+  mediaId     String    @db.ObjectId
+  logo        Media     @relation(fields: [mediaId], references: [id])
 
   @@map("experiences")
 }
@@ -95,9 +104,8 @@ model Education {
   startDate   DateTime
   endDate     DateTime
   description String?
-  logo        String?
-  userId      String   @map("user_id") @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id])
+  mediaId     String   @db.ObjectId
+  logo        Media    @relation(fields: [mediaId], references: [id])
 
   @@map("educations")
 }
@@ -107,12 +115,14 @@ model Project {
   name              String
   description       String?
   slug              String          @unique
-  image             String?
   content           String?
   order             Int?            @default(0)
-  projectCategoryId String          @map("projectCategory_id") @db.ObjectId
+  projectCategoryId String          @map("projectCategoryId") @db.ObjectId
   projectCategory   ProjectCategory @relation(fields: [projectCategoryId], references: [id])
+  mediaId           String          @db.ObjectId
+  media             Media           @relation(fields: [mediaId], references: [id])
 
+  @@index([projectCategoryId])
   @@map("projects")
 }
 
@@ -122,4 +132,28 @@ model ProjectCategory {
   project Project[]
 
   @@map("projectCategories")
+}
+
+model Blog {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  description    String?
+  date           DateTime
+  slug           String       @unique
+  content        Json
+  blogCategoryId String       @map("blogCategoryId") @db.ObjectId
+  blogCategory   BlogCategory @relation(fields: [blogCategoryId], references: [id])
+  mediaId        String       @db.ObjectId
+  media          Media        @relation(fields: [mediaId], references: [id])
+
+  @@index([blogCategoryId])
+  @@map("blogs")
+}
+
+model BlogCategory {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  blog Blog[]
+
+  @@map("blogCategories")
 }
