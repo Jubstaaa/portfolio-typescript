@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const Image: CollectionConfig = {
@@ -14,4 +15,11 @@ export const Image: CollectionConfig = {
       type: "number",
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidatePaths([{ path: "/" }]);
+      },
+    ],
+  },
 };

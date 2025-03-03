@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const Skill: CollectionConfig = {
@@ -9,4 +10,11 @@ export const Skill: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidatePaths([{ path: "/me" }]);
+      },
+    ],
+  },
 };

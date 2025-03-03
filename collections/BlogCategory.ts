@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const BlogCategory: CollectionConfig = {
@@ -13,4 +14,11 @@ export const BlogCategory: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidatePaths([{ path: "/blog/[slug]", type: "page" }]);
+      },
+    ],
+  },
 };

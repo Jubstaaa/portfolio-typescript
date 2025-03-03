@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const Blog: CollectionConfig = {
@@ -41,4 +42,15 @@ export const Blog: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/blog" },
+          { path: `/blog/${doc.slug}` },
+        ]);
+      },
+    ],
+  },
 };

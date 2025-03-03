@@ -2,6 +2,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 import ContactEmail from "@/react-email-starter/emails/ContactEmail";
+import { revalidatePath } from "next/cache";
 
 export interface SendMailResponse {
   ok?: boolean;
@@ -52,3 +53,26 @@ export const sendContactMail = async (
 
   return { ok: false };
 };
+
+export async function revalidatePaths(
+  paths: {
+    path: string;
+    type?: "page" | "layout";
+  }[]
+) {
+  paths.forEach(
+    ({
+      path,
+      type = undefined,
+    }: {
+      path: string;
+      type?: "page" | "layout" | undefined;
+    }) => {
+      if (type) {
+        revalidatePath(`/(frontend)${path}`, type);
+      } else {
+        revalidatePath(path);
+      }
+    }
+  );
+}

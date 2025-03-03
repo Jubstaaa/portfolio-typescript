@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const Stack: CollectionConfig = {
@@ -32,4 +33,11 @@ export const Stack: CollectionConfig = {
       type: "number",
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidatePaths([{ path: "/" }, { path: "/stack" }]);
+      },
+    ],
+  },
 };

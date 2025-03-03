@@ -1,3 +1,4 @@
+import { revalidatePaths } from "@/lib/actions";
 import { CollectionConfig } from "payload";
 
 export const Users: CollectionConfig = {
@@ -45,4 +46,11 @@ export const Users: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidatePaths([{ path: "/" }, { path: "/me" }]);
+      },
+    ],
+  },
 };

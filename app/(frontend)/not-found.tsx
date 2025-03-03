@@ -8,7 +8,7 @@ function NotFound() {
       <Image
         className="w-[500px]"
         src={
-          "https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/images/image%20(3)%20(1)-gOZp2CMcmr5Uj1VyjDLZ420rAePL6w.png"
+          "https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/404-kQOWuA9ikD375TXpsnouw8jdjJ6VsU.svg"
         }
         width={1000}
         height={1000}

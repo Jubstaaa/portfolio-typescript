@@ -48,7 +48,7 @@ export const ContactCard = () => {
     <Card
       whileHover={false}
       classNames={{
-        body: "gap-9 p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center",
+        body: "w-full max-w-6xl mx-auto gap-9 p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center",
       }}
     >
       <div className="flex flex-col gap-5 items-center text-5xl font-semibold leading-none text-center z-10">
