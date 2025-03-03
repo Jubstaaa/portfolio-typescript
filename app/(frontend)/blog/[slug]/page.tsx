@@ -76,7 +76,10 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
           <h3 className="text-[22px] font-medium">{blog.description}</h3>
         </div>
       </div>
-      <Card classNames={{ body: "max-w-5xl w-full mx-auto px-6 gap-6" }}>
+      <Card
+        classNames={{ body: "max-w-5xl w-full mx-auto px-6 gap-6" }}
+        whileHover={false}
+      >
         <Image
           className="w-full h-auto object-cover rounded-large aspect-video"
           src={blog.media.url}

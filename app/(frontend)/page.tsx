@@ -9,6 +9,7 @@ import SocialCards from "./components/SocialCards";
 import Hero from "./components/Hero";
 import { BlogService, ImageService } from "@/lib/services";
 import dayjs from "dayjs";
+import { ContactCard } from "./components/ui/ContactCard";
 
 async function page() {
   const images = await ImageService.findMany({
@@ -149,6 +150,7 @@ async function page() {
           </div>
         </Card>
       </div>
+      <ContactCard />
     </div>
   );
 }

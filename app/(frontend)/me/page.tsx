@@ -3,7 +3,7 @@ import Image from "next/image";
 import Card from "../components/ui/Card";
 import Badge from "../components/ui/Badge";
 import dayjs from "dayjs";
-import { cn } from "../utils/cn";
+import { cn } from "@/lib/utils";
 import Button from "../components/ui/Button";
 import { Icon } from "@iconify/react";
 import {

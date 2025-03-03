@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import { cn } from "@/app/(frontend)/utils/cn";
+import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   icon?: string;

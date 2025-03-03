@@ -31,13 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
-        <main className="container py-9 flex flex-col gap-12">
-          <Header />
-          <section className="w-full max-w-6xl mx-auto">{children}</section>
-          <Footer />
-        </main>
-        <ScrollProgressBar />
-        <ScrollToTopButton />
+          <main className="container py-9 flex flex-col gap-12">
+            <Header />
+            <section className="w-full max-w-6xl mx-auto">{children}</section>
+            <Footer />
+          </main>
+          <ScrollProgressBar />
+          <ScrollToTopButton />
       </body>
     </html>
   );

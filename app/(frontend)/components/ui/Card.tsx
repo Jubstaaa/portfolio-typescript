@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/app/(frontend)/utils/cn";
+import { cn } from "@/lib/utils";
 import React from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 import Link from "next/link";
@@ -11,6 +11,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   };
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
+  whileHover?: boolean;
 }
 
 function Card({
@@ -20,6 +21,7 @@ function Card({
   href,
   className,
   target,
+  whileHover = true,
   ...rest
 }: CardProps) {
   const classes = cn(
@@ -48,17 +50,19 @@ function Card({
       }}
       viewport={{
         once: true,
-        amount: 0.2,
-        margin: "-100px 0px -100px 0px",
       }}
       transition={{
         duration: 0.5,
         ease: [0.23, 1, 0.32, 1],
       }}
-      whileHover={{
-        scale: 1.02,
-        transition: { duration: 0.2 },
-      }}
+      whileHover={
+        whileHover
+          ? {
+              scale: 1.02,
+              transition: { duration: 0.2 },
+            }
+          : {}
+      }
       whileTap={
         href
           ? {

@@ -2,17 +2,19 @@
 import Link from "next/link";
 import React from "react";
 import { Icon } from "@iconify/react";
-import { cn } from "@/app/(frontend)/utils/cn";
+import { cn } from "@/lib/utils";
 
 interface ButtonProps {
+  type?: "button" | "submit" | "reset" | undefined;
   icon?: string;
   children?: React.ReactNode;
   size?: "xs" | "sm" | "md" | "lg";
+  radius?: "sm" | "full";
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top" | "none";
   color?: "light" | "dark" | "gray";
   fullWidth?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.FormEvent) => void;
   disabled?: boolean;
   classNames?: {
     body?: string;
@@ -20,9 +22,11 @@ interface ButtonProps {
 }
 
 function Button({
+  type = "button",
   icon,
   children,
   size = "md",
+  radius = "full",
   href,
   target,
   color = "light",
@@ -32,12 +36,14 @@ function Button({
   classNames = {},
 }: ButtonProps) {
   const className = cn(
-    "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible rounded-full shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-500 duration-200",
+    "flex flex-row flex-nowrap items-center justify-center w-min gap-2.5 relative overflow-visible shadow-none whitespace-nowrap font-medium tracking-normal transition-all duration-500 duration-200",
     classNames.body,
     {
       "cursor-pointer transition-all duration-500 hover:shadow-[0px_0px_0px_5px] transition-all duration-500 hover:shadow-[#B8B8B8]/20 active:opacity-50 active:shadow-[0px_0px_0px_2px]":
         !disabled,
       "w-full": fullWidth,
+      "rounded-lg": radius === "sm",
+      "rounded-full": radius === "full",
       "px-2 h-8 text-xs transition-all duration-500 hover:shadow-[0px_0px_0px_3px]":
         size === "xs" && !disabled,
       "px-2 h-9": size === "sm",
@@ -66,7 +72,7 @@ function Button({
       e.preventDefault();
       return;
     }
-    onClick?.();
+    onClick?.(e);
   };
 
   if (href) {
@@ -84,7 +90,7 @@ function Button({
 
   return (
     <button
-      type="button"
+      type={type}
       className={className}
       onClick={handleClick}
       disabled={disabled}

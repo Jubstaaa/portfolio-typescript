@@ -21,6 +21,7 @@ async function page() {
       <div className="grid grid-cols-3 gap-5">
         {projects.map((item) => (
           <Card
+            href={`/portfolio/${item.slug}`}
             key={item.id}
             classNames={{ body: "p-6 h-[400px] gradient-radial" }}
           >
