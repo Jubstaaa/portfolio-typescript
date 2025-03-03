@@ -15,7 +15,7 @@ function NotFound() {
         alt="404 Image"
       />
       <div className="flex flex-col items-center justify-center gap-6 text-center">
-        <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
+        <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-center tracking-tighter">
           404 UFO Encounter
         </h1>
         <p className="w-2/3 text-[#647586] text-base font-medium tracking-normal">

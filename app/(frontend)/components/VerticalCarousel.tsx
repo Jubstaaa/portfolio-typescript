@@ -67,7 +67,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
   return (
     <div
       {...swipeHandlers}
-      className="w-full h-[450px] overflow-hidden relative"
+      className="w-full h-[300px] lg:h-[450px] overflow-hidden relative"
     >
       <div className="absolute left-2.5 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1 p-1.5 bg-primary/20 rounded-full">
         {images.map((_, index) => (
@@ -103,7 +103,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
         onDragEnd={handleDragEnd}
       >
         {images.map((image, index) => (
-          <div key={index} className="relative h-[450px] w-full">
+          <div key={index} className="relative h-full w-full">
             <Image
               className="pointer-events-none object-cover"
               src={image}

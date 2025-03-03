@@ -19,8 +19,12 @@ async function Hero() {
   }
 
   return (
-    <div className="grid grid-cols-12 gap-4 h-[450px]">
-      <Card classNames={{ body: "col-span-10 h-[450px]" }}>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-auto lg:h-[450px]">
+      <Card
+        classNames={{
+          body: "lg:col-span-10 h-[600px] lg:h-[450px] hero-shadow",
+        }}
+      >
         <div className="w-full flex justify-between items-start">
           <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
             {user.name}
@@ -37,7 +41,7 @@ async function Hero() {
             {user.isAvailable ? "Available" : "Busy"}
           </Badge>
         </div>
-        <div className="flex flex-col gap-5 items-start">
+        <div className="flex flex-col gap-5 items-start relative z-10">
           <div className="flex gap-1.5 items-start">
             <Badge animate="spin" color="blue" icon="mdi:react">
               JavaScript Expert
@@ -56,13 +60,13 @@ async function Hero() {
               that sizzle and entice.
             </p>
           </div>
-          <Button color="dark" href="/me#contact" icon="f7:chevron-right">
+          <Button color="dark" href="/bio#contact" icon="f7:chevron-right">
             Contact Me
           </Button>
         </div>
         {user.media && (
           <Image
-            className="absolute bottom-0 right-0 w-auto h-full drop-shadow-[-47px_13px_38px_rgba(125,135,145,0.25)]"
+            className="absolute bottom-12 lg:bottom-0 right-0 w-full lg:w-auto h-auto lg:h-full drop-shadow-[-47px_13px_38px_rgba(125,135,145,0.25)"
             src={user.media.url}
             alt={user.name}
             width={750}
@@ -70,9 +74,9 @@ async function Hero() {
           />
         )}
       </Card>
-      <div className="flex flex-col gap-4 col-span-2 h-[450px]">
+      <div className="flex flex-row lg:flex-col gap-2 lg:gap-4 lg:col-span-2 h-[150px] lg:h-[450px]">
         <MusicCard />
-        <Card classNames={{ body: "p-0" }}>
+        <Card classNames={{ body: "flex-1 lg:flex-unset p-0" }}>
           <RotatingBadge />
         </Card>
       </div>

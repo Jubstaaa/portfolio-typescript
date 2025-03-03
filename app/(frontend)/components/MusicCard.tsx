@@ -94,51 +94,56 @@ export default function MusicCard() {
   return (
     <Card
       loading={!currentlyPlaying}
-      classNames={{ body: "p-4 justify-start gap-3 bg-[#bff6b6]" }}
+      classNames={{
+        body: "flex-1 lg:flex-unset p-2 lg:p-4 justify-center gap-3 bg-[#bff6b6]",
+      }}
     >
       {currentlyPlaying && (
         <>
-          <Link
-            href={album.external_urls.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full rounded-md overflow-hidden border border-divider !font-primary"
-          >
-            {albumImageUrl && (
-              <Image
-                src={albumImageUrl}
-                alt={`${albumName} Cover`}
-                width={200}
-                height={200}
-                className="w-full h-full object-cover object-center"
+          <div className="flex flex-row lg:flex-col gap-3 w-full">
+            <Link
+              href={album.external_urls.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full rounded-md overflow-hidden border border-divider !font-primary aspect-square lg:aspect-video"
+            >
+              {albumImageUrl && (
+                <Image
+                  src={albumImageUrl}
+                  alt={`${albumName} Cover`}
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-cover object-center"
+                />
+              )}
+            </Link>
+            <div className="w-full flex flex-col lg:flex-row items-start lg:items-center gap-1 justify-start lg:justify-between">
+              <div className="flex flex-col">
+                <Link
+                  href={trackUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-sm line-clamp-1 !font-primary"
+                >
+                  {trackName}
+                </Link>
+                <Link
+                  href={artists[0].external_urls.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-[#647586] line-clamp-1 !font-primary"
+                >
+                  {artistName}
+                </Link>
+              </div>
+              <Button
+                disabled
+                size="sm"
+                icon={currentlyPlaying?.is_playing ? "mdi:pause" : "mdi:play"}
               />
-            )}
-          </Link>
-          <div className="w-full flex items-center gap-1 justify-between">
-            <div className="flex flex-col">
-              <Link
-                href={trackUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-sm line-clamp-1 !font-primary"
-              >
-                {trackName}
-              </Link>
-              <Link
-                href={artists[0].external_urls.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[#647586] line-clamp-1 !font-primary"
-              >
-                {artistName}
-              </Link>
             </div>
-            <Button
-              disabled
-              size="sm"
-              icon={currentlyPlaying?.is_playing ? "mdi:pause" : "mdi:play"}
-            />
           </div>
+
           <div className="w-full flex flex-col gap-1">
             <div className="flex items-center justify-between">
               <p className="text-xs">{formatTime(progress)}</p>

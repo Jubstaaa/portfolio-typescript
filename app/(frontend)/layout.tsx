@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
-        <main className="container py-9 flex flex-col gap-12">
+        <main className="container py-3 lg:py-9 flex flex-col gap-3 lg:gap-12 px-3 lg:px-0">
           <Header />
           <section className="w-full max-w-6xl mx-auto">{children}</section>
           <ContactCard />

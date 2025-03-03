@@ -38,9 +38,9 @@ export default function ScrollToTopButton() {
             scale: 0.9,
             transition: { duration: 0.1 },
           }}
-          className="cursor-pointer fixed bottom-6 right-6 p-3 bg-primary text-white rounded-full shadow-lg focus:outline-none z-50"
+          className="cursor-pointer fixed bottom-3 lg:bottom-6 right-3 lg:right-6 p-2 lg:p-3 bg-primary text-white rounded-full shadow-lg focus:outline-none z-50"
         >
-          <Icon icon="lucide:arrow-up" width="24" height="24" />
+          <Icon icon="lucide:arrow-up" className="w-4 lg:w-6 h-4 lg:h-6" />
         </motion.button>
       )}
     </AnimatePresence>

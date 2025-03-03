@@ -49,7 +49,7 @@ export const Users: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }, { path: "/me" }]);
+        await revalidatePaths([{ path: "/" }, { path: "/bio" }]);
       },
     ],
   },

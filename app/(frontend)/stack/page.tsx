@@ -8,16 +8,19 @@ async function page() {
   const stacks = await StackService.findMany();
 
   return (
-    <div className="flex flex-col gap-12">
-      <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
+    <div className="flex flex-col gap-4 lg:gap-12">
+      <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-center tracking-tighter">
         Beneficial and potent apps and extensions that I utilize incessantly.
       </h1>
       <p className="uppercase text-[#647586] font-semibold text-center tracking-widest">
         Design and Research
       </p>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-5">
         {stacks.map((item) => (
-          <Card key={item.id} classNames={{ body: "p-6 gap-6 justify-start" }}>
+          <Card
+            key={item.id}
+            classNames={{ body: "p-6 gap-3 lg:gap-6 justify-start" }}
+          >
             <div
               content={item.name}
               className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden text-white"

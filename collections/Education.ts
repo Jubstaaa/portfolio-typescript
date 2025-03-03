@@ -43,7 +43,7 @@ export const Education: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/me" }]);
+        await revalidatePaths([{ path: "/bio" }]);
       },
     ],
   },

@@ -13,7 +13,7 @@ export const Skill: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/me" }]);
+        await revalidatePaths([{ path: "/bio" }]);
       },
     ],
   },

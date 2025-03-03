@@ -46,7 +46,7 @@ function Button({
       "rounded-full": radius === "full",
       "px-2 h-8 text-xs transition-all duration-500 hover:shadow-[0px_0px_0px_3px]":
         size === "xs" && !disabled,
-      "px-2 h-9": size === "sm",
+      "px-1.5 lg:px-2 h-6 lg:h-9": size === "sm",
       "px-4 h-[50px]": size === "md",
       "bg-[#f1f5f9] text-primary transition-all duration-500 hover:bg-[#f8fafc]":
         color === "light" && !disabled,
@@ -63,7 +63,7 @@ function Button({
   const content = (
     <>
       {children}
-      {icon && <Icon icon={icon} width="20" height="20" />}
+      {icon && <Icon icon={icon} className="w-3.5 lg:w-5 h-3.5 lg:h-5" />}
     </>
   );
 

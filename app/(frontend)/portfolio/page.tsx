@@ -13,12 +13,12 @@ async function page() {
   });
 
   return (
-    <div className="flex flex-col gap-12">
-      <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
+    <div className="flex flex-col gap-4 lg:gap-12">
+      <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-center tracking-tighter">
         Explore my awesome works
       </h1>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {projects.map((item) => (
           <Card
             href={`/portfolio/${item.slug}`}

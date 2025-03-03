@@ -48,10 +48,10 @@ export const ContactCard = () => {
     <Card
       whileHover={false}
       classNames={{
-        body: "w-full max-w-6xl mx-auto gap-9 p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center",
+        body: "w-full max-w-6xl mx-auto gap-9 p-6 lg:p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center",
       }}
     >
-      <div className="flex flex-col gap-5 items-center text-5xl font-semibold leading-none text-center z-10">
+      <div className="flex flex-col gap-5 items-center text-3xl lg:text-5xl font-semibold leading-none text-center z-10">
         Contact with me to sizzle your project.
         <span className="text-[#647586] text-base font-medium tracking-normal">
           Great designs, new generation ideas, user-centered projects.
@@ -80,7 +80,9 @@ export const ContactCard = () => {
       <canvas
         ref={canvasRef}
         style={{ width: 800, height: 800, maxWidth: "100%", aspectRatio: 1 }}
-        className={"absolute right-0 bottom-0 translate-x-1/3 translate-y-1/2"}
+        className={
+          "absolute right-0 bottom-0 translate-x-0 lg:translate-x-1/3 translate-y-1/2"
+        }
       />
     </Card>
   );

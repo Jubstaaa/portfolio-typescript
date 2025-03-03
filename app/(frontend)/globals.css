@@ -18,3 +18,6 @@ a {
 .gradient-radial {
   @apply before:absolute before:inset-0 before:w-full before:h-full before:overflow-hidden before:z-10 before:flex-none before:bg-gradient-radial;
 }
+.hero-shadow {
+  @apply before:absolute before:bottom-0 before:left-0 before:w-full before:h-2/3 before:overflow-hidden before:z-10 before:flex-none before:bg-hero-shadow;
+}

@@ -57,8 +57,8 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
   }
 
   return (
-    <div className="flex flex-col gap-12">
-      <div className="flex flex-col items-start justify-start gap-6 p-12">
+    <div className="flex flex-col gap-0 lg:gap-12">
+      <div className="flex flex-col items-start justify-start gap-6 p-3 lg:p-12">
         <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
           {project.projectCategory.name}
         </Badge>

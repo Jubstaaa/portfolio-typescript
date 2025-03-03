@@ -13,7 +13,7 @@ async function SocialCards() {
   });
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-2 lg:gap-4">
       {socials.map((item) => (
         <Card key={item.id} classNames={{ body: "p-4 h-[220px]" }}>
           <div className="flex flex-col gap-5 justify-between">

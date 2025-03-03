@@ -44,10 +44,10 @@ async function page() {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-3 lg:gap-6">
       {user && (
         <>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3">
             <div className="flex gap-2.5 items-center">
               {user.media.url && (
                 <Image
@@ -79,9 +79,13 @@ async function page() {
         </>
       )}
 
-      <Card classNames={{ body: "p-6 gap-6" }}>
+      <Card
+        classNames={{
+          body: "h-[300px] lg:h-auto p-6 gap-6 overflow-auto lg:overflow-hidden",
+        }}
+      >
         <h3 className="text-[22px] font-medium text-primary">Skills</h3>
-        <div className="w-full grid grid-cols-3 gap-2.5">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-2.5">
           {skills.map((item) => (
             <Badge
               classNames={{ body: "normal-case" }}
@@ -100,14 +104,17 @@ async function page() {
           {experiences.map((item, index) => (
             <div
               key={item.id}
-              className={cn("w-full flex items-start justify-start gap-6", {
-                "pb-4 border-b border-b-[#f1f5f9]":
-                  index !== experiences.length - 1,
-              })}
+              className={cn(
+                "w-full flex items-start justify-start gap-3 lg:gap-6",
+                {
+                  "pb-4 border-b border-b-[#f1f5f9]":
+                    index !== experiences.length - 1,
+                }
+              )}
             >
               {item.logo && (
                 <Image
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-9 lg:w-16 h-9 lg:h-16 rounded-full object-cover"
                   src={item.logo.url}
                   alt={item.name}
                   width={200}
@@ -116,11 +123,11 @@ async function page() {
               )}
               <div className="w-full flex flex-col gap-2.5">
                 <div className="w-full flex flex-col gap-1.5">
-                  <p className="text-2xl font-semibold text-primary">
+                  <p className="text-lg lg:text-2xl font-semibold text-primary">
                     {item.title}
                   </p>
-                  <div className="w-full flex justify-between items-center">
-                    <div className="flex items-center gap-2.5">
+                  <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-1.5">
+                    <div className="flex flex-wrap items-center gap-1.5 lg:gap-2.5">
                       <span className="text-[#647586] text-base font-secondary tracking-normal">
                         {item.location}
                       </span>
@@ -157,7 +164,7 @@ async function page() {
               })}
             >
               <Image
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-9 lg:w-16 h-9 lg:h-16 rounded-full object-cover"
                 src={item.logo.url}
                 alt={item.name}
                 width={200}
@@ -165,11 +172,11 @@ async function page() {
               />
               <div className="w-full flex flex-col gap-2.5">
                 <div className="w-full flex flex-col gap-1.5">
-                  <p className="text-2xl font-semibold text-primary">
+                  <p className="text-lg lg:text-2xl font-semibold text-primary">
                     {item.department}
                   </p>
-                  <div className="w-full flex justify-between items-center">
-                    <div className="flex items-center gap-2.5">
+                  <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-1.5">
+                    <div className="flex flex-wrap items-center gap-1.5 lg:gap-2.5">
                       <span className="text-[#647586] text-base font-secondary tracking-normal">
                         {item.location}
                       </span>
@@ -197,7 +204,7 @@ async function page() {
       <h3 id="contact" className="text-[22px] font-medium text-primary">
         Social Media & Contact
       </h3>
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
         <div className="grid grid-cols-2 col-span-2 gap-2.5">
           {mail && (
             <Card classNames={{ body: "p-4" }}>
@@ -242,7 +249,7 @@ async function page() {
             </Card>
           )}
         </div>
-        <div className="flex flex-col gap-2.5">
+        <div className="col-span-2 lg:col-span-1 flex flex-col gap-2.5">
           {contactSocials.map((item) => (
             <Card
               classNames={{ body: "p-4 flex-row gap-2.5 justify-start" }}

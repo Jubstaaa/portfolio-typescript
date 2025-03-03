@@ -16,7 +16,7 @@ async function StackCard() {
           Let&apos;s see my useful tools while cooking
         </span>
       </div>
-      <div className="w-full grid grid-cols-10 gap-5">
+      <div className="w-full grid grid-cols-4 lg:grid-cols-10 gap-5">
         {stacks.map((item) => (
           <Tooltip
             key={item.id}

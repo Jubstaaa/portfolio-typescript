@@ -29,9 +29,9 @@ async function page() {
   });
 
   return (
-    <div className="flex flex-col gap-9">
+    <div className="flex flex-col gap-3 lg:gap-9">
       <Hero />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {Array.from({ length: 2 }, (_, i) => (
           <Card key={i} href={"#"} classNames={{ body: "h-[400px] p-0 group" }}>
             <div className="flex flex-col p-4 pt-6 gap-4 transition-all duration-500 group-hover:pl-6">
@@ -70,14 +70,14 @@ async function page() {
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="flex flex-col gap-4 col-span-9">
+      <div className="grid grid-cols-3 lg:grid-cols-12 gap-4">
+        <div className="flex flex-col gap-4 col-span-3 lg:col-span-9">
           <StackCard />
           <SocialCards />
         </div>
         <div className="h-full col-span-3">
           <Card
-            classNames={{ body: "h-full group gradient-radial" }}
+            classNames={{ body: "h-[500px] lg:h-full group gradient-radial" }}
             href={"/portfolio"}
           >
             <div className="h-full flex flex-col justify-between relative z-10">
@@ -107,12 +107,12 @@ async function page() {
           </Card>
         </div>
       </div>
-      <div className="grid grid-cols-12 gap-4">
-        <Card classNames={{ body: "col-span-3 p-0" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <Card classNames={{ body: "lg:col-span-3 p-0" }}>
           <VerticalSlider images={images.map((item) => item.media.url)} />
         </Card>
-        <Card classNames={{ body: "col-span-9 gap-6" }}>
-          <div className="w-full flex justify-between items-start">
+        <Card classNames={{ body: "lg:col-span-9 gap-6" }}>
+          <div className="w-full flex justify-between items-center lg:items-start">
             <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
               Let&apos;s review my blog posts
               <span className="text-[#647586] text-base font-medium tracking-normal">
@@ -128,7 +128,7 @@ async function page() {
                 href={`/blog/${item.slug}`}
                 key={item.id}
                 classNames={{
-                  body: "w-[250px] p-6 justify-end gradient-radial",
+                  body: "w-[250px] !h-[300px] p-4 lg:p-6 justify-end gradient-radial",
                 }}
               >
                 <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none text-white relative z-50">

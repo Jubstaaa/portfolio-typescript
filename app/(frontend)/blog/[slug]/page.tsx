@@ -59,9 +59,9 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
   }
 
   return (
-    <div className="flex flex-col gap-12">
-      <div className="flex flex-col items-start justify-start gap-6 p-12">
-        <div className="flex items-center gap-6">
+    <div className="flex flex-col gap-0 lg:gap-12">
+      <div className="flex flex-col items-start justify-start gap-6 p-3 lg:p-12">
+        <div className="flex items-center gap-6 w-full">
           <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
             {blog.blogCategory.name}
           </Badge>
@@ -70,7 +70,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
           </span>
         </div>
         <div className="flex flex-col justify-start items-start gap-4">
-          <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
+          <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-start lg:text-center tracking-tighter">
             {blog.name}
           </h1>
           <h3 className="text-[22px] font-medium">{blog.description}</h3>
@@ -81,7 +81,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         whileHover={false}
       >
         <Image
-          className="w-full h-auto object-cover rounded-large aspect-video"
+          className="w-full h-auto object-cover rounded-large aspect-square lg:aspect-video"
           src={blog.media.url}
           alt={blog.name}
           width={1000}
