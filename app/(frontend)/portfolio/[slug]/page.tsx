@@ -6,6 +6,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { ProjectService } from "@/lib/services";
+import Tooltip from "../../components/ui/Tooltip";
+import { Icon } from "@iconify/react";
 
 export async function generateMetadata({
   params,
@@ -49,6 +51,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
     include: {
       projectCategory: true,
       media: true,
+      stacks: true,
     },
   });
 
@@ -58,14 +61,27 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <div className="flex flex-col gap-0 lg:gap-12">
-      <div className="flex flex-col items-start justify-start gap-6 p-3 lg:p-12">
+      <div className="flex flex-col items-start justify-start gap-6 lg:p-12">
         <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
           {project.projectCategory.name}
         </Badge>
+
         <div className="flex flex-col justify-start items-start gap-4">
           <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
             {project.name}
           </h1>
+          <div className="flex gap-3">
+            {project.stacks.map((item) => (
+              <Tooltip
+                key={item.id}
+                content={item.name}
+                className="w-9 h-9 flex items-center justify-center rounded-lg overflow-hidden text-white"
+                style={{ backgroundColor: item.color }}
+              >
+                <Icon icon={item.icon} width="20" height="20" />
+              </Tooltip>
+            ))}
+          </div>
           <h3 className="text-[22px] font-medium">{project.description}</h3>
         </div>
       </div>

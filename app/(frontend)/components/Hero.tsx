@@ -71,6 +71,7 @@ async function Hero() {
             alt={user.name}
             width={750}
             height={500}
+            priority
           />
         )}
       </Card>

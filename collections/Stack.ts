@@ -3,6 +3,9 @@ import { CollectionConfig } from "payload";
 
 export const Stack: CollectionConfig = {
   slug: "stacks",
+  admin: {
+    useAsTitle: "name",
+  },
   fields: [
     {
       name: "name",
@@ -36,7 +39,11 @@ export const Stack: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }, { path: "/stack" }]);
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/stack" },
+          { path: "/portfolio/[slug]", type: "page" },
+        ]);
       },
     ],
   },

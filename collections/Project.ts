@@ -40,6 +40,12 @@ export const Project: CollectionConfig = {
       relationTo: "projectCategories",
       required: true,
     },
+    {
+      name: "stackIds",
+      type: "relationship",
+      relationTo: "stacks",
+      hasMany: true,
+    },
   ],
   hooks: {
     afterChange: [

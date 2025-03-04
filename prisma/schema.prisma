@@ -8,13 +8,15 @@ datasource db {
 }
 
 model Stack {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   icon        String
   color       String
   description String
   url         String?
-  order       Int?    @default(0)
+  order       Int?      @default(0)
+  projectIDs  String[]  @db.ObjectId
+  projects    Project[] @relation(fields: [projectIDs], references: [id])
 
   @@map("stacks")
 }
@@ -121,6 +123,8 @@ model Project {
   projectCategory   ProjectCategory @relation(fields: [projectCategoryId], references: [id])
   mediaId           String          @db.ObjectId
   media             Media           @relation(fields: [mediaId], references: [id])
+  stackIds          String[]        @db.ObjectId
+  stacks            Stack[]         @relation(fields: [stackIds], references: [id])
 
   @@index([projectCategoryId])
   @@map("projects")
