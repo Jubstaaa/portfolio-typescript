@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import Badge from "./Badge";
 
 interface TooltipProps {
@@ -10,6 +11,8 @@ interface TooltipProps {
   content: string;
   className?: string;
   style?: React.CSSProperties | undefined;
+  href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top" | "none";
 }
 
 export default function Tooltip({
@@ -17,6 +20,8 @@ export default function Tooltip({
   content,
   className,
   style,
+  href,
+  target,
 }: TooltipProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -39,8 +44,12 @@ export default function Tooltip({
     });
   };
 
+  const ContentWrapper = href ? Link : "div";
+
   return (
-    <div
+    <ContentWrapper
+      href={href || ""}
+      target={target || ""}
       className={className}
       style={style}
       onMouseEnter={() => setTooltipVisible(true)}
@@ -72,6 +81,6 @@ export default function Tooltip({
           </AnimatePresence>,
           document.body
         )}
-    </div>
+    </ContentWrapper>
   );
 }

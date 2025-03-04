@@ -24,6 +24,14 @@ export const Project: CollectionConfig = {
       unique: true,
     },
     {
+      name: "sourceUrl",
+      type: "text",
+    },
+    {
+      name: "previewUrl",
+      type: "text",
+    },
+    {
       name: "mediaId",
       type: "upload",
       relationTo: "media",
@@ -31,7 +39,7 @@ export const Project: CollectionConfig = {
     },
     {
       name: "content",
-      type: "textarea",
+      type: "richText",
     },
 
     {

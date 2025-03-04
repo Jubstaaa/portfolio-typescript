@@ -117,7 +117,8 @@ model Project {
   name              String
   description       String?
   slug              String          @unique
-  content           String?
+  content           Json?
+  previewUrl        String?
   order             Int?            @default(0)
   projectCategoryId String          @map("projectCategoryId") @db.ObjectId
   projectCategory   ProjectCategory @relation(fields: [projectCategoryId], references: [id])

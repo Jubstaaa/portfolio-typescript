@@ -71,6 +71,27 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
             {project.name}
           </h1>
           <div className="flex gap-3">
+            {project.sourceUrl && (
+              <Tooltip
+                target="_blank"
+                href={project.sourceUrl}
+                content={"Source Code"}
+                className="w-9 h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
+              >
+                <Icon icon="mdi:link-variant" width="20" height="20" />
+              </Tooltip>
+            )}
+            {project.previewUrl && (
+              <Tooltip
+                target="_blank"
+                href={project.previewUrl}
+                content="Preview"
+                className="w-9 h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
+              >
+                <Icon icon="mdi:play" width="20" height="20" />
+              </Tooltip>
+            )}
+
             {project.stacks.map((item) => (
               <Tooltip
                 key={item.id}
