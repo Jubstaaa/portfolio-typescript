@@ -118,6 +118,7 @@ model Project {
   description       String?
   slug              String          @unique
   content           Json?
+  sourceUrl         String?
   previewUrl        String?
   order             Int?            @default(0)
   projectCategoryId String          @map("projectCategoryId") @db.ObjectId

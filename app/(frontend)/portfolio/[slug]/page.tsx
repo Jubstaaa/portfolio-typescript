@@ -2,12 +2,13 @@ import Badge from "@/app/(frontend)/components/ui/Badge";
 import React from "react";
 import Card from "@/app/(frontend)/components/ui/Card";
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { ProjectService } from "@/lib/services";
 import Tooltip from "../../components/ui/Tooltip";
 import { Icon } from "@iconify/react";
+import RichText from "../../components/ui/RichText";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 export async function generateMetadata({
   params,
@@ -119,7 +120,9 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         />
         {project.content && (
           <div className="max-w-full w-full prose prose-slate">
-            <MDXRemote source={project.content} />
+            <RichText
+              data={project.content as unknown as SerializedEditorState}
+            />
           </div>
         )}
       </Card>
