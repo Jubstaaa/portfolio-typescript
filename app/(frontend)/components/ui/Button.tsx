@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;

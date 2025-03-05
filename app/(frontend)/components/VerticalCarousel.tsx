@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion, PanInfo } from "framer-motion";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type Direction = "Up" | "Down";
 

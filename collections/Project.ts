@@ -61,7 +61,7 @@ export const Project: CollectionConfig = {
         await revalidatePaths([
           { path: "/" },
           { path: "/portfolio" },
-          { path: `/portfolio/${doc.slug}` },
+          { path: doc.slug },
         ]);
       },
     ],

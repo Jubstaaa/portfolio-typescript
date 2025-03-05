@@ -5,25 +5,23 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "./ui/Button";
 import BreadCrumb from "./ui/BreadCrumb";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 import { usePathname } from "next/navigation";
+import CommandMenu from "./ui/CommandMenu";
+
+export const menus = [
+  { name: "Home", href: "/", icon: "HomeIcon" },
+  { name: "Me", href: "/bio", icon: "UserCircleIcon" },
+  { name: "Portfolio", href: "/portfolio", icon: "RectangleStackIcon" },
+  { name: "Stack", href: "/stack", icon: "Square3Stack3DIcon" },
+  { name: "Blog", href: "/blog", icon: "Bars3CenterLeftIcon" },
+];
 
 function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showBreadCrumb, setShowBreadCrumb] = useState<boolean>(false);
   const [pathSegments, setPathSegments] = useState<string[]>([]);
-  const [menus] = useState<
-    {
-      name: string;
-      href: string;
-    }[]
-  >([
-    { name: "Home", href: "/" },
-    { name: "Me", href: "/bio" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Stack", href: "/stack" },
-    { name: "Blog", href: "/blog" },
-  ]);
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -42,7 +40,7 @@ function Header() {
     >
       <div
         className={cn(
-          "flex flex-row flex-nowrap items-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px] z-20 transition-all",
+          "flex flex-row flex-nowrap items-center justify-between min-h-fit overflow-visible p-4 relative border border-divider bg-white rounded-xlarge backdrop-blur-[10px] z-20 transition-all gap-2",
           { "rounded-b-none": isOpen }
         )}
       >
@@ -72,6 +70,7 @@ function Header() {
         >
           Hire Me
         </Button>
+        <CommandMenu />
         <Icon
           onClick={() => setIsOpen((state) => !state)}
           icon="mdi:menu"

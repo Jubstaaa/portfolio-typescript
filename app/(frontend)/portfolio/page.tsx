@@ -21,7 +21,7 @@ async function page() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {projects.map((item) => (
           <Card
-            href={`/portfolio/${item.slug}`}
+            href={item.slug}
             key={item.id}
             classNames={{ body: "p-6 h-[400px] gradient-radial" }}
           >
@@ -29,10 +29,7 @@ async function page() {
               <h3 className="text-white text-lg font-semibold">{item.name}</h3>
               <div className="w-full flex justify-between items-center">
                 {item.slug && (
-                  <Button
-                    href={`/portfolio/${item.slug}`}
-                    icon="f7:chevron-right"
-                  >
+                  <Button href={item.slug} icon="f7:chevron-right">
                     Case
                   </Button>
                 )}

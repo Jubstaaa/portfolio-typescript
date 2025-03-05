@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "./Button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 import { motion, AnimatePresence } from "framer-motion";
 import Input, { InputProps } from "./Input";
 import { useActionState } from "@/hooks/use-action-state";

@@ -48,7 +48,7 @@ export const Blog: CollectionConfig = {
         await revalidatePaths([
           { path: "/" },
           { path: "/blog" },
-          { path: `/blog/${doc.slug}` },
+          { path: doc.slug },
         ]);
       },
     ],

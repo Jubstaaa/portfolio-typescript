@@ -23,11 +23,7 @@ async function page() {
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {blogs.map((item) => (
-          <Card
-            href={`/blog/${item.slug}`}
-            key={item.id}
-            classNames={{ body: "p-0" }}
-          >
+          <Card href={item.slug} key={item.id} classNames={{ body: "p-0" }}>
             <Image
               className="w-full min-h-60 max-h-60 object-cover rounded-lg"
               src={item.media.url}
@@ -45,7 +41,7 @@ async function page() {
 
               <div className="w-full flex justify-between items-center">
                 {item.slug && (
-                  <Button href={`/blog/${item.slug}`} icon="f7:chevron-right">
+                  <Button href={item.slug} icon="f7:chevron-right">
                     Discover More
                   </Button>
                 )}

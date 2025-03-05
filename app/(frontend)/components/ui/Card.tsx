@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 import React from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 import Link from "next/link";

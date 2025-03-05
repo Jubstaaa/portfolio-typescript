@@ -18,6 +18,22 @@ export const prisma = new PrismaClient().$extends({
         },
       },
     },
+    blog: {
+      slug: {
+        needs: { slug: true },
+        compute(blog) {
+          return `/blog/${blog.slug}`;
+        },
+      },
+    },
+    project: {
+      slug: {
+        needs: { slug: true },
+        compute(project) {
+          return `/portfolio/${project.slug}`;
+        },
+      },
+    },
   },
   query: {
     experience: {
@@ -49,6 +65,14 @@ export const prisma = new PrismaClient().$extends({
         return query({
           ...args,
           orderBy: args.orderBy ?? { order: "asc" },
+        });
+      },
+    },
+    blog: {
+      async findMany({ args, query }) {
+        return query({
+          ...args,
+          orderBy: args.orderBy ?? { date: "asc" },
         });
       },
     },

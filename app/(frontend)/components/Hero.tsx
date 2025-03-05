@@ -22,7 +22,7 @@ async function Hero() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-auto lg:h-[450px]">
       <Card
         classNames={{
-          body: "lg:col-span-10 h-[600px] lg:h-[450px] hero-shadow",
+          body: "lg:col-span-10 h-[600px] lg:h-[450px] lg:hero-shadow",
         }}
       >
         <div className="w-full flex justify-between items-start">

@@ -125,7 +125,7 @@ async function page() {
           <div className="flex gap-2 items-stretch overflow-x-auto overflow-y-hidden w-full h-full">
             {blogs.map((item) => (
               <Card
-                href={`/blog/${item.slug}`}
+                href={item.slug}
                 key={item.id}
                 classNames={{
                   body: "w-[250px] !h-[300px] p-4 lg:p-6 justify-end gradient-radial",
