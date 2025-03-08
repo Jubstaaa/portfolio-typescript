@@ -28,8 +28,8 @@ async function page() {
               className="w-full min-h-60 max-h-60 object-cover rounded-lg"
               src={item.media.url}
               alt={item.name}
-              width={400}
-              height={400}
+              width={800}
+              height={800}
             />
             <div className="w-full h-full flex flex-col justify-between p-6 min-h-52">
               <div className="flex flex-col">

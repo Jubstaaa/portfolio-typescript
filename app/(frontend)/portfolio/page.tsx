@@ -43,8 +43,8 @@ async function page() {
               className="absolute inset-0 w-full h-full object-cover"
               src={item.media.url}
               alt={item.name}
-              width={400}
-              height={400}
+              width={800}
+              height={800}
             />
           </Card>
         ))}
