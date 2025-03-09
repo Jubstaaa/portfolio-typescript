@@ -62,24 +62,27 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <div className="flex flex-col gap-0 lg:gap-12">
-      <div className="flex flex-col items-start justify-start gap-6 lg:p-12">
+      <div className="flex flex-col items-start justify-start gap-6 p-3 lg:p-12">
         <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
           {project.projectCategory.name}
         </Badge>
 
         <div className="flex flex-col justify-start items-start gap-4">
-          <h1 className="text-primary text-6xl font-semibold leading-20 text-center tracking-tighter">
+          <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-start lg:text-center tracking-tighter">
             {project.name}
           </h1>
-          <div className="flex gap-3">
+          <div className="flex gap-1.5 lg:gap-3 flex-wrap">
             {project.sourceUrl && (
               <Tooltip
                 target="_blank"
                 href={project.sourceUrl}
                 content={"Source Code"}
-                className="w-9 h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
+                className="w-5 lg:w-9 h-5 lg:h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
               >
-                <Icon icon="mdi:link-variant" width="20" height="20" />
+                <Icon
+                  icon="mdi:link-variant"
+                  className="w-3 lg:w-5 h-3 lg:h-5"
+                />
               </Tooltip>
             )}
             {project.previewUrl && (
@@ -108,7 +111,9 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         </div>
       </div>
       <Card
-        classNames={{ body: "max-w-5xl w-full mx-auto px-6 gap-6" }}
+        classNames={{
+          body: "max-w-5xl w-full mx-auto px-3 lg:px-6 gap-0 lg:gap-6",
+        }}
         whileHover={false}
       >
         <Image

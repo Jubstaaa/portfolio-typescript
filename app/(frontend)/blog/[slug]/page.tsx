@@ -60,8 +60,8 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <div className="flex flex-col gap-0 lg:gap-12">
-      <div className="flex flex-col items-start justify-start gap-6 lg:p-12">
-        <div className="flex items-center gap-6 w-full">
+      <div className="flex flex-col items-start justify-start gap-6 p-3 lg:p-12">
+        <div className="flex items-center justify-between lg:justify-start gap-6 w-full">
           <Badge size="lg" color="blue" classNames={{ body: "normal-case" }}>
             {blog.blogCategory.name}
           </Badge>
@@ -77,7 +77,9 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         </div>
       </div>
       <Card
-        classNames={{ body: "max-w-5xl w-full mx-auto px-6 gap-6" }}
+        classNames={{
+          body: "max-w-5xl w-full mx-auto px-3 lg:px-6 gap-0 lg:gap-6",
+        }}
         whileHover={false}
       >
         <Image
