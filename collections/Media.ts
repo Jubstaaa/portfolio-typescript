@@ -13,6 +13,10 @@ export const Media: CollectionConfig = {
         readOnly: true,
       },
     },
+    {
+      name: "alt",
+      type: "text",
+    },
   ],
   hooks: {
     beforeOperation: [

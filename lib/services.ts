@@ -9,3 +9,4 @@ export const StackService = prisma.stack;
 export const ProjectService = prisma.project;
 export const ImageService = prisma.image;
 export const BlogService = prisma.blog;
+export const MediaService = prisma.media;

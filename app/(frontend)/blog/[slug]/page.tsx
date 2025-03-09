@@ -81,7 +81,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         whileHover={false}
       >
         <Image
-          className="w-full h-auto object-cover rounded-large aspect-square lg:aspect-video"
+          className="w-full h-auto object-contain rounded-large"
           src={blog.media.url}
           alt={blog.name}
           width={1000}
