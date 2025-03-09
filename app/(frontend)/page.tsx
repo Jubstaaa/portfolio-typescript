@@ -109,7 +109,12 @@ async function page() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <Card classNames={{ body: "lg:col-span-3 p-0" }}>
-          <VerticalSlider images={images.map((item) => item.media.url)} />
+          <VerticalSlider
+            images={images.map((item) => ({
+              url: item.media.url,
+              alt: item.media.alt || "Ilker Balcilar Site Image",
+            }))}
+          />
         </Card>
         <Card classNames={{ body: "lg:col-span-9 gap-6" }}>
           <div className="w-full flex justify-between items-center lg:items-start">
@@ -140,7 +145,7 @@ async function page() {
                 <Image
                   className="absolute inset-0 w-full h-full object-cover"
                   src={item.media.url}
-                  alt={item.name}
+                  alt={item.media.alt || "Ilker Balcilar Site Image"}
                   width={400}
                   height={400}
                 />

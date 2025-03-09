@@ -27,7 +27,7 @@ async function page() {
             <Image
               className="w-full min-h-60 max-h-60 object-cover rounded-lg"
               src={item.media.url}
-              alt={item.name}
+              alt={item.media.alt || "Ilker Balcilar Site Image"}
               width={800}
               height={800}
             />

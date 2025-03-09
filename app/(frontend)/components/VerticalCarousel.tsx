@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 type Direction = "Up" | "Down";
 
 interface VerticalCarouselProps {
-  images: string[];
+  images: { url: string; alt: string }[];
 }
 
 const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
@@ -106,11 +106,11 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
           <div key={index} className="relative h-full w-full">
             <Image
               className="pointer-events-none object-cover"
-              src={image}
+              src={image.url}
               fill
               sizes="100vw"
               priority={index === 0}
-              alt={`Slide ${index + 1}`}
+              alt={image.alt}
             />
           </div>
         ))}

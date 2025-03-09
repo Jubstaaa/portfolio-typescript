@@ -42,7 +42,7 @@ async function page() {
             <Image
               className="absolute inset-0 w-full h-full object-cover"
               src={item.media.url}
-              alt={item.name}
+              alt={item.media.alt || "Ilker Balcilar Site Image"}
               width={800}
               height={800}
             />

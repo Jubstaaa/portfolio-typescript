@@ -68,7 +68,7 @@ async function Hero() {
           <Image
             className="absolute bottom-12 lg:bottom-0 right-0 w-full lg:w-auto h-auto lg:h-full drop-shadow-[-47px_13px_38px_rgba(125,135,145,0.25)"
             src={user.media.url}
-            alt={user.name}
+            alt={user.media.alt || "Ilker Balcilar Site Image"}
             width={750}
             height={500}
             priority

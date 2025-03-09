@@ -53,7 +53,7 @@ async function page() {
                 <Image
                   className="w-24 h-24 rounded-full object-cover border border-divider bg-white"
                   src={user.media.url}
-                  alt={user.name}
+                  alt={user.media.alt || "Ilker Balcilar Site Image"}
                   width={200}
                   height={200}
                 />
@@ -116,7 +116,7 @@ async function page() {
                 <Image
                   className="w-9 lg:w-16 h-9 lg:h-16 rounded-full object-cover"
                   src={item.logo.url}
-                  alt={item.name}
+                  alt={item.logo.alt || "Ilker Balcilar Site Image"}
                   width={200}
                   height={200}
                 />
@@ -166,7 +166,7 @@ async function page() {
               <Image
                 className="w-9 lg:w-16 h-9 lg:h-16 rounded-full object-cover"
                 src={item.logo.url}
-                alt={item.name}
+                alt={item.logo.alt || "Ilker Balcilar Site Image"}
                 width={200}
                 height={200}
               />

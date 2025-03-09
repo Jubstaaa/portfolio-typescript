@@ -114,7 +114,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         <Image
           className="w-full h-auto object-contain rounded-large"
           src={project.media.url}
-          alt={project.name}
+          alt={project.media.alt || "Ilker Balcilar Site Image"}
           width={1000}
           height={1000}
         />
