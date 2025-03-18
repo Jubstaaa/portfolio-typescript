@@ -43,15 +43,16 @@ model Image {
 }
 
 model Media {
-  id         String       @id @default(auto()) @map("_id") @db.ObjectId
-  filename   String
-  alt        String?
-  Project    Project[]
-  Image      Image[]
-  User       User[]
-  Experience Experience[]
-  Education  Education[]
-  Blog       Blog[]
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  filename     String
+  alt          String?
+  ProjectMedia Project[]    @relation("ProjectMedia")
+  ProjectLogo  Project[]    @relation("ProjectLogo")
+  Image        Image[]
+  User         User[]
+  Experience   Experience[]
+  Education    Education[]
+  Blog         Blog[]
 
   @@map("media")
 }
@@ -125,9 +126,11 @@ model Project {
   projectCategoryId String          @map("projectCategoryId") @db.ObjectId
   projectCategory   ProjectCategory @relation(fields: [projectCategoryId], references: [id])
   mediaId           String          @db.ObjectId
-  media             Media           @relation(fields: [mediaId], references: [id])
+  media             Media           @relation("ProjectMedia", fields: [mediaId], references: [id])
   stackIds          String[]        @db.ObjectId
   stacks            Stack[]         @relation(fields: [stackIds], references: [id])
+  logoId            String?         @db.ObjectId
+  logo              Media?          @relation("ProjectLogo", fields: [logoId], references: [id])
 
   @@index([projectCategoryId])
   @@map("projects")

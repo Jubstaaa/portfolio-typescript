@@ -17,6 +17,12 @@ export const prisma = new PrismaClient().$extends({
           return `${process.env.VERCEL_BLOB_URL}/${media.filename}`;
         },
       },
+      alt: {
+        needs: { alt: true },
+        compute(media) {
+          return media.alt || "İlker Balcilar Portfolio Site Image";
+        },
+      },
     },
     blog: {
       slug: {

@@ -105,11 +105,10 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
         {images.map((image, index) => (
           <div key={index} className="relative h-full w-full">
             <Image
-              className="pointer-events-none object-cover"
+              className="pointer-events-none object-cover w-full h-full"
               src={image.url}
-              fill
-              sizes="100vw"
-              priority={index === 0}
+              width={800}
+              height={800}
               alt={image.alt}
             />
           </div>

@@ -26,7 +26,7 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
           src={media.url}
           width={1000}
           height={1000}
-          alt={media.alt || "İlker Balcilar Portfolio Site Image"}
+          alt={media.alt}
         />
       );
     }

@@ -48,8 +48,8 @@ export default function Tooltip({
 
   return (
     <ContentWrapper
-      href={href || ""}
-      target={target || ""}
+      href={href || undefined}
+      target={target || "_self"}
       className={className}
       style={style}
       onMouseEnter={() => setTooltipVisible(true)}

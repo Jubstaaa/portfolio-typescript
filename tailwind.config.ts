@@ -30,7 +30,6 @@ export default {
       },
       fontFamily: {
         primary: ["var(--font-manrope)"],
-        secondary: ["var(--font-inter)"],
       },
       dropShadow: {
         bio: "-47px 13px 38px rgba(125,135,145,0.25)",

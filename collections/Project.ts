@@ -32,6 +32,11 @@ export const Project: CollectionConfig = {
       type: "text",
     },
     {
+      name: "logoId",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "mediaId",
       type: "upload",
       relationTo: "media",

@@ -4,6 +4,7 @@ import { z } from "zod";
 import ContactEmail from "@/react-email-starter/emails/ContactEmail";
 import { revalidatePath } from "next/cache";
 
+
 export interface SendMailResponse {
   ok?: boolean;
   errors?: {

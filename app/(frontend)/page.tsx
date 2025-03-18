@@ -7,7 +7,7 @@ import VerticalSlider from "./components/VerticalCarousel";
 import StackCard from "./components/StackCard";
 import SocialCards from "./components/SocialCards";
 import Hero from "./components/Hero";
-import { BlogService, ImageService } from "@/lib/services";
+import { BlogService, ImageService, ProjectService } from "@/lib/services";
 import dayjs from "dayjs";
 
 async function page() {
@@ -28,34 +28,70 @@ async function page() {
     },
   });
 
+  const projects = await ProjectService.findMany({
+    take: 2,
+    select: {
+      id: true,
+      media: true,
+      logo: true,
+      name: true,
+      slug: true,
+      description: true,
+      stacks: true,
+    },
+  });
+
   return (
     <div className="flex flex-col gap-3 lg:gap-9">
       <Hero />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {Array.from({ length: 2 }, (_, i) => (
-          <Card key={i} href={"#"} classNames={{ body: "h-[400px] p-0 group" }}>
+        {projects.map((item) => (
+          <Card
+            key={item.id}
+            href={item.slug}
+            classNames={{ body: "h-[400px] p-0 group" }}
+          >
             <div className="flex flex-col p-4 pt-6 gap-4 transition-all duration-500 group-hover:pl-6">
-              <div className="flex items-center gap-4">
-                <Icon icon="mdi:xml" width="32" height="32" />
+              <div className="flex items-center gap-2.5">
+                {item.logo ? (
+                  <Image
+                    src={item.logo.url}
+                    alt={item.logo.alt}
+                    width={72}
+                    height={72}
+                    className="w-9 h-9 rounded-full"
+                  />
+                ) : (
+                  <Icon
+                    icon="mdi:xml"
+                    width="36"
+                    height="36"
+                    className="flex-shrink-0"
+                  />
+                )}
+
                 <div className="flex flex-col gap-1 text-lg font-semibold leading-none">
-                  Istanbul
-                  <span className="text-[#647586] text-sm font-medium transition-all duration-500 group-hover:text-primary">
-                    All-in-one SaaS Digital Product Framer Template
+                  {item.name}
+                  <span className="text-[#647586] text-sm font-medium transition-all duration-500 group-hover:text-primary truncate w-fit">
+                    {item.description || "Project Description"}
                   </span>
                 </div>
               </div>
-              <div className="flex gap-1.5 items-start">
-                <Badge animate="spin" color="blue" icon="mdi:react">
-                  JavaScript Expert
-                </Badge>
-                <Badge>$100-150/HR</Badge>
+              <div className="flex gap-2 items-start">
+                {item.stacks.map((stack) => (
+                  <Badge
+                    key={stack.id}
+                    icon={stack.icon}
+                    color={stack.color}
+                  ></Badge>
+                ))}
               </div>
             </div>
             <div className="w-full h-full overflow-hidden rounded-large relative">
               <Image
                 className="w-full h-full object-cover transition-all duration-500 group-hover:scale-125"
-                src="https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/portfolio-a6iLVbDr8l9eDqkylt32gII3dGeGRh.jpeg"
-                alt="İlker Balcılar"
+                src={item.media.url}
+                alt={item.media.alt}
                 width={750}
                 height={500}
               />
@@ -112,7 +148,7 @@ async function page() {
           <VerticalSlider
             images={images.map((item) => ({
               url: item.media.url,
-              alt: item.media.alt || "İlker Balcilar Portfolio Site Image",
+              alt: item.media.alt,
             }))}
           />
         </Card>
@@ -145,7 +181,7 @@ async function page() {
                 <Image
                   className="absolute inset-0 w-full h-full object-cover"
                   src={item.media.url}
-                  alt={item.media.alt || "İlker Balcilar Portfolio Site Image"}
+                  alt={item.media.alt}
                   width={400}
                   height={400}
                 />
