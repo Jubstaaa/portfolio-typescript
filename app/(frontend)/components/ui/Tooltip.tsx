@@ -15,6 +15,37 @@ interface TooltipProps {
   target?: "_blank" | "_self" | "_parent" | "_top" | "none";
 }
 
+const TooltipContent = ({
+  visible,
+  mousePos,
+  content,
+}: {
+  visible: boolean;
+  mousePos: { x: number; y: number };
+  content: string;
+}) => (
+  <AnimatePresence>
+    {visible && mousePos.x && mousePos.y && (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: -5 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: -5 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{
+          position: "fixed",
+          left: mousePos.x + 10,
+          top: mousePos.y + 10,
+          pointerEvents: "none",
+          zIndex: 9999,
+          transition: "all 0.2s ease-out",
+        }}
+      >
+        <Badge>{content}</Badge>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
 export default function Tooltip({
   children,
   content,
@@ -44,43 +75,38 @@ export default function Tooltip({
     });
   };
 
-  const ContentWrapper = href ? Link : "div";
+  const commonProps = {
+    className,
+    style,
+    onMouseEnter: () => setTooltipVisible(true),
+    onMouseLeave: () => setTooltipVisible(false),
+    onMouseMove: handleMouseMove,
+  };
+
+  const tooltipPortal =
+    mounted &&
+    createPortal(
+      <TooltipContent
+        visible={tooltipVisible}
+        mousePos={mousePos}
+        content={content}
+      />,
+      document.body
+    );
+
+  if (!href) {
+    return (
+      <div {...commonProps}>
+        {children}
+        {tooltipPortal}
+      </div>
+    );
+  }
 
   return (
-    <ContentWrapper
-      href={href || undefined}
-      target={target || "_self"}
-      className={className}
-      style={style}
-      onMouseEnter={() => setTooltipVisible(true)}
-      onMouseLeave={() => setTooltipVisible(false)}
-      onMouseMove={handleMouseMove}
-    >
+    <Link {...commonProps} href={href} target={target || "_self"}>
       {children}
-      {mounted &&
-        createPortal(
-          <AnimatePresence>
-            {tooltipVisible && mousePos.x && mousePos.y && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: -5 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -5 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                style={{
-                  position: "fixed",
-                  left: mousePos.x + 10,
-                  top: mousePos.y + 10,
-                  pointerEvents: "none",
-                  zIndex: 9999,
-                  transition: "all 0.2s ease-out",
-                }}
-              >
-                <Badge>{content}</Badge>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body
-        )}
-    </ContentWrapper>
+      {tooltipPortal}
+    </Link>
   );
 }
