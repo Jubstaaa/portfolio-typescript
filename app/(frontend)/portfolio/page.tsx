@@ -3,6 +3,13 @@ import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import Image from "next/image";
 import { ProjectService } from "@/lib/services";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Portfolio | İlker Balcılar",
+  description:
+    "Explore my portfolio showcasing a collection of my best web development and software engineering projects. See how I apply my skills and technology stack to deliver innovative solutions.",
+};
 
 async function page() {
   const projects = await ProjectService.findMany({

@@ -13,6 +13,13 @@ import {
   SkillService,
   SocialService,
 } from "@/lib/services";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Me | İlker Balcılar",
+  description:
+    "Learn more about İlker Balcılar, a dedicated software developer with a passion for creating impactful digital solutions. Discover my journey, skills, and the technologies I use to solve real-world problems.",
+};
 
 async function page() {
   const user = await UserService.findFirst({

@@ -95,11 +95,7 @@ async function page() {
                 width={750}
                 height={500}
               />
-              <div className="w-full absolute bottom-0 left-0 flex justify-between items-end p-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                <div className="flex gap-1.5">
-                  <Badge>15+ Pages</Badge>
-                  <Badge>19+ Components</Badge>
-                </div>
+              <div className="w-full absolute bottom-0 left-0 flex justify-end items-end p-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
                 <Button icon="f7:chevron-right" />
               </div>
             </div>

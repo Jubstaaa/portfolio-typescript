@@ -22,7 +22,7 @@ async function Hero() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-auto lg:h-[450px]">
       <Card
         classNames={{
-          body: "lg:col-span-10 h-[600px] lg:h-[450px] lg:hero-shadow",
+          body: "lg:col-span-10 h-[600px] lg:h-[450px] hero-shadow lg:before:hidden",
         }}
       >
         <div className="w-full flex justify-between items-start">
@@ -46,18 +46,17 @@ async function Hero() {
             <Badge animate="spin" color="blue" icon="mdi:react">
               JavaScript Expert
             </Badge>
-            <Badge>$100-150/HR</Badge>
           </div>
           <div>
             <p className="text-2xl font-semibold">
               {" "}
-              Sizzle, Spice, and Design Great!
+              From Idea to Launch, Seamlessly.
             </p>
             <p className="text-[#647586] text-sm font-medium tracking-normal">
-              Adding flavor to your product with designs{" "}
+            Full-stack solutions that bring your vision 
             </p>
             <p className="text-[#647586] text-sm font-medium tracking-normal">
-              that sizzle and entice.
+            to life—clean code, fast delivery.
             </p>
           </div>
           <Button color="dark" href="/bio#contact" icon="f7:chevron-right">

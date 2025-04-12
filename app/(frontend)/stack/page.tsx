@@ -3,6 +3,13 @@ import Card from "../components/ui/Card";
 import { Icon } from "@iconify/react";
 import Button from "../components/ui/Button";
 import { StackService } from "@/lib/services";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tech Stack | İlker Balcılar",
+  description:
+    "Explore the technologies and tools I use to build innovative and efficient solutions. From web development frameworks to backend technologies, discover the stack that powers my projects.",
+};
 
 async function page() {
   const stacks = await StackService.findMany();
@@ -12,9 +19,6 @@ async function page() {
       <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-center tracking-tighter">
         Beneficial and potent apps and extensions that I utilize incessantly.
       </h1>
-      <p className="uppercase text-[#647586] font-semibold text-center tracking-widest">
-        Design and Research
-      </p>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-5">
         {stacks.map((item) => (
           <Card

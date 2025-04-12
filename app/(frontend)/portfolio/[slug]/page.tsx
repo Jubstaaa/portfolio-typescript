@@ -21,7 +21,7 @@ export async function generateMetadata({
       slug: slug,
     },
     include: {
-      projectCategory: true,
+      media: true,
     },
   });
 
@@ -30,8 +30,31 @@ export async function generateMetadata({
   }
 
   return {
-    title: project.name,
+    title: `${project.name} | Portfolio | İlker Balcılar`,
     description: project.description,
+    openGraph: {
+      title: project.name,
+      description: project.description ?? undefined,
+      type: "article",
+      authors: ["İlker Balcılar"],
+      url: `https://ilkerbalcilar.com${project.slug}`,
+      siteName: "İlker Balcılar",
+      images: [
+        {
+          url: project.media.url,
+          width: 1024,
+          height: 1024,
+          alt: project.media.alt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary",
+      title: project.name,
+      description: project.description ?? undefined,
+      creator: "@jubstaa_dev",
+      images: [project.media.url],
+    },
   };
 }
 

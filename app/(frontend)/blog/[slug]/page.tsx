@@ -20,7 +20,7 @@ export async function generateMetadata({
       slug: slug,
     },
     include: {
-      blogCategory: true,
+      media: true,
     },
   });
 
@@ -29,8 +29,32 @@ export async function generateMetadata({
   }
 
   return {
-    title: blog.name,
+    title: `${blog.name} | Blog | İlker Balcılar`,
     description: blog.description,
+    openGraph: {
+      title: blog.name,
+      description: blog.description ?? undefined,
+      type: "article",
+      publishedTime: blog.date.toISOString(),
+      authors: ["İlker Balcılar"],
+      url: `https://ilkerbalcilar.com${blog.slug}`,
+      siteName: "İlker Balcılar",
+      images: [
+        {
+          url: blog.media.url,
+          width: 1024,
+          height: 1024,
+          alt: blog.media.alt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary",
+      title: blog.name,
+      description: blog.description ?? undefined,
+      creator: "@jubstaa_dev",
+      images: [blog.media.url],
+    },
   };
 }
 
