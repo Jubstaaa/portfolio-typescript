@@ -139,6 +139,13 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         }}
         whileHover={false}
       >
+        <Image
+          className="w-full h-auto object-contain rounded-large"
+          src={project.media.url}
+          alt={project.media.alt}
+          width={1000}
+          height={1000}
+        />
         {project.content && (
           <div className="max-w-full w-full prose prose-slate">
             <RichText
