@@ -78,7 +78,7 @@ export const prisma = new PrismaClient().$extends({
       async findMany({ args, query }) {
         return query({
           ...args,
-          orderBy: args.orderBy ?? { date: "asc" },
+          orderBy: args.orderBy ?? { date: "desc" },
         });
       },
     },
