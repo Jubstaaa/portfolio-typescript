@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import { cloneElement, useEffect, useState } from "react";
 import YetAnotherLightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -20,7 +20,7 @@ export default function Lightbox({ children }: LightboxProps) {
     } else if (typeof imgSrc === "object" && "src" in imgSrc) {
       setImageSrc(imgSrc.src);
     }
-  }, []);
+  }, [children.props.src]);
 
   const handleClick = () => {
     setOpen(true);
