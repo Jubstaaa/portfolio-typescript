@@ -28,7 +28,7 @@ async function Hero() {
         <div className="w-full flex justify-between items-start">
           <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
             {user.name}
-            <span className="text-[#647586] text-base font-medium tracking-normal">
+            <span className="text-secondary text-base font-medium tracking-normal">
               {user.location}
             </span>
           </div>
@@ -52,11 +52,11 @@ async function Hero() {
               {" "}
               From Idea to Launch, Seamlessly.
             </p>
-            <p className="text-[#647586] text-sm font-medium tracking-normal">
-            Full-stack solutions that bring your vision 
+            <p className="text-secondary text-sm font-medium tracking-normal">
+              Full-stack solutions that bring your vision
             </p>
-            <p className="text-[#647586] text-sm font-medium tracking-normal">
-            to life—clean code, fast delivery.
+            <p className="text-secondary text-sm font-medium tracking-normal">
+              to life—clean code, fast delivery.
             </p>
           </div>
           <Button color="dark" href="/bio#contact" icon="f7:chevron-right">

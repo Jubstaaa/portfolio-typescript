@@ -18,7 +18,7 @@ function NotFound() {
         <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-center tracking-tighter">
           404 UFO Encounter
         </h1>
-        <p className="w-2/3 text-[#647586] text-base font-medium tracking-normal">
+        <p className="w-2/3 text-secondary text-base font-medium tracking-normal">
           Oops! Looks like you&apos;ve been abducted by the digital realm.
           Don&apos;t worry, we&apos;ll beam you back to safety in no time. Stay
           calm and hold tight! 🛸👽

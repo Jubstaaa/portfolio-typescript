@@ -24,7 +24,7 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
       return (
         <Lightbox>
           <Image
-            className="w-full h-auto object-contain rounded-large"
+            className="w-auto lg:max-h-96 h-full object-contain rounded-large"
             src={media.url}
             width={1000}
             height={1000}

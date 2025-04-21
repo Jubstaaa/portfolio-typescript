@@ -25,7 +25,7 @@ async function SocialCards() {
             </div>
             <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
               {item.name}
-              <span className="text-[#647586] text-sm font-medium">
+              <span className="text-secondary text-sm font-medium">
                 {item.username}
               </span>
             </div>

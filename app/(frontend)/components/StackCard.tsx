@@ -12,7 +12,7 @@ async function StackCard() {
     <Card classNames={{ body: "gap-6" }}>
       <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
         Explore my stack
-        <span className="text-[#647586] text-base font-medium tracking-normal">
+        <span className="text-secondary text-base font-medium tracking-normal">
           Let&apos;s see my useful tools while cooking
         </span>
       </div>

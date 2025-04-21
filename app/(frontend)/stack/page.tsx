@@ -36,7 +36,7 @@ async function page() {
               <h3 className="text-primary text-lg font-semibold">
                 {item.name}
               </h3>
-              <p className="text-[#647586] font-secondary">
+              <p className="text-secondary font-secondary">
                 {item.description}
               </p>
             </div>

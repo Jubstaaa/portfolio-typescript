@@ -67,7 +67,7 @@ async function page() {
               )}
               <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
                 {user.name}
-                <span className="text-[#647586] text-base font-medium tracking-normal">
+                <span className="text-secondary text-base font-medium tracking-normal">
                   {user.location}
                 </span>
               </div>
@@ -79,7 +79,7 @@ async function page() {
           </div>
           <Card classNames={{ body: "p-6 gap-6" }}>
             <h3 className="text-[22px] font-medium text-primary">About</h3>
-            <p className="text-[#647586] text-base font-secondary tracking-normal leading-7">
+            <p className="text-secondary text-base font-secondary tracking-normal leading-7">
               {user.bio}
             </p>
           </Card>
@@ -135,7 +135,7 @@ async function page() {
                   </p>
                   <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-1.5">
                     <div className="flex flex-wrap items-center gap-1.5 lg:gap-2.5">
-                      <span className="text-[#647586] text-base font-secondary tracking-normal">
+                      <span className="text-secondary text-base font-secondary tracking-normal">
                         {item.location}
                       </span>
                       <div className="w-1.5 h-1.5 bg-[#64748b] rounded-full" />
@@ -151,7 +151,7 @@ async function page() {
                     </span>
                   </div>
                 </div>
-                <p className="text-[#647586] text-secondary] tracking-normal">
+                <p className="text-secondary text-secondary] tracking-normal">
                   {item.description}
                 </p>
               </div>
@@ -184,11 +184,11 @@ async function page() {
                   </p>
                   <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-1.5">
                     <div className="flex flex-wrap items-center gap-1.5 lg:gap-2.5">
-                      <span className="text-[#647586] text-base font-secondary tracking-normal">
+                      <span className="text-secondary text-base font-secondary tracking-normal">
                         {item.location}
                       </span>
                       <div className="w-1.5 h-1.5 bg-[#64748b] rounded-full" />
-                      <span className="text-base text-[#647586] tracking-normal font-secondary">
+                      <span className="text-base text-secondary tracking-normal font-secondary">
                         {item.name}
                       </span>
                     </div>
@@ -200,7 +200,7 @@ async function page() {
                     </span>
                   </div>
                 </div>
-                <p className="text-[#647586] text-secondary] tracking-normal">
+                <p className="text-secondary text-secondary] tracking-normal">
                   {item.description}
                 </p>
               </div>
@@ -224,7 +224,7 @@ async function page() {
                 </div>
                 <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
                   {mail.name}
-                  <span className="text-[#647586] text-sm font-medium">
+                  <span className="text-secondary text-sm font-medium">
                     {mail.username}
                   </span>
                 </div>
@@ -245,7 +245,7 @@ async function page() {
                 </div>
                 <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
                   {twitter.name}
-                  <span className="text-[#647586] text-sm font-medium">
+                  <span className="text-secondary text-sm font-medium">
                     {twitter.username}
                   </span>
                 </div>
@@ -272,7 +272,7 @@ async function page() {
               </div>
               <div className="flex flex-col gap-1.5 items-start text-lg font-semibold leading-none">
                 {item.name}
-                <span className="text-[#647586] text-sm font-medium">
+                <span className="text-secondary text-sm font-medium">
                   {item.username}
                 </span>
               </div>

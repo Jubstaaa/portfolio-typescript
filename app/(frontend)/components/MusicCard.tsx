@@ -132,7 +132,7 @@ export default function MusicCard() {
                   href={artists[0].external_urls.spotify}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#647586] line-clamp-1 !font-primary"
+                  className="text-xs text-secondary line-clamp-1 !font-primary"
                 >
                   {artistName}
                 </Link>

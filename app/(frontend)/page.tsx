@@ -72,7 +72,7 @@ async function page() {
 
                 <div className="flex flex-col gap-1 text-lg font-semibold leading-none w-4/5">
                   {item.name}
-                  <span className="text-[#647586] text-sm font-medium transition-all duration-500 group-hover:text-primary truncate w-full">
+                  <span className="text-secondary text-sm font-medium transition-all duration-500 group-hover:text-primary truncate w-full">
                     {item.description || "Project Description"}
                   </span>
                 </div>
@@ -152,7 +152,7 @@ async function page() {
           <div className="w-full flex justify-between items-center lg:items-start">
             <div className="flex flex-col gap-1.5 items-start text-2xl font-semibold leading-none">
               Let&apos;s review my blog posts
-              <span className="text-[#647586] text-base font-medium tracking-normal">
+              <span className="text-secondary text-base font-medium tracking-normal">
                 I&apos;m divulging my adventures on my weblog, let&apos;s
                 scrutinize it.
               </span>

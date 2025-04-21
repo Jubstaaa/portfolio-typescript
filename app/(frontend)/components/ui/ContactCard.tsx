@@ -53,7 +53,7 @@ export const ContactCard = () => {
     >
       <div className="flex flex-col gap-5 items-center text-3xl lg:text-5xl font-semibold leading-none text-center z-10">
         Contact with me to sizzle your project.
-        <span className="text-[#647586] text-base font-medium tracking-normal">
+        <span className="text-secondary text-base font-medium tracking-normal">
           Great designs, new generation ideas, user-centered projects.
           Let&apos;s work together now!
         </span>

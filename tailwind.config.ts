@@ -23,6 +23,7 @@ export default {
       colors: {
         divider: "#E2E8F0",
         primary: "#191a22",
+        secondary:"#647586"
       },
       borderRadius: {
         large: "1.25rem",
