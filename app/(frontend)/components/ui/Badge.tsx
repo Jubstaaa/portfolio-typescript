@@ -37,7 +37,7 @@ function Badge({
     return tinycolor({
       h: color.h,
       s: Math.min(color.s * 0.6, 0.7),
-      l: Math.max(color.l * 1.8, 0.85),
+      l: Math.min(color.l + 1.8, 0.85)
     }).toHexString();
   };
 
