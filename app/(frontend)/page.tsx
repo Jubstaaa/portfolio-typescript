@@ -51,8 +51,8 @@ async function page() {
             href={item.slug}
             classNames={{ body: "h-[400px] p-0 group" }}
           >
-            <div className="flex flex-col p-4 pt-6 gap-4 transition-all duration-500 group-hover:pl-6">
-              <div className="flex items-center gap-2.5">
+            <div className="flex flex-col p-4 pt-6 gap-4 transition-all duration-500 group-hover:pl-6 w-full">
+              <div className="flex items-center gap-2.5 w-full">
                 {item.logo ? (
                   <Image
                     src={item.logo.url}
@@ -70,9 +70,9 @@ async function page() {
                   />
                 )}
 
-                <div className="flex flex-col gap-1 text-lg font-semibold leading-none">
+                <div className="flex flex-col gap-1 text-lg font-semibold leading-none w-4/5">
                   {item.name}
-                  <span className="text-[#647586] text-sm font-medium transition-all duration-500 group-hover:text-primary truncate w-fit">
+                  <span className="text-[#647586] text-sm font-medium transition-all duration-500 group-hover:text-primary truncate w-full">
                     {item.description || "Project Description"}
                   </span>
                 </div>
