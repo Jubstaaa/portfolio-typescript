@@ -59,7 +59,7 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
                   />
                 </Dialog.Overlay>
                 <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-                  <Dialog.Content>
+                  <Dialog.Content className="w-full h-full lg:w-fit lg:h-4/5 flex items-center justify-center">
                     <VisuallyHidden>
                       <Dialog.Title>Image Preview</Dialog.Title>
                       <Dialog.Description>
@@ -69,7 +69,7 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
                     </VisuallyHidden>
                     <motion.div
                       layoutId={`image-preview-dialog-${id}`}
-                      className="relative"
+                      className="flex items-center justify-center relative w-fit h-fit lg:h-full mx-auto"
                     >
                       <MotionImage
                         layoutId={`image-preview-${id}`}
@@ -77,7 +77,7 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
                         alt={alt}
                         width={1000}
                         height={1000}
-                        className="rounded-large object-contain select-none"
+                        className="w-full h-full rounded-large object-contain select-none mx-auto"
                       />
                       <Dialog.Close asChild>
                         <button
