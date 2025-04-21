@@ -9,7 +9,7 @@ function BreadCrumb({ pathSegments }: { pathSegments: string[] }) {
       <div className="flex items-center gap-3 text-xs font-medium whitespace-nowrap overflow-auto">
         <Link href={"/"}>Home</Link>
         {pathSegments.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <Icon
               icon="mdi:chevron-right"
               className="w-6 h-6 text-[#cbd5e1] flex-shrink-0"
@@ -25,7 +25,7 @@ function BreadCrumb({ pathSegments }: { pathSegments: string[] }) {
             >
               {slugToTitle(item)}
             </Link>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

@@ -119,6 +119,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
           alt={blog.media.alt}
           width={1000}
           height={1000}
+          priority
         />
       </div>
     </div>

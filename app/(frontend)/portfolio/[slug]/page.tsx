@@ -145,6 +145,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
           alt={project.media.alt}
           width={1000}
           height={1000}
+          priority
         />
         {project.content && (
           <div className="max-w-full w-full prose prose-slate">
