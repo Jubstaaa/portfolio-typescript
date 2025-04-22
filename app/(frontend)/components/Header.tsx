@@ -8,8 +8,15 @@ import BreadCrumb from "./ui/BreadCrumb";
 import { cn } from "@/lib/cn";
 import { usePathname } from "next/navigation";
 import CommandMenu from "./ui/CommandMenu";
+import { IconName } from "@tmikeladze/react-cmdk";
 
-export const menus = [
+export interface MenuItem {
+  name: string;
+  href: string;
+  icon: IconName; 
+}
+
+export const menus: MenuItem[] = [
   { name: "Home", href: "/", icon: "HomeIcon" },
   { name: "Me", href: "/bio", icon: "UserCircleIcon" },
   { name: "Portfolio", href: "/portfolio", icon: "RectangleStackIcon" },

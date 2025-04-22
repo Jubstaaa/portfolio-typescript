@@ -4,15 +4,12 @@ import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Dialog } from "radix-ui";
 import { useState } from "react";
-import Image from "next/image";
 import { Icon } from "@iconify/react";
-
-const MotionImage = motion.create(Image);
 
 export interface LightboxProps {
   src: string;
   alt?: string;
-  id?: string | number;
+  id: string | number;
 }
 
 export default function Lightbox({ src, alt, id }: LightboxProps) {
@@ -30,21 +27,13 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
     >
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
         <Dialog.Trigger asChild>
-          <motion.div
-            layoutId={`image-preview-dialog-${id}`}
-            className="relative z-10 w-full cursor-pointer rounded-lg"
-            role="button"
-          >
-            <MotionImage
-              layoutId={`image-preview-${id}`}
-              src={src}
-              alt={alt}
-              width={1000}
-              height={1000}
-              priority
-              className="w-auto lg:max-h-96 h-full object-contain rounded-large"
-            />
-          </motion.div>
+          <motion.img
+            loading="lazy"
+            layoutId={`image-preview-${id}`}
+            src={src}
+            alt={alt}
+            className="w-auto lg:max-h-96 h-full object-contain rounded-large cursor-pointer"
+          />
         </Dialog.Trigger>
         <Dialog.Portal>
           <AnimatePresence initial={false} mode="sync">
@@ -71,12 +60,10 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
                       layoutId={`image-preview-dialog-${id}`}
                       className="flex items-center justify-center relative w-fit h-fit lg:h-full mx-auto"
                     >
-                      <MotionImage
+                      <motion.img
                         layoutId={`image-preview-${id}`}
                         src={src}
                         alt={alt}
-                        width={1000}
-                        height={1000}
                         className="w-full h-full rounded-large object-contain select-none mx-auto"
                       />
                       <Dialog.Close asChild>

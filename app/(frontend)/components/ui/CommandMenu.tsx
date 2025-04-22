@@ -1,16 +1,20 @@
 "use client";
 import "@tmikeladze/react-cmdk/dist/cmdk.css";
-import CommandPalette, { filterItems, IconName } from "@tmikeladze/react-cmdk";
+import CommandPalette, { filterItems } from "@tmikeladze/react-cmdk";
 import { useState } from "react";
 import Button from "./Button";
 import { fetcher } from "@/lib/fetcher";
 import useSWR from "swr";
 import { menus } from "../Header";
+import { useDebounce } from "use-debounce";
+import Link from "next/link";
 
 const CommandMenu = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const { data = [] } = useSWR<
+  const [debouncedSearch] = useDebounce(search, 300);
+  let index = 0;
+  const { data = [], isLoading } = useSWR<
     {
       name: string;
       items: {
@@ -19,7 +23,10 @@ const CommandMenu = () => {
         slug: string;
       }[];
     }[]
-  >(search ? ["/api/search", { query: search }] : null, fetcher);
+  >(
+    debouncedSearch ? ["/api/search", { query: debouncedSearch }] : null,
+    fetcher
+  );
 
   const filteredMenus = filterItems(
     [
@@ -29,7 +36,7 @@ const CommandMenu = () => {
         items: menus.map((menu) => ({
           id: menu.name,
           children: menu.name,
-          icon: menu.icon as IconName,
+          icon: menu.icon,
           href: menu.href,
         })),
       },
@@ -49,19 +56,22 @@ const CommandMenu = () => {
         onChangeSearch={setSearch}
         onChangeOpen={setOpen}
         isOpen={open}
-        page={"root"}
+        page="root"
         search={search}
-        commandPaletteContentClassName={"light"}
+        commandPaletteContentClassName="light"
+        renderLink={(props) => (
+          <Link href={props.href ?? "#"} {...props}></Link>
+        )}
       >
         <CommandPalette.Page id="root">
           {filteredMenus.map((category) => (
             <CommandPalette.List key={category.id} heading={category.heading}>
-              {category.items.map((item, index) => (
+              {category.items.map((item) => (
                 <CommandPalette.ListItem
-                  index={index}
+                  index={index++}
                   key={item.id}
-                  href={item.href}
                   icon={item.icon}
+                  href={item.href}
                 >
                   {item.children}
                 </CommandPalette.ListItem>
@@ -69,11 +79,19 @@ const CommandMenu = () => {
             </CommandPalette.List>
           ))}
 
+          {isLoading && (
+            <CommandPalette.List heading="Searching...">
+              <CommandPalette.ListItem index={0}>
+                Loading...
+              </CommandPalette.ListItem>
+            </CommandPalette.List>
+          )}
+
           {data.map((category) => (
             <CommandPalette.List key={category.name} heading={category.name}>
-              {category.items.map((item, index) => (
+              {category.items.map((item) => (
                 <CommandPalette.ListItem
-                  index={index}
+                  index={index++}
                   key={item.id}
                   href={item.slug}
                 >
