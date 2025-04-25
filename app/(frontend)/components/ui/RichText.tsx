@@ -23,7 +23,6 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
     if (media) {
       return (
         <Lightbox src={media.url} alt={media.alt} id={media.id} />
-     
       );
     }
   },

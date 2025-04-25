@@ -130,7 +130,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
               </Tooltip>
             ))}
           </div>
-          <h3 className="text-[22px] font-medium">{project.description}</h3>
+          <p className="text-[22px] font-medium">{project.description}</p>
         </div>
       </div>
       <Card
@@ -140,7 +140,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         whileHover={false}
       >
         <Image
-          className="w-full h-auto object-contain rounded-large"
+          className="w-full h-auto object-contain rounded-large shadow"
           src={project.media.url}
           alt={project.media.alt}
           width={1000}

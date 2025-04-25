@@ -32,7 +32,7 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
             layoutId={`image-preview-${id}`}
             src={src}
             alt={alt}
-            className="w-auto lg:max-h-96 h-full object-contain rounded-large cursor-pointer"
+            className="w-auto lg:max-h-96 h-full object-contain rounded-large cursor-pointer shadow"
           />
         </Dialog.Trigger>
         <Dialog.Portal>

@@ -77,7 +77,7 @@ async function page() {
                   </span>
                 </div>
               </div>
-              <div className="flex gap-2 items-start">
+              <div className="flex gap-2 items-start overflow-auto scrollbar-hide">
                 {item.stacks.map((stack) => (
                   <Badge
                     key={stack.id}

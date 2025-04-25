@@ -97,7 +97,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
           <h1 className="text-primary text-3xl lg:text-6xl font-semibold leading-9 lg:leading-20 text-start lg:text-center tracking-tighter">
             {blog.name}
           </h1>
-          <h3 className="text-[22px] font-medium">{blog.description}</h3>
+          <p className="text-[22px] font-medium">{blog.description}</p>
         </div>
       </div>
       <Card
