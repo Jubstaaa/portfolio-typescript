@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "G2G Lol Account Uploader by Jubstaa",
+  "version": "1.0",
+  "permissions": ["scripting", "activeTab", "cookies"],
+  "host_permissions": ["https://sls.g2g.com/*", "https://www.g2g.com/"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Upload Lol Account"
+  }
+}
