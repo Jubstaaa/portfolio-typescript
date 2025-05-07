@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/projects/portfolio-typescript",
+        destination: "/portfolio/portfolio-site",
+        permanent: true,
+      },
+      {
         source: "/projects/:path*",
         destination: "/portfolio",
         permanent: true,
