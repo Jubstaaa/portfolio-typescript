@@ -5,15 +5,29 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Dialog } from "radix-ui";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { cn } from "@/lib/cn";
 
 export interface LightboxProps {
   src: string;
   alt?: string;
   id: string | number;
+  className?: string;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export default function Lightbox({ src, alt, id }: LightboxProps) {
+export default function Lightbox({
+  src,
+  alt,
+  id,
+  className,
+  onOpenChange,
+}: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    onOpenChange?.(open);
+  };
 
   return (
     <MotionConfig
@@ -25,14 +39,17 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
         duration: 0.6,
       }}
     >
-      <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
         <Dialog.Trigger asChild>
           <motion.img
             loading="lazy"
             layoutId={`image-preview-${id}`}
             src={src}
             alt={alt}
-            className="w-auto lg:max-h-96 h-auto object-contain rounded-large cursor-pointer shadow"
+            className={cn(
+              "w-full h-full object-cover cursor-pointer",
+              className
+            )}
           />
         </Dialog.Trigger>
         <Dialog.Portal>
@@ -41,7 +58,7 @@ export default function Lightbox({ src, alt, id }: LightboxProps) {
               <>
                 <Dialog.Overlay>
                   <motion.div
-                    className="fixed inset-0 z-40 h-full w-full backdrop-blur-xs"
+                    className="fixed inset-0 z-50 h-full w-full backdrop-blur-xs"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

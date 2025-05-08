@@ -4,6 +4,9 @@ import { randomUUID } from "crypto";
 
 export const Media: CollectionConfig = {
   slug: "media",
+  admin: {
+    useAsTitle: "alt",
+  },
   upload: true,
   fields: [
     {

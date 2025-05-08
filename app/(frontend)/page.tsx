@@ -145,6 +145,7 @@ async function page() {
             images={images.map((item) => ({
               url: item.media.url,
               alt: item.media.alt,
+              id: item.media.id,
             }))}
           />
         </Card>

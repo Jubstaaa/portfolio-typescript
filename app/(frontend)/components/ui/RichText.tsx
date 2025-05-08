@@ -22,7 +22,12 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
     });
     if (media) {
       return (
-        <Lightbox src={media.url} alt={media.alt} id={media.id} />
+        <Lightbox
+          src={media.url}
+          alt={media.alt}
+          id={media.id}
+          className="w-auto lg:max-h-96 h-auto shadow object-contain rounded-large"
+        />
       );
     }
   },

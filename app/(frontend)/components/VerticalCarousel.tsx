@@ -2,17 +2,18 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion, PanInfo } from "framer-motion";
-import Image from "next/image";
 import { cn } from "@/lib/cn";
+import Lightbox from "./ui/LightBox";
 
 type Direction = "Up" | "Down";
 
 interface VerticalCarouselProps {
-  images: { url: string; alt: string }[];
+  images: { url: string; alt: string; id: string }[];
 }
 
 const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
   const totalPages: number = images.length;
   const autoScrollInterval = 3000;
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -21,10 +22,12 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    intervalRef.current = setInterval(() => {
-      setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
-    }, autoScrollInterval);
-  }, [totalPages, autoScrollInterval]);
+    if (!isLightboxOpen) {
+      intervalRef.current = setInterval(() => {
+        setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+      }, autoScrollInterval);
+    }
+  }, [totalPages, autoScrollInterval, isLightboxOpen]);
 
   const handleSwipe = (direction: Direction): void => {
     if (direction === "Up") {
@@ -104,12 +107,16 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <div key={index} className="relative h-full w-full">
-            <Image
-              className="pointer-events-none object-cover w-full h-full"
+            <Lightbox
               src={image.url}
-              width={800}
-              height={800}
               alt={image.alt}
+              id={image.id}
+              onOpenChange={(open) => {
+                setIsLightboxOpen(open);
+                if (!open) {
+                  resetInterval();
+                }
+              }}
             />
           </div>
         ))}

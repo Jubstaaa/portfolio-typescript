@@ -25,11 +25,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/blog/:path",
-        destination: "/blog",
-        permanent: true,
-      },
-      {
         source: "/experiences",
         destination: "/bio",
         permanent: true,
