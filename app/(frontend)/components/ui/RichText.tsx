@@ -6,6 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical/react";
 import { MediaService } from "@/lib/services";
 import Lightbox from "./LightBox";
+import Image from "next/image";
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
@@ -22,12 +23,15 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
     });
     if (media) {
       return (
-        <Lightbox
-          src={media.url}
-          alt={media.alt}
-          id={media.id}
-          className="w-auto lg:max-h-96 h-auto shadow object-contain rounded-large"
-        />
+        <Lightbox id={media.id}>
+          <Image
+            src={media.url}
+            alt={media.alt}
+            width={1920}
+            height={1080}
+            className="w-auto lg:max-h-96 h-auto shadow object-contain rounded-large"
+          />
+        </Lightbox>
       );
     }
   },

@@ -1,20 +1,28 @@
 "use client";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
-import { motion, PanInfo } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import Lightbox from "./ui/LightBox";
+import Image from "next/image";
 
 type Direction = "Up" | "Down";
 
-interface VerticalCarouselProps {
-  images: { url: string; alt: string; id: string }[];
+interface MediaItem {
+  url: string;
+  alt: string;
+  id: string;
+  mimeType: string;
 }
 
-const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
+interface VerticalCarouselProps {
+  items: MediaItem[];
+}
+
+const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ items }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
-  const totalPages: number = images.length;
+  const totalPages: number = items.length;
   const autoScrollInterval = 3000;
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -64,7 +72,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
       className="w-full h-[300px] lg:h-[450px] overflow-hidden relative"
     >
       <div className="absolute left-2.5 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1 p-1.5 bg-primary/20 rounded-full">
-        {images.map((_, index) => (
+        {items.map((_, index) => (
           <div
             key={index}
             onClick={() => handleDotClick(index)}
@@ -94,19 +102,33 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
         drag="y"
         dragElastic={0.1}
       >
-        {images.map((image, index) => (
+        {items.map((item, index) => (
           <div key={index} className="relative h-full w-full">
             <Lightbox
-              src={image.url}
-              alt={image.alt}
-              id={image.id}
+              id={item.id}
               onOpenChange={(open) => {
                 setIsLightboxOpen(open);
                 if (!open) {
                   resetInterval();
                 }
               }}
-            />
+            >
+              {item.mimeType === "video/webm" ? (
+                <video
+                  src={item.url}
+                  autoPlay={isLightboxOpen}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={item.url}
+                  alt={item.alt}
+                  width={1920}
+                  height={1080}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </Lightbox>
           </div>
         ))}
       </motion.div>

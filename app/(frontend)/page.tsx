@@ -142,10 +142,11 @@ async function page() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <Card classNames={{ body: "lg:col-span-3 p-0" }}>
           <VerticalSlider
-            images={images.map((item) => ({
+            items={images.map((item) => ({
               url: item.media.url,
               alt: item.media.alt,
               id: item.media.id,
+              mimeType: item.media.mimeType,
             }))}
           />
         </Card>

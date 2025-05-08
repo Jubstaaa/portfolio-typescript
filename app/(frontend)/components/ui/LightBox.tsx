@@ -3,24 +3,27 @@
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Dialog } from "radix-ui";
-import { useState } from "react";
+import {
+  useState,
+  ReactNode,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  ComponentProps,
+} from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/cn";
 
 export interface LightboxProps {
-  src: string;
-  alt?: string;
   id: string | number;
-  className?: string;
   onOpenChange?: (open: boolean) => void;
+  children: ReactNode;
 }
 
 export default function Lightbox({
-  src,
-  alt,
   id,
-  className,
   onOpenChange,
+  children,
 }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,6 +31,46 @@ export default function Lightbox({
     setIsOpen(open);
     onOpenChange?.(open);
   };
+
+  const wrapWithMotion = (
+    element: ReactElement<ComponentProps<"div">>,
+    className: string,
+    useOriginalClassName: boolean = true
+  ) => {
+    const MotionComponent = motion.div;
+    return (
+      <MotionComponent
+        layoutId={`image-preview-${id}`}
+        className={
+          useOriginalClassName
+            ? cn(element.props.className, className)
+            : className
+        }
+      >
+        {cloneElement(element, {
+          ...element.props,
+          className: useOriginalClassName
+            ? cn(element.props.className, className)
+            : className,
+        })}
+      </MotionComponent>
+    );
+  };
+
+  const wrappedChildren = isValidElement(children)
+    ? wrapWithMotion(
+        children as ReactElement<ComponentProps<"div">>,
+        "cursor-pointer"
+      )
+    : children;
+
+  const dialogChildren = wrapWithMotion(
+    children as ReactElement<ComponentProps<"div">>,
+    "w-full h-full rounded-large object-contain select-none mx-auto overflow-hidden",
+    false
+  );
+
+  const isVideo = isValidElement(children) && children.type === "video";
 
   return (
     <MotionConfig
@@ -41,16 +84,18 @@ export default function Lightbox({
     >
       <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
         <Dialog.Trigger asChild>
-          <motion.img
-            loading="lazy"
-            layoutId={`image-preview-${id}`}
-            src={src}
-            alt={alt}
-            className={cn(
-              "w-full h-full object-cover cursor-pointer",
-              className
-            )}
-          />
+          {isVideo ? (
+            <div className="w-full h-full relative">
+              {wrappedChildren}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
+                <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
+                  <Icon icon="lucide:play" className="text-white w-8 h-8" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            wrappedChildren
+          )}
         </Dialog.Trigger>
         <Dialog.Portal>
           <AnimatePresence initial={false} mode="sync">
@@ -65,9 +110,9 @@ export default function Lightbox({
                   />
                 </Dialog.Overlay>
                 <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-                  <Dialog.Content className="w-full h-full lg:w-fit lg:h-4/5 flex items-center justify-center">
+                  <Dialog.Content className="w-full h-auto lg:w-fit lg:h-4/5 flex items-center justify-center">
                     <VisuallyHidden>
-                      <Dialog.Title>Image Preview</Dialog.Title>
+                      <Dialog.Title>Media Preview</Dialog.Title>
                       <Dialog.Description>
                         Interaction built using shared layout animations and
                         Radix dialog primitive.
@@ -75,14 +120,9 @@ export default function Lightbox({
                     </VisuallyHidden>
                     <motion.div
                       layoutId={`image-preview-dialog-${id}`}
-                      className="flex items-center justify-center relative w-fit h-fit lg:h-full mx-auto"
+                      className="flex items-center justify-center relative w-fit h-full mx-auto"
                     >
-                      <motion.img
-                        layoutId={`image-preview-${id}`}
-                        src={src}
-                        alt={alt}
-                        className="w-full h-full rounded-large object-contain select-none mx-auto"
-                      />
+                      {dialogChildren}
                       <Dialog.Close asChild>
                         <button
                           type="button"

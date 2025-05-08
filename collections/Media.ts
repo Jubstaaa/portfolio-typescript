@@ -26,15 +26,20 @@ export const Media: CollectionConfig = {
       async (req) => {
         if (req.operation === "create" && req.req.file) {
           const file = req.req.file;
-          const uniqueFileName = `${randomUUID()}.webp`;
+          const isPhoto = file.mimetype.includes("image");
+          const uniqueFileName = `${randomUUID()}.${isPhoto ? "webp" : "webm"}`;
 
-          const optimizedBuffer = await sharp(file.data)
-            .resize(1920)
-            .webp({ quality: 80 })
-            .toBuffer();
+          if (isPhoto) {
+            const optimizedBuffer = await sharp(file.data)
+              .resize(1920)
+              .webp({ quality: 80 })
+              .toBuffer();
 
-          file.data = optimizedBuffer;
-          file.mimetype = "image/webp";
+            file.data = optimizedBuffer;
+            file.mimetype = "image/webp";
+          }
+          file.mimetype = "video/webm";
+
           file.name = uniqueFileName;
         }
       },

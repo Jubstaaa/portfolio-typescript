@@ -45,6 +45,7 @@ model Image {
 model Media {
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
   filename     String
+  mimeType     String
   alt          String?
   ProjectMedia Project[]    @relation("ProjectMedia")
   ProjectLogo  Project[]    @relation("ProjectLogo")
