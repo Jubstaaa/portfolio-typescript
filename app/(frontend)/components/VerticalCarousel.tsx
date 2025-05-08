@@ -38,15 +38,6 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
     resetInterval();
   };
 
-  const handleDragEnd = (_: unknown, info: PanInfo) => {
-    const swipeThreshold = 50;
-    if (info.offset.y < -swipeThreshold) {
-      handleSwipe("Up");
-    } else if (info.offset.y > swipeThreshold) {
-      handleSwipe("Down");
-    }
-  };
-
   useEffect(() => {
     resetInterval();
     return () => {
@@ -101,9 +92,7 @@ const VerticalCarousel: React.FC<VerticalCarouselProps> = ({ images }) => {
           ease: [0.32, 0.72, 0, 1],
         }}
         drag="y"
-        dragConstraints={{ top: 0, bottom: 0 }}
         dragElastic={0.1}
-        onDragEnd={handleDragEnd}
       >
         {images.map((image, index) => (
           <div key={index} className="relative h-full w-full">
