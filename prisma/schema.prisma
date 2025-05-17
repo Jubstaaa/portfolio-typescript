@@ -79,7 +79,6 @@ model User {
   lockUntil               DateTime?
   resetPasswordExpiration DateTime?
   resetPasswordToken      String?
-
   @@map("users")
 }
 

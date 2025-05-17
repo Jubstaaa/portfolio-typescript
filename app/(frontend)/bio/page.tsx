@@ -88,11 +88,11 @@ async function page() {
 
       <Card
         classNames={{
-          body: "h-[300px] lg:h-auto p-6 gap-6 overflow-auto lg:overflow-hidden",
+          body: "p-6 gap-6",
         }}
       >
         <h3 className="text-[22px] font-medium text-primary">Skills</h3>
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-2.5">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-2.5 !max-h-96 overflow-auto lg:overflow-hidden">
           {skills.map((item) => (
             <Badge
               classNames={{ body: "normal-case" }}
@@ -105,9 +105,9 @@ async function page() {
           ))}
         </div>
       </Card>
-      <Card classNames={{ body: "p-6 gap-6 !max-h-[400px] overflow-auto" }}>
+      <Card classNames={{ body: "p-6 gap-6" }}>
         <h3 className="text-[22px] font-medium text-primary">Experience</h3>
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4 !max-h-96 overflow-auto">
           {experiences.map((item, index) => (
             <div
               key={item.id}
@@ -159,9 +159,9 @@ async function page() {
           ))}
         </div>
       </Card>
-      <Card classNames={{ body: "p-6 gap-6 !max-h-[400px] overflow-auto" }}>
+      <Card classNames={{ body: "p-6 gap-6" }}>
         <h3 className="text-[22px] font-medium text-primary">Education</h3>
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4 !max-h-96 overflow-auto">
           {educations.map((item, index) => (
             <div
               key={item.id}
