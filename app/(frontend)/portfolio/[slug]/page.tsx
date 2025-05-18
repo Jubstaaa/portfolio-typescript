@@ -9,6 +9,7 @@ import Tooltip from "../../components/ui/Tooltip";
 import { Icon } from "@iconify/react";
 import RichText from "../../components/ui/RichText";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import Lightbox from "../../components/ui/LightBox";
 
 export async function generateMetadata({
   params,
@@ -99,13 +100,10 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
               <Tooltip
                 target="_blank"
                 href={project.sourceUrl}
-                content={"Source Code"}
-                className="w-5 lg:w-9 h-5 lg:h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
+                content="Source Code"
+                className="w-9 h-9 flex items-center justify-center rounded-lg overflow-hidden text-white bg-primary"
               >
-                <Icon
-                  icon="mdi:link-variant"
-                  className="w-3 lg:w-5 h-3 lg:h-5"
-                />
+                <Icon icon="mdi:link-variant" width="20" height="20" />
               </Tooltip>
             )}
             {project.previewUrl && (
@@ -139,14 +137,17 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         }}
         whileHover={false}
       >
-        <Image
-          className="w-full h-auto object-contain rounded-large shadow"
-          src={project.media.url}
-          alt={project.media.alt}
-          width={1000}
-          height={1000}
-          priority
-        />
+        <Lightbox id="base-image">
+          <Image
+            className="w-full h-auto object-contain rounded-large shadow"
+            src={project.media.url}
+            alt={project.media.alt}
+            width={1000}
+            height={1000}
+            priority
+          />
+        </Lightbox>
+
         {project.content && (
           <div className="max-w-full w-full prose prose-slate">
             <RichText

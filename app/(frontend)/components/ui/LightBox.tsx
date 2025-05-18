@@ -43,7 +43,7 @@ export default function Lightbox({
         layoutId={`image-preview-${id}`}
         className={
           useOriginalClassName
-            ? cn(element.props.className, className)
+            ? cn(element.props.className, className, "shadow-none")
             : className
         }
       >
@@ -66,7 +66,7 @@ export default function Lightbox({
 
   const dialogChildren = wrapWithMotion(
     children as ReactElement<ComponentProps<"div">>,
-    "w-full h-full rounded-large object-contain select-none mx-auto overflow-hidden",
+    "w-full h-full rounded-large object-contain select-none mx-auto overflow-hidden shadow",
     false
   );
 
@@ -128,7 +128,7 @@ export default function Lightbox({
                           type="button"
                           role="button"
                           aria-label="Close dialog"
-                          className="absolute top-3 right-3 z-10 h-fit w-fit rounded-full border border-white/20 bg-white/20 p-[6px] backdrop-blur hover:bg-white/50 focus-visible:outline-none cursor-pointer"
+                          className="absolute top-3 right-3 z-10 h-fit w-fit rounded-full border border-white/20 bg-white/20 p-[6px] backdrop-blur hover:bg-white/50 focus-visible:outline-none cursor-pointer shadow"
                         >
                           <Icon
                             className="text-white"
