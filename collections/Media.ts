@@ -38,8 +38,9 @@ export const Media: CollectionConfig = {
             file.data = optimizedBuffer;
             file.mimetype = "image/webp";
           }
-          file.mimetype = "video/webm";
-
+          else {
+            file.mimetype = "video/webm";
+          }
           file.name = uniqueFileName;
         }
       },
