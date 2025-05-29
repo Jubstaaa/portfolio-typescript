@@ -20,5 +20,10 @@ export const ProjectCategory: CollectionConfig = {
         await revalidatePaths([{ path: "/portfolio", type: "layout" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/portfolio", type: "layout" }]);
+      },
+    ],
   },
 };

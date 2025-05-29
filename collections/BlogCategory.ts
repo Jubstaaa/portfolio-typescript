@@ -20,5 +20,10 @@ export const BlogCategory: CollectionConfig = {
         await revalidatePaths([{ path: "/blog/[slug]", type: "page" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/blog/[slug]", type: "page" }]);
+      },
+    ],
   },
 };

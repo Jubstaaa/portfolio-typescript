@@ -46,5 +46,10 @@ export const Education: CollectionConfig = {
         await revalidatePaths([{ path: "/bio" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/bio" }]);
+      },
+    ],
   },
 };

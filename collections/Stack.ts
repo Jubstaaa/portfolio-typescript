@@ -46,5 +46,14 @@ export const Stack: CollectionConfig = {
         ]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/stack" },
+          { path: "/portfolio/[slug]", type: "page" },
+        ]);
+      },
+    ],
   },
 };

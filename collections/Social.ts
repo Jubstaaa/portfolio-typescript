@@ -39,5 +39,10 @@ export const Social: CollectionConfig = {
         await revalidatePaths([{ path: "/", type: "layout" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/", type: "layout" }]);
+      },
+    ],
   },
 };

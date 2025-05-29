@@ -16,5 +16,10 @@ export const Skill: CollectionConfig = {
         await revalidatePaths([{ path: "/bio" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/bio" }]);
+      },
+    ],
   },
 };

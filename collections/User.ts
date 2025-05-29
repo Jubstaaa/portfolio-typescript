@@ -52,5 +52,10 @@ export const Users: CollectionConfig = {
         await revalidatePaths([{ path: "/" }, { path: "/bio" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/" }, { path: "/bio" }]);
+      },
+    ],
   },
 };

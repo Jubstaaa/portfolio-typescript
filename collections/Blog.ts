@@ -52,5 +52,14 @@ export const Blog: CollectionConfig = {
         ]);
       },
     ],
+    afterDelete: [
+      async ({ doc }) => {
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/blog" },
+          { path: doc.slug },
+        ]);
+      },
+    ],
   },
 };

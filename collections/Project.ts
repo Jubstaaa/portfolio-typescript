@@ -70,5 +70,14 @@ export const Project: CollectionConfig = {
         ]);
       },
     ],
+    afterDelete: [
+      async ({ doc }) => {
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/portfolio" },
+          { path: doc.slug },
+        ]);
+      },
+    ],
   },
 };

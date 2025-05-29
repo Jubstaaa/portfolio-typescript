@@ -21,5 +21,10 @@ export const Image: CollectionConfig = {
         await revalidatePaths([{ path: "/" }]);
       },
     ],
+    afterDelete: [
+      async () => {
+        await revalidatePaths([{ path: "/" }]);
+      },
+    ],
   },
 };
