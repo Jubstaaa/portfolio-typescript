@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "nmpz8srvxyslvrdu.public.blob.vercel-storage.com",
+        hostname: process.env.DO_SPACES_URL as string,
       },
     ],
   },

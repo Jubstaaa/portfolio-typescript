@@ -2,11 +2,11 @@ import sharp from "sharp";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { buildConfig } from "payload";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { Stack } from "./collections/Stack";
 import { Project } from "./collections/Project";
 import { ProjectCategory } from "./collections/ProjectCategory";
 import { Media } from "./collections/Media";
-import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { Image } from "./collections/Image";
 import { Users } from "./collections/User";
 import { Skill } from "./collections/Skill";
@@ -33,13 +33,24 @@ export default buildConfig({
     Blog,
     BlogCategory,
   ],
+
   plugins: [
-    vercelBlobStorage({
-      enabled: true,
+    s3Storage({
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      bucket: process.env.DO_SPACES_BUCKET || "jubstaa-portfolio",
+      config: {
+        credentials: {
+          accessKeyId: process.env.DO_SPACES_KEY || "",
+          secretAccessKey: process.env.DO_SPACES_SECRET || "",
+        },
+        region: process.env.DO_SPACES_REGION || "",
+        endpoint:
+          `https://${process.env.DO_SPACES_REGION}.${process.env.DO_SPACES_HOST}` ||
+          "",
+      },
+      acl: "public-read",
     }),
   ],
 

@@ -37,24 +37,11 @@ export const Media: CollectionConfig = {
 
             file.data = optimizedBuffer;
             file.mimetype = "image/webp";
-          }
-          else {
+          } else {
             file.mimetype = "video/webm";
           }
           file.name = uniqueFileName;
         }
-      },
-    ],
-    afterChange: [
-      async ({ doc }) => {
-        if (doc.filename) {
-          const baseUrl = "https://blob.vercel-storage.com/uploads/";
-          return {
-            ...doc,
-            url: `${baseUrl}${doc.filename}`,
-          };
-        }
-        return doc;
       },
     ],
   },

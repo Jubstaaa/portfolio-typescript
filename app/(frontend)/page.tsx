@@ -131,7 +131,7 @@ async function page() {
             </div>
             <Image
               className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-125"
-              src="https://nmpz8srvxyslvrdu.public.blob.vercel-storage.com/6dea9a58-d675-417e-bba5-54dace7bd7d3.webp"
+              src={`https://${process.env.DO_SPACES_URL}/6dea9a58-d675-417e-bba5-54dace7bd7d3.webp`}
               alt="İlker Balcılar"
               width={750}
               height={500}
