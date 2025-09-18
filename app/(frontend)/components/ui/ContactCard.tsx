@@ -8,34 +8,33 @@ import Form from "./Form";
 
 export const ContactCard = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const size = 300;
 
   useEffect(() => {
     let phi = 0;
-
     if (!canvasRef.current) return;
 
     const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: 800 * 2,
-      height: 800 * 2,
+      offset: [size, size],
+      devicePixelRatio: 1, // Daha az GPU yükü
+      width: size * 2,
+      height: size * 2,
       phi: 0,
       theta: 0,
       dark: 0,
-      diffuse: 1.2,
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [1, 1, 1], // Set the globe to white color
+      diffuse: 1,
+      mapSamples: 4000, // Minimum sample (yük çok azalır)
+      mapBrightness: 2.5,
+      baseColor: [1, 1, 1],
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
+        { location: [0.7595, -122.4367], size: 0.02 },
+        { location: [40.7128, -74.006], size: 0.05 },
       ],
       onRender: (state) => {
-        // Called on every animation frame.
-        // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.005; // Slower rotation
+        phi += 0.004; // Daha yavaş ve akıcı dönüş
       },
     });
 
@@ -48,7 +47,7 @@ export const ContactCard = () => {
     <Card
       whileHover={false}
       classNames={{
-        body: "w-full max-w-6xl mx-auto gap-9 p-6 lg:p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center",
+        body: "w-full max-w-6xl mx-auto gap-9 p-6 lg:p-16 bg-gradient-to-b from-[#ffffff] to-[#e2e8f0] items-center relative overflow-hidden",
       }}
     >
       <div className="flex flex-col gap-5 items-center text-3xl lg:text-5xl font-semibold leading-none text-center z-10">
@@ -77,12 +76,11 @@ export const ContactCard = () => {
         ]}
       />
 
+      {/* Daha küçük globe */}
       <canvas
         ref={canvasRef}
-        style={{ width: 800, height: 800, maxWidth: "100%", aspectRatio: 1 }}
-        className={
-          "absolute right-0 bottom-0 translate-x-0 lg:translate-x-1/3 translate-y-1/2"
-        }
+        style={{ width: size * 2, height: size * 2 }}
+        className="absolute right-0 bottom-0 translate-x-0 "
       />
     </Card>
   );

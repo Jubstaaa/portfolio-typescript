@@ -3,7 +3,6 @@ import Badge from "./components/ui/Badge";
 import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import { Icon } from "@iconify/react";
-import VerticalSlider from "./components/VerticalCarousel";
 import StackCard from "./components/StackCard";
 import SocialCards from "./components/SocialCards";
 import Hero from "./components/Hero";
@@ -141,13 +140,12 @@ async function page() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <Card classNames={{ body: "lg:col-span-3 p-0" }}>
-          <VerticalSlider
-            items={images.map((item) => ({
-              url: item.media.url,
-              alt: item.media.alt,
-              id: item.media.id,
-              mimeType: item.media.mimeType,
-            }))}
+          <Image
+            src={`https://${process.env.DO_SPACES_URL}/4784321a-9fed-444e-b1ff-5b3419a02507.webp`}
+            alt="Brave"
+            className="w-full h-full object-cover"
+            width={750}
+            height={500}
           />
         </Card>
         <Card classNames={{ body: "lg:col-span-9 gap-6" }}>

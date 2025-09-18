@@ -13,7 +13,7 @@ import { IconName } from "@tmikeladze/react-cmdk";
 export interface MenuItem {
   name: string;
   href: string;
-  icon: IconName; 
+  icon: IconName;
 }
 
 export const menus: MenuItem[] = [
