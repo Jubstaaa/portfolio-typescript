@@ -6,16 +6,10 @@ import { Icon } from "@iconify/react";
 import StackCard from "./components/StackCard";
 import SocialCards from "./components/SocialCards";
 import Hero from "./components/Hero";
-import { BlogService, ImageService, ProjectService } from "@/lib/services";
+import { BlogService, ProjectService } from "@/lib/services";
 import dayjs from "dayjs";
 
 async function page() {
-  const images = await ImageService.findMany({
-    include: {
-      media: true,
-    },
-  });
-
   const blogs = await BlogService.findMany({
     select: {
       id: true,
