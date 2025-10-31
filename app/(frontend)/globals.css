@@ -17,3 +17,11 @@ body {
 .hero-shadow {
   @apply before:absolute before:bottom-0 before:left-0 before:w-full before:h-2/3 before:overflow-hidden before:z-10 before:flex-none before:bg-hero-shadow;
 }
+
+.prose code {
+  @apply before:content-[''] before:w-1 after:content-[''] after:w-1 before:inline-block after:inline-block;
+}
+
+p:has(code) {
+  @apply bg-slate-100 text-slate-800 text-sm rounded-lg p-3
+}
