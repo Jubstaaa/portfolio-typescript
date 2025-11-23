@@ -14,7 +14,7 @@ export const prisma = new PrismaClient().$extends({
       url: {
         needs: { filename: true },
         compute(media) {
-          return `https://${process.env.DO_SPACES_URL}/${media.filename}`;
+          return `${process.env.S3_BUCKET_URL}/${media.filename}`;
         },
       },
       alt: {

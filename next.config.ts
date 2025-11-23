@@ -48,7 +48,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.DO_SPACES_URL as string,
+        hostname: process.env.S3_HOSTNAME as string,
       },
     ],
   },

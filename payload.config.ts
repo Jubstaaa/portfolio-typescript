@@ -39,25 +39,25 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: process.env.DO_SPACES_BUCKET || "jubstaa-portfolio",
+      bucket: process.env.S3_BUCKET as string,
       config: {
         credentials: {
-          accessKeyId: process.env.DO_SPACES_KEY || "",
-          secretAccessKey: process.env.DO_SPACES_SECRET || "",
+          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
         },
-        region: process.env.DO_SPACES_REGION || "",
+        region: process.env.S3_REGION as string,
         endpoint:
-          `https://${process.env.DO_SPACES_REGION}.${process.env.DO_SPACES_HOST}` ||
-          "",
+          `https://${process.env.S3_REGION}.${process.env.S3_HOSTNAME}`,
+        forcePathStyle: true,
       },
       acl: "public-read",
     }),
   ],
 
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: process.env.PAYLOAD_SECRET as string,
 
   db: mongooseAdapter({
-    url: process.env.MONGODB_URI || "",
+    url: process.env.MONGODB_URI as string,
   }),
 
   sharp,
