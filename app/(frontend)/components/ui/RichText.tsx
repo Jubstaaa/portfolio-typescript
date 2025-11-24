@@ -6,7 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical/react";
 import { MediaService } from "@/lib/services";
 import Lightbox from "./LightBox";
-import Image from "next/image";
+import Image from "@/app/(frontend)/components/ui/Image";
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,

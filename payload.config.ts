@@ -38,6 +38,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: true,
+        
       },
       bucket: process.env.S3_BUCKET as string,
       config: {
@@ -46,8 +47,7 @@ export default buildConfig({
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
         },
         region: process.env.S3_REGION as string,
-        endpoint:
-          `https://${process.env.S3_REGION}.${process.env.S3_HOSTNAME}`,
+        endpoint: process.env.S3_ENDPOINT || `https://${process.env.S3_REGION}.${process.env.S3_HOSTNAME}`,
         forcePathStyle: true,
       },
       acl: "public-read",

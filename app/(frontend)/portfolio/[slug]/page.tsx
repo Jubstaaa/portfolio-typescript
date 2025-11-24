@@ -1,7 +1,7 @@
 import Badge from "@/app/(frontend)/components/ui/Badge";
 import React from "react";
 import Card from "@/app/(frontend)/components/ui/Card";
-import Image from "next/image";
+import Image from "@/app/(frontend)/components/ui/Image";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { ProjectService } from "@/lib/services";

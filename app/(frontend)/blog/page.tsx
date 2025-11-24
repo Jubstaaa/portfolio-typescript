@@ -2,7 +2,7 @@ import { BlogService } from "@/lib/services";
 import React from "react";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
-import Image from "next/image";
+import Image from "@/app/(frontend)/components/ui/Image";
 import dayjs from "dayjs";
 import { Metadata } from "next";
 

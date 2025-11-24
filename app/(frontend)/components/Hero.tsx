@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "./ui/Image";
 import MusicCard from "./MusicCard";
 import RotatingBadge from "./RotatingBadge";
 import Card from "./ui/Card";

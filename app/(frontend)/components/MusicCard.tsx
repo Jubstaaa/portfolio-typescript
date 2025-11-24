@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Button from "./ui/Button";
-import Image from "next/image";
+import Image from "./ui/Image";
 import Card from "./ui/Card";
 
 interface ExternalUrls {

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./components/ui/Image";
 import Badge from "./components/ui/Badge";
 import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
@@ -33,6 +33,7 @@ async function page() {
       stacks: true,
     },
   });
+
 
   return (
     <div className="flex flex-col gap-3 lg:gap-9">
@@ -124,7 +125,7 @@ async function page() {
             </div>
             <Image
               className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-125"
-              src={`https://${process.env.DO_SPACES_URL}/6dea9a58-d675-417e-bba5-54dace7bd7d3.webp`}
+              src={`api/media/file/6dea9a58-d675-417e-bba5-54dace7bd7d3.webp`}
               alt="İlker Balcılar"
               width={750}
               height={500}
@@ -135,7 +136,7 @@ async function page() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <Card classNames={{ body: "lg:col-span-3 p-0" }}>
           <Image
-            src={`https://${process.env.DO_SPACES_URL}/4784321a-9fed-444e-b1ff-5b3419a02507.webp`}
+            src={`api/media/file/4784321a-9fed-444e-b1ff-5b3419a02507.webp`}
             alt="Brave"
             className="w-full h-full object-cover"
             width={750}

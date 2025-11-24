@@ -14,7 +14,7 @@ export const prisma = new PrismaClient().$extends({
       url: {
         needs: { filename: true },
         compute(media) {
-          return `${process.env.S3_BUCKET_URL}/${media.filename}`;
+          return `/api/media/file/${media.filename}`;
         },
       },
       alt: {

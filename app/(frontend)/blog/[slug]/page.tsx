@@ -1,8 +1,8 @@
 import Badge from "@/app/(frontend)/components/ui/Badge";
 import React from "react";
 import Card from "@/app/(frontend)/components/ui/Card";
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import Image from "@/app/(frontend)/components/ui/Image";
+import { notFound } from "next/navigation"; 
 import { Metadata } from "next";
 import { BlogService } from "@/lib/services";
 import RichText from "../../components/ui/RichText";

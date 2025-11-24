@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "@/app/(frontend)/components/ui/Image";
 import Card from "../components/ui/Card";
 import Badge from "../components/ui/Badge";
 import dayjs from "dayjs";
