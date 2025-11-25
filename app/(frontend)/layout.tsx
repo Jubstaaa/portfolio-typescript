@@ -5,6 +5,7 @@ import ScrollProgressBar from "./components/ui/ScrollProgressBar";
 import ScrollToTopButton from "./components/ui/ScrollToTopButton";
 import { ContactCard } from "./components/ui/ContactCard";
 import Header from "./components/Header";
+import FloatingChatWidget from "./components/FloatingChatWidget";
 
 export const metadata: Metadata = {
   title: "İlker Balcılar | Software Developer",
@@ -28,7 +29,11 @@ export default function RootLayout({
         <Footer />
       </main>
       <ScrollProgressBar />
+      <div className="flex flex-col gap-4 fixed bottom-3 lg:bottom-6 right-3 lg:right-6 z-50">
+
       <ScrollToTopButton />
+      <FloatingChatWidget />
+      </div>
     </>
   );
 }

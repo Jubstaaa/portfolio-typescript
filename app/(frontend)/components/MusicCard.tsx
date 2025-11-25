@@ -1,39 +1,29 @@
 "use client";
 
 import Card from "./ui/Card";
+import { Icon } from "@iconify/react";
 
 export default function MusicCard() {
+  const handleClick = () => {
+    const event = new CustomEvent("openChat");
+    window.dispatchEvent(event);
+  };
+
   return (
     <Card
       classNames={{
-        body: "flex-1 lg:flex-unset p-3 bg-white border border-divider rounded-2xl flex flex-col gap-3",
+        body: "h-auto p-4 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group",
       }}
+      onClick={handleClick}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-1">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-secondary">
-            Ad spot
-          </p>
-          <p className="text-base font-semibold text-foreground">
-            Tiny billboard
-          </p>
-        </div>
-        <span className="text-xs font-semibold text-secondary uppercase tracking-[0.2em]">
-          Slot #07
-        </span>
+      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
+        <Icon icon="humbleicons:ai" className="w-6 h-6 text-white" />
       </div>
-
-      <p className="text-xs text-secondary leading-snug">
-        Drop your wittiest one-liner here—ship a feature, roast a bug, brag
-        about coffee count. Max 120 characters, vibe unlimited.
-      </p>
-
-      <div className="w-full flex items-center justify-between text-[10px] text-secondary">
-        <span>Width: 230px</span>
-        <button className="text-primary underline decoration-dotted">
-          Drop a quip
-        </button>
+      <div className="text-center">
+        <p className="text-sm font-semibold text-white mb-1">Ask Ilker</p>
+        <p className="text-xs text-white/80">AI Assistant</p>
       </div>
+      <p className="text-xs text-white/70 text-center">Click to chat</p>
     </Card>
   );
 }
