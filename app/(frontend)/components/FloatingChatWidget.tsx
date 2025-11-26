@@ -5,8 +5,8 @@ import ReactMarkdown from "react-markdown";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import { sendChatMessage, ChatResponse } from "@/lib/actions";
-import { useActionState } from "@/hooks/use-action-state";
+import { sendChatMessageStream } from "@/lib/actions";
+import { readStreamableValue, type StreamableValue } from "@ai-sdk/rsc";
 
 type Role = "user" | "assistant";
 
@@ -33,7 +33,9 @@ export default function FloatingChatWidget() {
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { submit, pending, state } = useActionState(sendChatMessage);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const assistantIndexRef = useRef<number | null>(null);
 
   // Listen for custom event to open chat
   useEffect(() => {
@@ -52,19 +54,7 @@ export default function FloatingChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, pending]);
 
-  // Handle successful chat response
-  useEffect(() => {
-    const chatState = state as ChatResponse;
-    if (chatState?.ok && chatState?.reply) {
-      setMessages((prev) => [...prev, { role: "assistant", content: chatState.reply! }]);
-      setShowSuggestions(false);
-      // Reset form state
-      const form = document.getElementById("chat-form") as HTMLFormElement;
-      if (form) {
-        form.reset();
-      }
-    }
-  }, [state]);
+  // No-op: streaming güncellemede ayrı state kullanılacak
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,12 +63,61 @@ export default function FloatingChatWidget() {
 
     if (!message?.trim()) return;
 
-    // Add user message
-    setMessages((prev) => [...prev, { role: "user", content: message.trim() }]);
+    setMessages((prev) => {
+      const idx = prev.length + 1;
+      assistantIndexRef.current = idx;
+      return [
+        ...prev,
+        { role: "user", content: message.trim() },
+        { role: "assistant", content: "Ilker AI is thinking..." },
+      ];
+    });
     setShowSuggestions(false);
+    setPending(true);
+    setError(null);
 
-    // Submit to action
-    submit(formData);
+    
+
+    try {
+      const res = await sendChatMessageStream(formData);
+console.log(res)
+      if ("errors" in res && res.errors?.message?.length) {
+        setError(res.errors.message[0]);
+        return;
+      }
+
+      const { output } = res as { output: StreamableValue<string> };
+      let first = true;
+      for await (const delta of readStreamableValue(output)) {
+        const chunk = String(delta);
+        const isEmptyFirst = first && chunk.trim().length === 0;
+        if (isEmptyFirst) {
+          continue;
+        }
+        setMessages((prev) => {
+          const next = [...prev];
+          const target = assistantIndexRef.current ?? next.length - 1;
+          if (!next[target]) {
+            next.push({ role: "assistant", content: "" });
+            assistantIndexRef.current = next.length - 1;
+          }
+          next[assistantIndexRef.current ?? next.length - 1] = {
+            ...next[target],
+            content: first ? chunk : next[target].content + chunk,
+          };
+          return next;
+        });
+        if (first) {
+          first = false;
+        }
+      }
+    } catch {
+      setError("An unexpected error occurred");
+    } finally {
+      setPending(false);
+      const form = document.getElementById("chat-form") as HTMLFormElement;
+      if (form) form.reset();
+    }
   };
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -112,7 +151,7 @@ export default function FloatingChatWidget() {
       {/* Chat Window */}
       <div
         className={cn(
-          "fixed bottom-24 right-3 lg:right-6 z-40 w-[calc(100vw-1.5rem)] lg:w-[90vw] max-w-md h-[calc(100vh-8rem)] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-[#e2e8f0] flex flex-col transition-all duration-300",
+          "fixed bottom-6 right-3 lg:right-24 z-40 w-[calc(100vw-1.5rem)] lg:w-[90vw] max-w-md h-[calc(100vh-8rem)] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-[#e2e8f0] flex flex-col transition-all duration-300",
           isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
         )}
       >
@@ -187,15 +226,12 @@ export default function FloatingChatWidget() {
             </div>
           )}
 
-          {pending && (
-            <div className="rounded-2xl px-4 py-3 text-sm shadow-sm bg-white text-secondary animate-pulse">
-              Ilker AI is thinking...
-            </div>
-          )}
+          {/* thinking mesajı assistant balonunun içinde gösteriliyor */}
+          {/* thinking mesajı assistant balonunun içinde gösteriliyor */}
 
-          {state?.errors?.message && (
+          {error && (
             <div className="rounded-2xl px-4 py-3 text-sm shadow-sm bg-red-50 text-red-600 border border-red-200">
-              {state.errors.message[0]}
+              {error}
             </div>
           )}
 

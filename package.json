@@ -11,6 +11,7 @@
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
+    "@ai-sdk/rsc": "^1.0.103",
     "@openrouter/ai-sdk-provider": "^1.2.5",
     "@payloadcms/db-mongodb": "^3.25.0",
     "@payloadcms/next": "^3.25.0",

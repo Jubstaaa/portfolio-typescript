@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "./ui/Image";
-import MusicCard from "./MusicCard";
 import RotatingBadge from "./RotatingBadge";
 import Card from "./ui/Card";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
 import { UserService } from "@/lib/services";
+import AskIlkerCard from "./AskIlkerCard";
 
 async function Hero() {
   const user = await UserService.findFirst({
@@ -75,7 +75,7 @@ async function Hero() {
         )}
       </Card>
       <div className="flex flex-row lg:flex-col gap-2 lg:gap-4 lg:col-span-2 h-[150px] lg:h-[450px]">
-        <MusicCard />
+        <AskIlkerCard />
         <Card classNames={{ body: "flex-1 lg:flex-unset p-0" }}>
           <RotatingBadge />
         </Card>

@@ -5,9 +5,10 @@ import ContactEmail from "@/react-email-starter/emails/ContactEmail";
 import { revalidatePath } from "next/cache";
 import { buildProfileKnowledge } from "@/lib/ai/profile-knowledge";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
-import { generateText } from "ai";
+import { generateText, streamText } from "ai";
+import { createStreamableValue } from "@ai-sdk/rsc";
 
-const DEFAULT_MODEL = "meta-llama/llama-3.1-70b-instruct";
+const DEFAULT_MODEL = "x-ai/grok-4.1-fast:free";
 const SYSTEM_PROMPT = `You are Ilker Balcilar's personal portfolio assistant. Your role is to help visitors learn about Ilker's professional background, projects, technology expertise, and work experience.
 
 Key guidelines:
@@ -146,6 +147,69 @@ export const sendChatMessage = async (
       },
     };
   }
+};
+
+export const sendChatMessageStream = async (
+  formData: FormData
+) => {
+  if (!process.env.OPENROUTER_API_KEY) {
+    return {
+      errors: {
+        message: [
+          "OPENROUTER_API_KEY is missing. Please check your .env file.",
+        ],
+      },
+    } as ChatResponse;
+  }
+
+  const validatedFields = chatSchema.safeParse({
+    message: formData.get("message"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    } as ChatResponse;
+  }
+
+  const stream = createStreamableValue("");
+
+  (async () => {
+    try {
+      const openrouter = createOpenRouter({
+        apiKey: process.env.OPENROUTER_API_KEY,
+        headers: {
+          "HTTP-Referer": "https://ilkerbalcilar.com",
+          "X-Title": "IlkerAI",
+        },
+      });
+
+      const knowledge = await buildProfileKnowledge();
+
+      const { textStream } = await streamText({
+        model: openrouter(DEFAULT_MODEL),
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          {
+            role: "user",
+            content:
+              `User question: """${validatedFields.data.message}"""\n\nCurrent information about Ilker Balcilar:\n${knowledge}\n\nPlease answer the user's question based on the information provided above. If the information is not available in the knowledge base, say so honestly.`,
+          },
+        ],
+      });
+
+      for await (const delta of textStream) {
+        stream.update(delta);
+      }
+
+      stream.done();
+    } catch {
+      stream.update("An unexpected error occurred");
+      stream.done();
+    }
+  })();
+
+  return { output: stream.value };
 };
 
 export async function revalidatePaths(
