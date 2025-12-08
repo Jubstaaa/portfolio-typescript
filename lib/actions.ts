@@ -8,7 +8,7 @@ import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { generateText, streamText } from "ai";
 import { createStreamableValue } from "@ai-sdk/rsc";
 
-const DEFAULT_MODEL = "x-ai/grok-4.1-fast:free";
+const DEFAULT_MODEL = "moonshotai/kimi-k2:free";
 const SYSTEM_PROMPT = `You are Ilker Balcilar's personal portfolio assistant. Your role is to help visitors learn about Ilker's professional background, projects, technology expertise, and work experience.
 
 Key guidelines:
