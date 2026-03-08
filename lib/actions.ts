@@ -4,11 +4,11 @@ import { z } from "zod";
 import ContactEmail from "@/react-email-starter/emails/ContactEmail";
 import { revalidatePath } from "next/cache";
 import { buildProfileKnowledge } from "@/lib/ai/profile-knowledge";
-import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText, streamText } from "ai";
 import { createStreamableValue } from "@ai-sdk/rsc";
 
-const DEFAULT_MODEL = "moonshotai/kimi-k2:free";
+const DEFAULT_MODEL = "gemini-2.5-flash";
 const SYSTEM_PROMPT = `You are Ilker Balcilar's personal portfolio assistant. Your role is to help visitors learn about Ilker's professional background, projects, technology expertise, and work experience.
 
 Key guidelines:
@@ -28,7 +28,6 @@ Key guidelines:
 - When discussing tech stack, be specific about which technologies were used in which projects
 - Always provide context - don't just list facts, explain how they relate to the question`;
 
-
 export interface SendMailResponse {
   ok?: boolean;
   errors?: {
@@ -43,7 +42,7 @@ const schema = z.object({
 });
 
 export const sendContactMail = async (
-  formData: FormData
+  formData: FormData,
 ): Promise<SendMailResponse> => {
   const validatedFields = schema.safeParse({
     name: formData.get("name"),
@@ -88,12 +87,12 @@ const chatSchema = z.object({
 });
 
 export const sendChatMessage = async (
-  formData: FormData
+  formData: FormData,
 ): Promise<ChatResponse> => {
-  if (!process.env.OPENROUTER_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     return {
       errors: {
-        message: ["OPENROUTER_API_KEY is missing. Please check your .env file."],
+        message: ["GEMINI_API_KEY is missing. Please check your .env file."],
       },
     };
   }
@@ -109,17 +108,13 @@ export const sendChatMessage = async (
   }
 
   try {
-    const openrouter = createOpenRouter({
-      apiKey: process.env.OPENROUTER_API_KEY,
-      headers: {
-        "HTTP-Referer": "https://ilkerbalcilar.com",
-        "X-Title": "IlkerAI",
-      },
+    const google = createGoogleGenerativeAI({
+      apiKey: process.env.GEMINI_API_KEY,
     });
 
     const knowledge = await buildProfileKnowledge();
     const result = await generateText({
-      model: openrouter(DEFAULT_MODEL),
+      model: google(DEFAULT_MODEL),
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         {
@@ -149,15 +144,11 @@ export const sendChatMessage = async (
   }
 };
 
-export const sendChatMessageStream = async (
-  formData: FormData
-) => {
-  if (!process.env.OPENROUTER_API_KEY) {
+export const sendChatMessageStream = async (formData: FormData) => {
+  if (!process.env.GEMINI_API_KEY) {
     return {
       errors: {
-        message: [
-          "OPENROUTER_API_KEY is missing. Please check your .env file.",
-        ],
+        message: ["GEMINI_API_KEY is missing. Please check your .env file."],
       },
     } as ChatResponse;
   }
@@ -176,24 +167,19 @@ export const sendChatMessageStream = async (
 
   (async () => {
     try {
-      const openrouter = createOpenRouter({
-        apiKey: process.env.OPENROUTER_API_KEY,
-        headers: {
-          "HTTP-Referer": "https://ilkerbalcilar.com",
-          "X-Title": "IlkerAI",
-        },
+      const google = createGoogleGenerativeAI({
+        apiKey: process.env.GEMINI_API_KEY,
       });
 
       const knowledge = await buildProfileKnowledge();
 
       const { textStream } = await streamText({
-        model: openrouter(DEFAULT_MODEL),
+        model: google(DEFAULT_MODEL),
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           {
             role: "user",
-            content:
-              `User question: """${validatedFields.data.message}"""\n\nCurrent information about Ilker Balcilar:\n${knowledge}\n\nPlease answer the user's question based on the information provided above. If the information is not available in the knowledge base, say so honestly.`,
+            content: `User question: """${validatedFields.data.message}"""\n\nCurrent information about Ilker Balcilar:\n${knowledge}\n\nPlease answer the user's question based on the information provided above. If the information is not available in the knowledge base, say so honestly.`,
           },
         ],
       });
@@ -216,7 +202,7 @@ export async function revalidatePaths(
   paths: {
     path: string;
     type?: "page" | "layout";
-  }[]
+  }[],
 ) {
   paths.forEach(
     ({
@@ -231,6 +217,6 @@ export async function revalidatePaths(
       } else {
         revalidatePath(path);
       }
-    }
+    },
   );
 }
